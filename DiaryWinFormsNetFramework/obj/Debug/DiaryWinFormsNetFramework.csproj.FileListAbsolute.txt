@@ -1,0 +1,36 @@
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.exe.config
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.exe
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.pdb
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\DiaryClassLibStandart.dll
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\stdole.dll
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\bin\Debug\DiaryClassLibStandart.pdb
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csprojAssemblyReference.cache
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Properties.Resources.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.GenerateResource.cache
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.CopyComplete
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.exe
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.pdb
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.MainForm.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.TextContainer.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.View.DiaryForm.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.MainNavItem.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.SettingsForm.SettingsForm.resources
+D:\Programming\Realise Projects\MyDiaryApp Backup 2 workable version\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.SettingItemPanel.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.exe.config
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.exe
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\DiaryWinFormsNetFramework.pdb
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\DiaryClassLibStandart.dll
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\stdole.dll
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\bin\Debug\DiaryClassLibStandart.pdb
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csprojAssemblyReference.cache
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.SettingsForm.SettingsForm.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.MainNavItem.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.SettingItemPanel.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.TextContainer.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.View.DiaryForm.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.MainForm.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Properties.Resources.resources
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.GenerateResource.cache
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.CopyComplete
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.exe
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.pdb
