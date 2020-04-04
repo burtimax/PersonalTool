@@ -22,7 +22,17 @@ namespace DiaryClassLibStandart.Class
         public XmlElement Body;
 
         public string FileName { get => _filename; set => _filename = value; }
-        public string Dir { get => _directory; set => _directory = value; }
+        public string Dir {
+            get 
+            {
+                if(string.IsNullOrEmpty(_directory))
+                {
+                    _directory = Settings.GetSetting(Settings.StoryDirectory);
+                }
+                
+                return _directory;
+            }
+            set => _directory = value; }
         public string Path { get => this.Dir + @"\" + this.FileName + this.extension; }
 
         private string AltPath
@@ -37,12 +47,16 @@ namespace DiaryClassLibStandart.Class
         {
             this.Dir = directory;
             this.FileName = filename;
+           
         }
 
         public MyXmlDocument(string path)
         {
             ParsePath(path);
+            
         }
+
+
 
         private void ParsePath(string path)
         {
@@ -93,13 +107,19 @@ namespace DiaryClassLibStandart.Class
             //Если не нашли файл, то создадим его. Проинициализируем переменные;
             if (File.Exists(this.Path) == false)
             {
-                CreateNewFile();
-                InitDocAndBody();
+                CreateNewFile(this.Path);
             }
-            //Если нашли файл.
-            else
+
+            if (this.Doc == null && this.Body == null)
             {
-                InitDocAndBody(this.Path);
+                if(this.Path == null)
+                {
+                    InitDocAndBody();
+                }
+                else
+                {
+                    InitDocAndBody(this.Path);
+                }
             }
 
             IsDocumentOpened = true;
@@ -116,8 +136,17 @@ namespace DiaryClassLibStandart.Class
             {
                 throw new Exception("Null Elements!");
             }
+            if(this.Doc != null && this.Body == null)
+            {
+                this.Body = this.Doc.CreateElement(rootElementName);   
+            }
             if (path == null) path = this.Path;
 
+            if(this.Doc.ChildNodes.Count == 0 || this.Doc.DocumentElement == null)
+            {
+                this.Doc.AppendChild(this.Body);               
+            }
+            
             this.Doc.Save(path);
         }
 
@@ -138,21 +167,32 @@ namespace DiaryClassLibStandart.Class
             SetOrChangeElementValue(elementName, text);
         }
 
-        private void CreateNewFile()
+        private void CreateNewFile(string path)
         {
-            File.Create(this.Path);        
+            XmlDocument doc = new XmlDocument();
+            doc.AppendChild(doc.CreateElement("Root"));
+            doc.Save(Path);
         }
 
         private void InitDocAndBody(string docPath = null)
-        {       
-            this.Doc = new XmlDocument();
-            this.Body = this.Doc.CreateElement(this.rootElementName);
+        {    
+            if(this.Doc == null)
+            {
+                this.Doc = new XmlDocument();
+            }
+            
+            this.Body = this.Doc.DocumentElement;
+            if(this.Body == null)
+            {
+                this.Body = this.Doc.CreateElement(rootElementName);
+                this.Doc.AppendChild(this.Body);
+            }
+
             if (string.IsNullOrEmpty(docPath) == false)
             {
                 this.Doc.Load(this.Path);
                 this.Body = this.Doc.DocumentElement;
-            }
-            
+            }           
         }
 
         private XmlNode FindElement(string elementName)

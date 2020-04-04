@@ -78,7 +78,7 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 
         protected void Invoke(Action action)
         {
-            this.Invoke(action);
+            BaseFormParent.CurrentForm?.Invoke(action);
         }
 
         protected void DoAsync(Action action)

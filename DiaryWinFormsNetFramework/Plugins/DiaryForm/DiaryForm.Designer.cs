@@ -37,7 +37,7 @@ namespace DiaryWinFormsNetFramework.View
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.StoryTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
             this.IdeaTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
-            this.AwardsTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
+            this.AchievemantsTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
             this.TabPanel = new System.Windows.Forms.Panel();
             this.TabAwards = new System.Windows.Forms.RadioButton();
             this.TabIdea = new System.Windows.Forms.RadioButton();
@@ -91,7 +91,7 @@ namespace DiaryWinFormsNetFramework.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ContentPanel.Controls.Add(this.StoryTextContainer);
             this.ContentPanel.Controls.Add(this.IdeaTextContainer);
-            this.ContentPanel.Controls.Add(this.AwardsTextContainer);
+            this.ContentPanel.Controls.Add(this.AchievemantsTextContainer);
             this.ContentPanel.Location = new System.Drawing.Point(3, 45);
             this.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ContentPanel.Name = "ContentPanel";
@@ -106,6 +106,7 @@ namespace DiaryWinFormsNetFramework.View
             this.StoryTextContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.StoryTextContainer.BackColor = System.Drawing.Color.White;
             this.StoryTextContainer.ColorBorder = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.StoryTextContainer.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StoryTextContainer.Location = new System.Drawing.Point(0, 0);
             this.StoryTextContainer.Margin = new System.Windows.Forms.Padding(0);
             this.StoryTextContainer.Name = "StoryTextContainer";
@@ -121,6 +122,7 @@ namespace DiaryWinFormsNetFramework.View
             this.IdeaTextContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.IdeaTextContainer.BackColor = System.Drawing.Color.White;
             this.IdeaTextContainer.ColorBorder = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.IdeaTextContainer.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaTextContainer.Location = new System.Drawing.Point(0, 0);
             this.IdeaTextContainer.Margin = new System.Windows.Forms.Padding(0);
             this.IdeaTextContainer.Name = "IdeaTextContainer";
@@ -128,20 +130,21 @@ namespace DiaryWinFormsNetFramework.View
             this.IdeaTextContainer.TabIndex = 0;
             this.IdeaTextContainer.Title = "Idea";
             // 
-            // AwardsTextContainer
+            // AchievemantsTextContainer
             // 
-            this.AwardsTextContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.AchievemantsTextContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AwardsTextContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AwardsTextContainer.BackColor = System.Drawing.Color.White;
-            this.AwardsTextContainer.ColorBorder = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.AwardsTextContainer.Location = new System.Drawing.Point(0, 0);
-            this.AwardsTextContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.AwardsTextContainer.Name = "AwardsTextContainer";
-            this.AwardsTextContainer.Size = new System.Drawing.Size(1044, 563);
-            this.AwardsTextContainer.TabIndex = 2;
-            this.AwardsTextContainer.Title = "Awards";
+            this.AchievemantsTextContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AchievemantsTextContainer.BackColor = System.Drawing.Color.White;
+            this.AchievemantsTextContainer.ColorBorder = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.AchievemantsTextContainer.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AchievemantsTextContainer.Location = new System.Drawing.Point(0, 0);
+            this.AchievemantsTextContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.AchievemantsTextContainer.Name = "AchievemantsTextContainer";
+            this.AchievemantsTextContainer.Size = new System.Drawing.Size(1044, 563);
+            this.AchievemantsTextContainer.TabIndex = 2;
+            this.AchievemantsTextContainer.Title = "Awards";
             // 
             // TabPanel
             // 
@@ -164,6 +167,7 @@ namespace DiaryWinFormsNetFramework.View
             this.TabAwards.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.TabAwards.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.TabAwards.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TabAwards.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabAwards.Location = new System.Drawing.Point(229, 15);
             this.TabAwards.Margin = new System.Windows.Forms.Padding(0);
             this.TabAwards.Name = "TabAwards";
@@ -171,7 +175,7 @@ namespace DiaryWinFormsNetFramework.View
             this.TabAwards.TabIndex = 2;
             this.TabAwards.TabStop = true;
             this.TabAwards.Text = "Awards";
-            this.TabAwards.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TabAwards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TabAwards.UseVisualStyleBackColor = false;
             // 
             // TabIdea
@@ -183,6 +187,7 @@ namespace DiaryWinFormsNetFramework.View
             this.TabIdea.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.TabIdea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.TabIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TabIdea.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabIdea.Location = new System.Drawing.Point(116, 15);
             this.TabIdea.Margin = new System.Windows.Forms.Padding(0);
             this.TabIdea.Name = "TabIdea";
@@ -190,7 +195,7 @@ namespace DiaryWinFormsNetFramework.View
             this.TabIdea.TabIndex = 1;
             this.TabIdea.TabStop = true;
             this.TabIdea.Text = "Idea";
-            this.TabIdea.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TabIdea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TabIdea.UseVisualStyleBackColor = false;
             // 
             // TabStory
@@ -201,6 +206,7 @@ namespace DiaryWinFormsNetFramework.View
             this.TabStory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.TabStory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.TabStory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TabStory.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabStory.Location = new System.Drawing.Point(3, 15);
             this.TabStory.Margin = new System.Windows.Forms.Padding(0);
             this.TabStory.Name = "TabStory";
@@ -208,18 +214,18 @@ namespace DiaryWinFormsNetFramework.View
             this.TabStory.TabIndex = 0;
             this.TabStory.TabStop = true;
             this.TabStory.Text = "Story";
-            this.TabStory.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TabStory.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TabStory.UseVisualStyleBackColor = false;
             // 
             // DiaryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1120, 690);
             this.Controls.Add(this.BodyPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DiaryForm";
             this.Text = "DiaryForm";
+            this.Load += new System.EventHandler(this.DiaryForm_Load);
             this.BodyPanel.ResumeLayout(false);
             this.TabContentPanel.ResumeLayout(false);
             this.ContentPanel.ResumeLayout(false);
@@ -239,7 +245,7 @@ namespace DiaryWinFormsNetFramework.View
         private System.Windows.Forms.RadioButton TabIdea;
         private System.Windows.Forms.RadioButton TabStory;
         private UserControls.TextContainer StoryTextContainer;
-        private UserControls.TextContainer AwardsTextContainer;
+        private UserControls.TextContainer AchievemantsTextContainer;
         private System.Windows.Forms.Button btnSaveText;
     }
 }

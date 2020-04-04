@@ -7,11 +7,14 @@ namespace DiaryClassLibStandart.Class
     public class DiaryRecord
     {
         MyXmlDocument Doc;
-        DayRecord Record;
-
-        private DiaryRecord()
+        DayRecord fields;
+        public DayRecord Fields
         {
-            this.Record = new DayRecord();
+            get { return fields; }
+        }       
+        public DiaryRecord()
+        {
+            this.fields = new DayRecord();
         }
         public DiaryRecord(string Directory, string FileName):this()
         {
@@ -24,6 +27,10 @@ namespace DiaryClassLibStandart.Class
 
         public void Open(string path)
         {
+            if(this.Doc == null)
+            {
+                this.Doc = new MyXmlDocument(path);
+            }
             this.Doc.Open(path);
         }
         
@@ -41,6 +48,9 @@ namespace DiaryClassLibStandart.Class
 
         public void SaveInfo()
         {
+            this.Doc.SetElementValue(this.Fields.Story.FieldName, this.Fields.Story.Text);
+            this.Doc.SetElementValue(this.Fields.Ideas.FieldName, this.Fields.Ideas.Text);
+            this.Doc.SetElementValue(this.Fields.Achievements.FieldName, this.Fields.Achievements.Text);
             this.Doc.Save();
         }
 

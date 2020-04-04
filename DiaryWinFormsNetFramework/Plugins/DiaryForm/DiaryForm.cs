@@ -20,6 +20,8 @@ namespace DiaryWinFormsNetFramework.View
 {
     public partial class DiaryForm: BaseFormParent
     {
+        int highFileNumber = 0;
+
         Dictionary<RadioButton, TextContainer> TabList;
 
         TextContainer activeTextContainer;
@@ -34,6 +36,7 @@ namespace DiaryWinFormsNetFramework.View
 
         private void Init()
         {
+            this.Diary = new DiaryRecord();
             //Initialize tabs
             InitTabs();
         }
@@ -45,11 +48,25 @@ namespace DiaryWinFormsNetFramework.View
             this.TabList = new Dictionary<RadioButton, TextContainer>();
             TabList.Add(TabStory, StoryTextContainer);
             TabList.Add(TabIdea, IdeaTextContainer);
-            TabList.Add(TabAwards, AwardsTextContainer);
+            TabList.Add(TabAwards, AchievemantsTextContainer);
             SetCommonRadioClickEvent(TabClick_EventHandler, TabAwards, TabIdea, TabStory);
         }
 
-        
+
+        /// <summary>
+        /// Обрабатываем горячие клавиши
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if(keyData == (Keys.Control | Keys.S))
+            {
+                this.SaveDiaryData();
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
 
         //Set common event handler for each Radio Button 
         void SetCommonRadioClickEvent(EventHandler handler, params RadioButton[] radios)
@@ -84,17 +101,59 @@ namespace DiaryWinFormsNetFramework.View
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
-
-            var text = this.StoryTextContainer.TextField.Text;
-            this.StoryTextContainer.TextField.Text = GetLastDiaryFilePath(Settings.GetSetting(Settings.AppDirectory));
-            //this.record.Doc.WriteLine(text);
-            //this.record.Doc.SaveAs(Settings.GetSetting(Settings.AppDirectory) + @"\tima", true);
-            //Settings settings = new Settings();
-            //settings.DirectoryApp.Value = Directory.GetCurrentDirectory();
-            //settings.SetSetting(settings.DirectoryApp);
-
-
+            SaveDiaryData();
         }
+
+        void SaveDiaryData()
+        {
+            string fileName;
+            //Если есть файл с текущей датой
+            if (HasFileForCurrentDate(out fileName))
+            { 
+                //удалим файл с текущей датой.
+                File.Delete(fileName);
+            }
+
+            var fileTitle = this.StoryTextContainer.Title;
+            fileName = GetFileNameForSaving(fileTitle);
+            
+
+            this.Diary.Open(fileName);
+            FillTextFields();
+            this.Diary.SaveInfo();         
+        }
+
+        /// <summary>
+        /// Заполняем все поля данных (обновляем поля текстов)
+        /// </summary>
+        void FillTextFields()
+        {            
+            this.Diary.SetText(this.Diary.Fields.Title, this.StoryTextContainer.Title);
+            this.Diary.SetText(this.Diary.Fields.Story, this.StoryTextContainer.TextField.Text);
+            this.Diary.SetText(this.Diary.Fields.Ideas, this.IdeaTextContainer.TextField.Text);
+            this.Diary.SetText(this.Diary.Fields.Achievements, this.AchievemantsTextContainer.TextField.Text);            
+        }
+
+        private void DiaryForm_Load(object sender, EventArgs e)
+        {
+            LoadExistingData();
+            
+        }
+
+        /// <summary>
+        /// Загрузить данные (текст) на текущий день.
+        /// </summary>
+        void LoadExistingData()
+        {
+            if (HasFileForCurrentDate(out var pathCurFile))
+            {           
+                this.Diary.Open(pathCurFile);
+                this.StoryTextContainer.Title = this.Diary.GetText(this.Diary.Fields.Title);
+                this.StoryTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Story);
+                this.IdeaTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Ideas);
+                this.AchievemantsTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Achievements);                
+            }
+        }
+
     }
 }

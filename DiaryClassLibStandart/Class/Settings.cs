@@ -8,7 +8,9 @@ namespace DiaryClassLibStandart.Class
 {
     public static class Settings
     {
-        public static readonly string AppDirectory = "Directory";
+        public static readonly string SettingsDirectory = "SettingsDirectory";
+        public static readonly string StoryDirectory = "StoryDirectory";
+
 
         readonly static string DirectorySettingsFile = Directory.GetCurrentDirectory();
         readonly static string SettingFileName = "settings";
@@ -39,7 +41,7 @@ namespace DiaryClassLibStandart.Class
                 }
                 xDoc.Load(Path);
                 XmlElement root = xDoc.DocumentElement;                   
-                return FindSetting(xDoc, root, new SettingItem(settingName)).Value;
+                return FindSetting(xDoc, root, new SettingItem(settingName))?.Value;
             }; 
         }
 

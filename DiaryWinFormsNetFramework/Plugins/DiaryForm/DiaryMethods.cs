@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiaryClassLibStandart.Class;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,18 +11,27 @@ namespace DiaryWinFormsNetFramework.View
 {
     public partial class DiaryForm
     {
-        private readonly string filePattern = "*N-????? *.*";
-        Regex fileDiaryRegex = new Regex(@"N-(?<Number>\d{5})\s");
+        readonly string storyDirectory = Settings.GetSetting(Settings.StoryDirectory);
+        readonly string extension = ".xml";
+        private readonly string filePattern = "*N-?????*.*";
+        Regex fileNumberDiaryRegex = new Regex(@"N-(?<Number>\d{5})\s*");
+        Regex fileDateDiaryRegex = new Regex(@"(?<Date>\s\d{1,2}.\d{1,2}.\d{4}\s)");
 
-
+        /// <summary>
+        /// Поиск последней записи в папке
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         private string GetLastDiaryFilePath(string dir)
         {
             var files = GetDiaryFiles(dir);
+            if (files == null) return null;
+
             int max = 0;
             string maxPath = null;
             foreach(var f in files)
             {
-                int? fileNum = GetNumberFromFilePath(f);
+                GetDateNumberFromFilePath(f, out var fileNum, out var date);
 
                 if(fileNum != null && fileNum>max)
                 {
@@ -33,25 +43,119 @@ namespace DiaryWinFormsNetFramework.View
             return maxPath;        
         }
 
+        /// <summary>
+        /// Получить список всех файлов (по маске)
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         List<string> GetDiaryFiles(string dir)
         {
+            if (dir == null) return null;
+
             return Directory.GetFiles(dir, filePattern, SearchOption.TopDirectoryOnly).ToList<string>();
         }
 
-        int? GetNumberFromFilePath(string pathFile)
+
+        /// <summary>
+        /// Получить число (порядок записи из строки имени файла) и дату из имени файла.
+        /// </summary>
+        /// <param name="pathFile"></param>
+        /// <returns></returns>
+        void GetDateNumberFromFilePath(string pathFile, out int? number, out DateTime? date)
         {
-            var match = fileDiaryRegex.Match(pathFile);
-            if (match.Success)
+            number = null;
+            date = null;
+            if (pathFile == null) return;
+            var matchNumber = fileNumberDiaryRegex.Match(pathFile);
+            if (matchNumber.Success)
             {
-                var strNum = match.Groups["Number"].Value.TrimStart(' ', '0');
+                var strNum = matchNumber.Groups["Number"].Value.TrimStart(' ', '0');
                 if(int.TryParse(strNum, out var num))
                 {
-                    return num;
-                }
-                return null; 
+                    number = num;
+                }          
             }
-            return null;
+
+            var matchDate = fileDateDiaryRegex.Match(pathFile);
+            if (matchDate.Success)
+            {
+                var strDate = matchDate.Groups["Date"].Value.Trim(' ');
+                date = Convert.ToDateTime(strDate);
+            }
         }
+
+        /// <summary>
+        /// Формируем имя файла по паттерну, генерируем имя файла. Учитываем дату файла.
+        /// </summary>
+        /// <param name="fileNumber"></param>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        string GetFileNameForSaving(string title)
+        {
+            //Инициализируем переменные
+            string dir = storyDirectory;
+            string res = dir + @"\";
+            string strNum = "";
+            var nowDate = DateTime.Now;
+            int fileNumber = 0;
+            
+            //Проверяем есть ли уже документы с такой-же датой
+            var lastFilePath = GetLastDiaryFilePath(storyDirectory);
+            GetDateNumberFromFilePath(lastFilePath, out var lastFileNumber, out var lastFileDate);
+
+            //Если последний файл был создан в текущем дне, то возьмем номер файла у него, так как для каждого дня отдельный номер, отдельный файл
+            if (lastFileNumber.HasValue)
+            {
+                //если в текущем дне уже был создан файл, то укажем его номер
+                if (lastFileDate.HasValue &&
+                    nowDate.Date == ((DateTime)lastFileDate).Date)
+                {
+                    fileNumber = ((int)lastFileNumber);
+                }
+                //не нашли в текущем дне файла, укажем номер (последнего файла + 1)
+                else
+                {
+                    fileNumber = (int)lastFileNumber + 1;
+                }
+            }
+            //Делаем пятизначное число с лидирующими нулями
+            for(var i = 0; i < 5; i++)
+            {
+                strNum = strNum.Insert(0, (fileNumber % 10).ToString());
+                fileNumber /= 10;
+            }
+            //формируем строку.
+            res += $"N-{strNum} {DateTime.Now.Date.ToShortDateString()}";
+            if (string.IsNullOrEmpty(title) == false)
+            {
+                res += $" {{{title}}}";
+            }
+
+            res += extension;
+            return res;
+        }
+
+
+        /// <summary>
+        /// Определяет есть ли файл для текущего дня
+        /// </summary>
+        /// <param name="pathCurrentFile"></param>
+        /// <returns></returns>
+        bool HasFileForCurrentDate(out string pathCurrentFile)
+        {
+            pathCurrentFile = null;
+            var dir = storyDirectory;
+            var path = GetLastDiaryFilePath(dir);
+            GetDateNumberFromFilePath(path, out var num, out var date);
+            if (date.HasValue && DateTime.Now.Date == ((DateTime)date).Date)
+            {
+                pathCurrentFile = path;
+                return true;
+            }
+
+            return false;
+        }
+
 
     }
 }

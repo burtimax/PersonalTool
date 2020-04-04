@@ -11,12 +11,14 @@ namespace DiaryClassLibStandart.Helpers
             dir = null;
             filename = null;
             extension = null;
+            if (string.IsNullOrEmpty(path)) return;
+
             path = path.Trim();
             path = path.Replace("\\", @"\");
             int lastIndexSlash = path.LastIndexOf(@"\");
             int lastIndexDot = path.LastIndexOf('.');
-            dir = path.Substring(0, lastIndexSlash + 1);
-            filename = path.Substring(lastIndexSlash + 1, lastIndexDot - lastIndexSlash);
+            dir = path.Substring(0, lastIndexSlash);
+            filename = path.Substring(lastIndexSlash + 1, lastIndexDot - lastIndexSlash-1);
             extension = path.Substring(lastIndexDot);
         }
     }

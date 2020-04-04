@@ -22,6 +22,7 @@ namespace DiaryClassLibStandart.Class
 
         public DayRecord()
         {
+            InitData();
         }
 
         private void InitData()

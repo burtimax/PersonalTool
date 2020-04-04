@@ -40,6 +40,7 @@ namespace DiaryWinFormsNetFramework
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.LeftNavPanel = new System.Windows.Forms.Panel();
             this.btnNavItemDiary = new System.Windows.Forms.Button();
+            this.btnNavItemSettings = new System.Windows.Forms.Button();
             this.FormsPanel = new System.Windows.Forms.Panel();
             this.AppHeaderPanel = new System.Windows.Forms.Panel();
             this.TopPanel = new System.Windows.Forms.Panel();
@@ -47,7 +48,6 @@ namespace DiaryWinFormsNetFramework
             this.btnCloseCircle = new System.Windows.Forms.Button();
             this.btnWrapCircle = new System.Windows.Forms.Button();
             this.btnOpenCircle = new System.Windows.Forms.Button();
-            this.btnNavItemSettings = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.BodyPanel.SuspendLayout();
             this.LeftNavPanel.SuspendLayout();
@@ -78,10 +78,11 @@ namespace DiaryWinFormsNetFramework
             // 
             // LeftNavPanel
             // 
+            this.LeftNavPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LeftNavPanel.BackColor = System.Drawing.Color.LightGray;
             this.LeftNavPanel.Controls.Add(this.btnNavItemDiary);
             this.LeftNavPanel.Controls.Add(this.btnNavItemSettings);
-            this.LeftNavPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftNavPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftNavPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LeftNavPanel.Name = "LeftNavPanel";
@@ -90,15 +91,29 @@ namespace DiaryWinFormsNetFramework
             // 
             // btnNavItemDiary
             // 
+            this.btnNavItemDiary.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemDiary.BackgroundImage")));
+            this.btnNavItemDiary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNavItemDiary.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnNavItemDiary.Location = new System.Drawing.Point(0, 80);
             this.btnNavItemDiary.Margin = new System.Windows.Forms.Padding(0);
             this.btnNavItemDiary.Name = "btnNavItemDiary";
             this.btnNavItemDiary.Size = new System.Drawing.Size(80, 80);
             this.btnNavItemDiary.TabIndex = 0;
-            this.btnNavItemDiary.Text = "button1";
             this.btnNavItemDiary.UseVisualStyleBackColor = true;
             this.btnNavItemDiary.Click += new System.EventHandler(this.btnNavItemDiary_Click);
+            // 
+            // btnNavItemSettings
+            // 
+            this.btnNavItemSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemSettings.BackgroundImage")));
+            this.btnNavItemSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNavItemSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavItemSettings.Location = new System.Drawing.Point(0, 0);
+            this.btnNavItemSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNavItemSettings.Name = "btnNavItemSettings";
+            this.btnNavItemSettings.Size = new System.Drawing.Size(80, 80);
+            this.btnNavItemSettings.TabIndex = 1;
+            this.btnNavItemSettings.UseVisualStyleBackColor = true;
+            this.btnNavItemSettings.Click += new System.EventHandler(this.btnNavItemSettings_Click);
             // 
             // FormsPanel
             // 
@@ -184,22 +199,10 @@ namespace DiaryWinFormsNetFramework
             this.btnOpenCircle.TabIndex = 2;
             this.btnOpenCircle.UseVisualStyleBackColor = false;
             // 
-            // btnNavItemSettings
-            // 
-            this.btnNavItemSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNavItemSettings.Location = new System.Drawing.Point(0, 0);
-            this.btnNavItemSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNavItemSettings.Name = "btnNavItemSettings";
-            this.btnNavItemSettings.Size = new System.Drawing.Size(80, 80);
-            this.btnNavItemSettings.TabIndex = 1;
-            this.btnNavItemSettings.Text = "button1";
-            this.btnNavItemSettings.UseVisualStyleBackColor = true;
-            this.btnNavItemSettings.Click += new System.EventHandler(this.btnNavItemSettings_Click);
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1200, 750);
             this.Controls.Add(this.MainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

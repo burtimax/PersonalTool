@@ -13,18 +13,37 @@ namespace DiaryWinFormsNetFramework.UserControls
 {
     public partial class TextContainer : UserControl
     {
+        private string DefaultTitle = "";
         Color _colorBorder = Constants.COLOR_LIGHT_GREY;
         public TextContainer()
         {
             InitializeComponent();
-            
+            Init();
+        }
+
+        void Init()
+        {
+            this.textBoxTitle.Text = this.DefaultTitle;
+        }
+
+        public TextContainer(string defaultTitle):this()
+        {
+            this.DefaultTitle = defaultTitle;           
         }
 
         [Description("Test text displayed in the textbox"), Category("Data")]
         public string Title
         {
-            get { return labelTitle.Text; }
-            set { labelTitle.Text = value; }
+            get { return textBoxTitle.Text; }
+            set 
+            {               
+                textBoxTitle.Text = value;
+
+                if (string.IsNullOrEmpty(textBoxTitle.Text) == true)
+                {
+                    textBoxTitle.Text = this.DefaultTitle;
+                }
+            }
         }
 
         [Description("Border color"), Category("Data")]
@@ -52,6 +71,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         {
             //Set TitlePanel BackGround Color
             this.topPanel.BackColor = this.ColorBorder;
+            this.textBoxTitle.BackColor = this.ColorBorder;
             //Set Border to Text Container
             using (Pen pen = new Pen(ColorBorder, 6))
             {

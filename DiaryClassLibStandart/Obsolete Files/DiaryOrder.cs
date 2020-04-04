@@ -26,7 +26,7 @@ namespace DiaryClassLib.Class
 
         public DiaryOrder(string docName)
         {
-            this.dir = Settings.GetSetting(Settings.AppDirectory);
+            this.dir = Settings.GetSetting(Settings.StoryDirectory);
             this.docPath = this.dir + @"\" + docName;
             GetDocumentOrCreateDocument(this.docPath);
             Init();

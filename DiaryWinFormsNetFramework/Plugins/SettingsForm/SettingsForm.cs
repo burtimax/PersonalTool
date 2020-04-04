@@ -32,10 +32,26 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
             var res = FolderDialog.SelectedPath;
             if(string.IsNullOrEmpty(res) == false)
             {
-                Settings.SetSetting(Settings.AppDirectory, res);
+                Settings.SetSetting(Settings.SettingsDirectory, res);
                 this.labelDirectorySetting.Text = res;
             }
             
+        }
+
+        /// <summary>
+        /// Chose Folder And Save Path To Stories Files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFolderDialogForStories_Click(object sender, EventArgs e)
+        {
+            this.FolderDialog.ShowDialog();
+            var res = FolderDialog.SelectedPath;
+            if (string.IsNullOrEmpty(res) == false)
+            {
+                Settings.SetSetting(Settings.StoryDirectory, res);
+                this.labelDirectoryStories.Text = res;
+            }
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
@@ -48,7 +64,10 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
 
         private void FillElements()
         {
-            this.labelDirectorySetting.Text = Settings.GetSetting(Settings.AppDirectory);
+            this.labelDirectorySetting.Text = Settings.GetSetting(Settings.SettingsDirectory);
+            this.labelDirectoryStories.Text = Settings.GetSetting(Settings.StoryDirectory);
         }
+
+        
     }
 }
