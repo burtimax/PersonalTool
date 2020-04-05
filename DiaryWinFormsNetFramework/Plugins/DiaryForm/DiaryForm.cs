@@ -1,6 +1,8 @@
 ﻿
 using DiaryClassLib.Class;
 using DiaryClassLibStandart.Class;
+using DiaryClassLibStandart.Class.Basic;
+using DiaryClassLibStandart.Helpers;
 using DiaryWinFormsNetFramework.HelpersConstants;
 using DiaryWinFormsNetFramework.Plugins;
 using DiaryWinFormsNetFramework.Plugins.BaseForm;
@@ -137,7 +139,7 @@ namespace DiaryWinFormsNetFramework.View
         private void DiaryForm_Load(object sender, EventArgs e)
         {
             LoadExistingData();
-            
+            LoadListDocuments();            
         }
 
         /// <summary>
@@ -155,5 +157,44 @@ namespace DiaryWinFormsNetFramework.View
             }
         }
 
+        void LoadListDocuments()
+        {
+            var docs = GetDiaryFilesNames();
+            docs.Reverse();
+            this.listBoxDocuments.DataSource = docs;
+        }
+
+        private void listBoxDocuments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var value = ((ListBox)sender).SelectedItem.ToString();
+            var path = GetFullPathStoryFileByFileName(value);
+            HelperFileName.ParsePath(path, out var _, out var __, out var ext);
+            IDocumentReader reader = HelperDocumentReader.CreateReader(ext);
+            
+            if(reader == null)
+            {
+                this.TextContainerDocumentContent.TextField.Text = "Не удалось считать данные из документа!";
+                return;
+            }
+
+            reader.OpenDocument(path);
+            if(reader.ReadAllTextData(out var data))
+            {
+                this.TextContainerDocumentContent.TextField.Text = data;
+            }
+            reader.CloseDocument();
+        }
+
+        private void btnOpenWritePanel_Click(object sender, EventArgs e)
+        {
+            HelperForm.DeactivateControl(this.TabReaderPanel);
+            HelperForm.ActivateControl(this.TabWriterPanel);
+        }
+
+        private void btnOpenStoragePanel_Click(object sender, EventArgs e)
+        {
+            HelperForm.DeactivateControl(this.TabWriterPanel);
+            HelperForm.ActivateControl(this.TabReaderPanel);
+        }
     }
 }

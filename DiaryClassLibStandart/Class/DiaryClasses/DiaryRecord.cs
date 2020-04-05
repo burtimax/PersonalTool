@@ -7,14 +7,14 @@ namespace DiaryClassLibStandart.Class
     public class DiaryRecord
     {
         MyXmlDocument Doc;
-        DayRecord fields;
-        public DayRecord Fields
+        DiaryFields fields;
+        public DiaryFields Fields
         {
             get { return fields; }
         }       
         public DiaryRecord()
         {
-            this.fields = new DayRecord();
+            this.fields = new DiaryFields();
         }
         public DiaryRecord(string Directory, string FileName):this()
         {

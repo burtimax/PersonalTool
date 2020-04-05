@@ -30,10 +30,11 @@ namespace DiaryWinFormsNetFramework.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiaryForm));
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.btnSaveText = new System.Windows.Forms.Button();
-            this.TabContentPanel = new System.Windows.Forms.Panel();
+            this.TabWriterPanel = new System.Windows.Forms.Panel();
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.StoryTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
             this.IdeaTextContainer = new DiaryWinFormsNetFramework.UserControls.TextContainer();
@@ -42,16 +43,32 @@ namespace DiaryWinFormsNetFramework.View
             this.TabAwards = new System.Windows.Forms.RadioButton();
             this.TabIdea = new System.Windows.Forms.RadioButton();
             this.TabStory = new System.Windows.Forms.RadioButton();
+            this.TabReaderPanel = new System.Windows.Forms.Panel();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.listBoxDocuments = new System.Windows.Forms.ListBox();
+            this.TextContainerDocumentContent = new DiaryWinFormsNetFramework.UserControls.TextContainer();
+            this.diaryFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnOpenStoragePanel = new System.Windows.Forms.Button();
+            this.btnOpenWritePanel = new System.Windows.Forms.Button();
             this.BodyPanel.SuspendLayout();
-            this.TabContentPanel.SuspendLayout();
+            this.TabWriterPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
             this.TabPanel.SuspendLayout();
+            this.TabReaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.diaryFormBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // BodyPanel
             // 
+            this.BodyPanel.Controls.Add(this.btnOpenWritePanel);
+            this.BodyPanel.Controls.Add(this.btnOpenStoragePanel);
             this.BodyPanel.Controls.Add(this.btnSaveText);
-            this.BodyPanel.Controls.Add(this.TabContentPanel);
+            this.BodyPanel.Controls.Add(this.TabWriterPanel);
+            this.BodyPanel.Controls.Add(this.TabReaderPanel);
             this.BodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BodyPanel.Location = new System.Drawing.Point(0, 0);
             this.BodyPanel.Name = "BodyPanel";
@@ -64,25 +81,25 @@ namespace DiaryWinFormsNetFramework.View
             this.btnSaveText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSaveText.FlatAppearance.BorderSize = 0;
             this.btnSaveText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveText.Location = new System.Drawing.Point(1032, 628);
+            this.btnSaveText.Location = new System.Drawing.Point(1042, 639);
             this.btnSaveText.Name = "btnSaveText";
-            this.btnSaveText.Size = new System.Drawing.Size(50, 50);
+            this.btnSaveText.Size = new System.Drawing.Size(43, 39);
             this.btnSaveText.TabIndex = 3;
             this.btnSaveText.UseVisualStyleBackColor = true;
             this.btnSaveText.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // TabContentPanel
+            // TabWriterPanel
             // 
-            this.TabContentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TabWriterPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TabContentPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TabContentPanel.Controls.Add(this.ContentPanel);
-            this.TabContentPanel.Controls.Add(this.TabPanel);
-            this.TabContentPanel.Location = new System.Drawing.Point(35, 12);
-            this.TabContentPanel.Name = "TabContentPanel";
-            this.TabContentPanel.Size = new System.Drawing.Size(1050, 611);
-            this.TabContentPanel.TabIndex = 2;
+            this.TabWriterPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TabWriterPanel.Controls.Add(this.ContentPanel);
+            this.TabWriterPanel.Controls.Add(this.TabPanel);
+            this.TabWriterPanel.Location = new System.Drawing.Point(35, 12);
+            this.TabWriterPanel.Name = "TabWriterPanel";
+            this.TabWriterPanel.Size = new System.Drawing.Size(1050, 611);
+            this.TabWriterPanel.TabIndex = 2;
             // 
             // ContentPanel
             // 
@@ -217,6 +234,88 @@ namespace DiaryWinFormsNetFramework.View
             this.TabStory.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TabStory.UseVisualStyleBackColor = false;
             // 
+            // TabReaderPanel
+            // 
+            this.TabReaderPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabReaderPanel.Controls.Add(this.splitContainer);
+            this.TabReaderPanel.Location = new System.Drawing.Point(35, 12);
+            this.TabReaderPanel.Name = "TabReaderPanel";
+            this.TabReaderPanel.Size = new System.Drawing.Size(1050, 608);
+            this.TabReaderPanel.TabIndex = 4;
+            // 
+            // splitContainer
+            // 
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.listBoxDocuments);
+            // 
+            // splitContainer.Panel2
+            // 
+            this.splitContainer.Panel2.Controls.Add(this.TextContainerDocumentContent);
+            this.splitContainer.Size = new System.Drawing.Size(1050, 608);
+            this.splitContainer.SplitterDistance = 282;
+            this.splitContainer.TabIndex = 0;
+            // 
+            // listBoxDocuments
+            // 
+            this.listBoxDocuments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxDocuments.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxDocuments.FormattingEnabled = true;
+            this.listBoxDocuments.ItemHeight = 23;
+            this.listBoxDocuments.Location = new System.Drawing.Point(0, 0);
+            this.listBoxDocuments.Name = "listBoxDocuments";
+            this.listBoxDocuments.Size = new System.Drawing.Size(282, 608);
+            this.listBoxDocuments.TabIndex = 0;
+            this.listBoxDocuments.SelectedIndexChanged += new System.EventHandler(this.listBoxDocuments_SelectedIndexChanged);
+            // 
+            // TextContainerDocumentContent
+            // 
+            this.TextContainerDocumentContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TextContainerDocumentContent.BackColor = System.Drawing.Color.White;
+            this.TextContainerDocumentContent.ColorBorder = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.TextContainerDocumentContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextContainerDocumentContent.Location = new System.Drawing.Point(0, 0);
+            this.TextContainerDocumentContent.Name = "TextContainerDocumentContent";
+            this.TextContainerDocumentContent.Size = new System.Drawing.Size(764, 608);
+            this.TextContainerDocumentContent.TabIndex = 0;
+            this.TextContainerDocumentContent.Title = "Document content";
+            // 
+            // diaryFormBindingSource
+            // 
+            this.diaryFormBindingSource.DataSource = typeof(DiaryWinFormsNetFramework.View.DiaryForm);
+            // 
+            // btnOpenStoragePanel
+            // 
+            this.btnOpenStoragePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenStoragePanel.BackgroundImage")));
+            this.btnOpenStoragePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenStoragePanel.FlatAppearance.BorderSize = 0;
+            this.btnOpenStoragePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenStoragePanel.Location = new System.Drawing.Point(89, 629);
+            this.btnOpenStoragePanel.Name = "btnOpenStoragePanel";
+            this.btnOpenStoragePanel.Size = new System.Drawing.Size(54, 54);
+            this.btnOpenStoragePanel.TabIndex = 5;
+            this.btnOpenStoragePanel.UseVisualStyleBackColor = true;
+            this.btnOpenStoragePanel.Click += new System.EventHandler(this.btnOpenStoragePanel_Click);
+            // 
+            // btnOpenWritePanel
+            // 
+            this.btnOpenWritePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenWritePanel.BackgroundImage")));
+            this.btnOpenWritePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenWritePanel.FlatAppearance.BorderSize = 0;
+            this.btnOpenWritePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenWritePanel.Location = new System.Drawing.Point(35, 631);
+            this.btnOpenWritePanel.Name = "btnOpenWritePanel";
+            this.btnOpenWritePanel.Size = new System.Drawing.Size(41, 47);
+            this.btnOpenWritePanel.TabIndex = 6;
+            this.btnOpenWritePanel.UseVisualStyleBackColor = true;
+            this.btnOpenWritePanel.Click += new System.EventHandler(this.btnOpenWritePanel_Click);
+            // 
             // DiaryForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -227,9 +326,15 @@ namespace DiaryWinFormsNetFramework.View
             this.Text = "DiaryForm";
             this.Load += new System.EventHandler(this.DiaryForm_Load);
             this.BodyPanel.ResumeLayout(false);
-            this.TabContentPanel.ResumeLayout(false);
+            this.TabWriterPanel.ResumeLayout(false);
             this.ContentPanel.ResumeLayout(false);
             this.TabPanel.ResumeLayout(false);
+            this.TabReaderPanel.ResumeLayout(false);
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.diaryFormBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,7 +343,7 @@ namespace DiaryWinFormsNetFramework.View
 
         private System.Windows.Forms.Panel BodyPanel;
         private UserControls.TextContainer IdeaTextContainer;
-        private System.Windows.Forms.Panel TabContentPanel;
+        private System.Windows.Forms.Panel TabWriterPanel;
         private System.Windows.Forms.Panel ContentPanel;
         private System.Windows.Forms.Panel TabPanel;
         private System.Windows.Forms.RadioButton TabAwards;
@@ -247,5 +352,12 @@ namespace DiaryWinFormsNetFramework.View
         private UserControls.TextContainer StoryTextContainer;
         private UserControls.TextContainer AchievemantsTextContainer;
         private System.Windows.Forms.Button btnSaveText;
+        private System.Windows.Forms.Panel TabReaderPanel;
+        private System.Windows.Forms.SplitContainer splitContainer;
+        private System.Windows.Forms.ListBox listBoxDocuments;
+        private UserControls.TextContainer TextContainerDocumentContent;
+        private System.Windows.Forms.BindingSource diaryFormBindingSource;
+        private System.Windows.Forms.Button btnOpenWritePanel;
+        private System.Windows.Forms.Button btnOpenStoragePanel;
     }
 }

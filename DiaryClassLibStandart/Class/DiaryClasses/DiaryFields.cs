@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DiaryClassLibStandart.Class
 {
-    public class DayRecord 
+    public class DiaryFields 
     {
 
         private string _title = "Title";
@@ -20,7 +20,7 @@ namespace DiaryClassLibStandart.Class
         public TextField Ideas;
         public TextField Achievements;
 
-        public DayRecord()
+        public DiaryFields()
         {
             InitData();
         }

@@ -1,4 +1,5 @@
 ﻿using DiaryClassLibStandart.Class;
+using DiaryClassLibStandart.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,11 +49,35 @@ namespace DiaryWinFormsNetFramework.View
         /// </summary>
         /// <param name="dir"></param>
         /// <returns></returns>
-        List<string> GetDiaryFiles(string dir)
+        List<string> GetDiaryFiles(string dir = null)
         {
-            if (dir == null) return null;
+            if (dir == null && storyDirectory != null)
+            {
+                dir = storyDirectory;
+            }
 
             return Directory.GetFiles(dir, filePattern, SearchOption.TopDirectoryOnly).ToList<string>();
+        }
+
+        /// <summary>
+        /// Получить имена файлов дневника из директории историй (использую для listBox)
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
+        List<string> GetDiaryFilesNames(string dir = null)
+        {
+            if (dir == null && storyDirectory != null)
+            {
+                dir = storyDirectory;
+            }
+
+            var docs = GetDiaryFiles(dir);
+            for(var i = 0; i< docs.Count; i++)
+            {
+                HelperFileName.ParsePath(docs[i], out var _, out var fname, out var __);
+                docs[i] = fname;
+            }
+            return docs;
         }
 
 
@@ -155,6 +180,18 @@ namespace DiaryWinFormsNetFramework.View
 
             return false;
         }
+
+        /// <summary>
+        /// Возвращаем полный путь к файлу истории по имени файла
+        /// </summary>
+        string GetFullPathStoryFileByFileName(string filename)
+        {
+            var searchPattern = "*" + filename + "*";
+            return Directory.GetFiles(storyDirectory, searchPattern, SearchOption.TopDirectoryOnly).FirstOrDefault();
+        }
+
+
+
 
 
     }
