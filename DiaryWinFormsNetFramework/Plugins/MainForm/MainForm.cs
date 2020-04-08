@@ -15,11 +15,15 @@ using System.Drawing.Drawing2D;
 using DiaryWinFormsNetFramework.Plugins.BaseForm;
 using DiaryWinFormsNetFramework.View;
 using DiaryWinFormsNetFramework.Plugins.SettingsForm;
+using System.Windows;
 
 namespace DiaryWinFormsNetFramework
 {
     public partial class MainForm : BaseFormParent
     {
+        private int WidthFormRatio = 1200;
+        private int HeightFormRatio = 750;
+
         Panel formPanel;
     
         public MainForm():base()
@@ -40,13 +44,16 @@ namespace DiaryWinFormsNetFramework
             if (controls.Contains(form))
             {
                 EnableControl(controls[controls.IndexOf(form)]);
+                //обновляем данные в форме.
+                form.RefreshData();
             }
             else
             {
                 //reset topLevel (it needs for adding form to mainForm)
                 form.TopLevel = false;
                 controls.Add(form);           
-                EnableControl(form);           
+                EnableControl(form);
+                form.Dock = DockStyle.Fill;
             }
             
         }
@@ -81,6 +88,33 @@ namespace DiaryWinFormsNetFramework
             OpenForm(InstanceOf<DiaryForm>());
         }
 
-     
+
+        //Перед закрытием гланой формы, вызовем методы OnCloseForm для каждой активной формы.
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (var form in BaseFormParent.ActiveForms)
+            {             
+                form.Value.OnCloseForm();
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            SetFormSize();            
+        }
+
+        void SetFormSize()
+        {
+            //var width = (int)SystemParameters.VirtualScreenWidth;
+            //var height = (int)SystemParameters.VirtualScreenHeight;
+            this.WindowState = FormWindowState.Normal;
+            double K = 0.9f;
+            var width = this.Width * K;
+            var height = this.Height * K;
+            double k = Math.Min(width / WidthFormRatio, height / HeightFormRatio);
+            this.Width = (int)(k * WidthFormRatio);
+            this.Height = (int)(k * HeightFormRatio);
+            this.CenterToScreen();
+        }
     }
 }

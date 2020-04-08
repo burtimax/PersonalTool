@@ -68,9 +68,11 @@ namespace DiaryWinFormsNetFramework
             // 
             // BodyPanel
             // 
+            this.BodyPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BodyPanel.Controls.Add(this.LeftNavPanel);
             this.BodyPanel.Controls.Add(this.FormsPanel);
-            this.BodyPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.BodyPanel.Location = new System.Drawing.Point(0, 60);
             this.BodyPanel.Name = "BodyPanel";
             this.BodyPanel.Size = new System.Drawing.Size(1200, 690);
@@ -123,7 +125,7 @@ namespace DiaryWinFormsNetFramework
             this.FormsPanel.BackColor = System.Drawing.SystemColors.Control;
             this.FormsPanel.Location = new System.Drawing.Point(79, 0);
             this.FormsPanel.Name = "FormsPanel";
-            this.FormsPanel.Size = new System.Drawing.Size(1200, 690);
+            this.FormsPanel.Size = new System.Drawing.Size(1120, 690);
             this.FormsPanel.TabIndex = 1;
             // 
             // AppHeaderPanel
@@ -151,6 +153,7 @@ namespace DiaryWinFormsNetFramework
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(1101, 2);
@@ -202,13 +205,16 @@ namespace DiaryWinFormsNetFramework
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1200, 750);
             this.Controls.Add(this.MainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainPanel.ResumeLayout(false);
             this.BodyPanel.ResumeLayout(false);
             this.LeftNavPanel.ResumeLayout(false);

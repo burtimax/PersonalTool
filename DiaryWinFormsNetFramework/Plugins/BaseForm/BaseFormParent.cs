@@ -16,7 +16,7 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
         static BaseFormParent CurrentForm;
         static Dictionary<Type, InstanceKey> typeInstanceDict = new Dictionary<Type, InstanceKey>();
         static Dictionary<InstanceKey, BaseFormParent> _activeForms;
-        static Dictionary<InstanceKey, BaseFormParent> ActiveForms
+        public static Dictionary<InstanceKey, BaseFormParent> ActiveForms
         {
             get
             {
@@ -58,6 +58,7 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
             InitializeComponent();
             this.Key = InstanceKey.Generate(this);
             RegisterForm();
+            PerformAction();
         }
 
         void RegisterForm()
@@ -142,7 +143,16 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 
             return result;
         }
-        
+
+        //Вызываем чтобы обновить данные (поля) в форме
+        public virtual void RefreshData()
+        {
+        }
+
+        public virtual void OnCloseForm()
+        {
+        }
+
     }
 
 
@@ -151,4 +161,7 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
         SyncProcess,
         AsyncProcess
     }
+
+    
+
 }

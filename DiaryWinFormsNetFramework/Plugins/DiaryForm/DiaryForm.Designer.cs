@@ -33,6 +33,8 @@ namespace DiaryWinFormsNetFramework.View
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiaryForm));
             this.BodyPanel = new System.Windows.Forms.Panel();
+            this.btnOpenWritePanel = new System.Windows.Forms.Button();
+            this.btnOpenStoragePanel = new System.Windows.Forms.Button();
             this.btnSaveText = new System.Windows.Forms.Button();
             this.TabWriterPanel = new System.Windows.Forms.Panel();
             this.ContentPanel = new System.Windows.Forms.Panel();
@@ -48,8 +50,6 @@ namespace DiaryWinFormsNetFramework.View
             this.listBoxDocuments = new System.Windows.Forms.ListBox();
             this.TextContainerDocumentContent = new DiaryWinFormsNetFramework.UserControls.TextContainer();
             this.diaryFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOpenStoragePanel = new System.Windows.Forms.Button();
-            this.btnOpenWritePanel = new System.Windows.Forms.Button();
             this.BodyPanel.SuspendLayout();
             this.TabWriterPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
@@ -64,19 +64,50 @@ namespace DiaryWinFormsNetFramework.View
             // 
             // BodyPanel
             // 
+            this.BodyPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BodyPanel.Controls.Add(this.btnOpenWritePanel);
             this.BodyPanel.Controls.Add(this.btnOpenStoragePanel);
             this.BodyPanel.Controls.Add(this.btnSaveText);
             this.BodyPanel.Controls.Add(this.TabWriterPanel);
             this.BodyPanel.Controls.Add(this.TabReaderPanel);
-            this.BodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BodyPanel.Location = new System.Drawing.Point(0, 0);
             this.BodyPanel.Name = "BodyPanel";
             this.BodyPanel.Size = new System.Drawing.Size(1120, 690);
             this.BodyPanel.TabIndex = 0;
             // 
+            // btnOpenWritePanel
+            // 
+            this.btnOpenWritePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOpenWritePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenWritePanel.BackgroundImage")));
+            this.btnOpenWritePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenWritePanel.FlatAppearance.BorderSize = 0;
+            this.btnOpenWritePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenWritePanel.Location = new System.Drawing.Point(35, 631);
+            this.btnOpenWritePanel.Name = "btnOpenWritePanel";
+            this.btnOpenWritePanel.Size = new System.Drawing.Size(41, 47);
+            this.btnOpenWritePanel.TabIndex = 6;
+            this.btnOpenWritePanel.UseVisualStyleBackColor = true;
+            this.btnOpenWritePanel.Click += new System.EventHandler(this.btnOpenWritePanel_Click);
+            // 
+            // btnOpenStoragePanel
+            // 
+            this.btnOpenStoragePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOpenStoragePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenStoragePanel.BackgroundImage")));
+            this.btnOpenStoragePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenStoragePanel.FlatAppearance.BorderSize = 0;
+            this.btnOpenStoragePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenStoragePanel.Location = new System.Drawing.Point(89, 629);
+            this.btnOpenStoragePanel.Name = "btnOpenStoragePanel";
+            this.btnOpenStoragePanel.Size = new System.Drawing.Size(54, 54);
+            this.btnOpenStoragePanel.TabIndex = 5;
+            this.btnOpenStoragePanel.UseVisualStyleBackColor = true;
+            this.btnOpenStoragePanel.Click += new System.EventHandler(this.btnOpenStoragePanel_Click);
+            // 
             // btnSaveText
             // 
+            this.btnSaveText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveText.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveText.BackgroundImage")));
             this.btnSaveText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSaveText.FlatAppearance.BorderSize = 0;
@@ -290,35 +321,11 @@ namespace DiaryWinFormsNetFramework.View
             // 
             this.diaryFormBindingSource.DataSource = typeof(DiaryWinFormsNetFramework.View.DiaryForm);
             // 
-            // btnOpenStoragePanel
-            // 
-            this.btnOpenStoragePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenStoragePanel.BackgroundImage")));
-            this.btnOpenStoragePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOpenStoragePanel.FlatAppearance.BorderSize = 0;
-            this.btnOpenStoragePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenStoragePanel.Location = new System.Drawing.Point(89, 629);
-            this.btnOpenStoragePanel.Name = "btnOpenStoragePanel";
-            this.btnOpenStoragePanel.Size = new System.Drawing.Size(54, 54);
-            this.btnOpenStoragePanel.TabIndex = 5;
-            this.btnOpenStoragePanel.UseVisualStyleBackColor = true;
-            this.btnOpenStoragePanel.Click += new System.EventHandler(this.btnOpenStoragePanel_Click);
-            // 
-            // btnOpenWritePanel
-            // 
-            this.btnOpenWritePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenWritePanel.BackgroundImage")));
-            this.btnOpenWritePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOpenWritePanel.FlatAppearance.BorderSize = 0;
-            this.btnOpenWritePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenWritePanel.Location = new System.Drawing.Point(35, 631);
-            this.btnOpenWritePanel.Name = "btnOpenWritePanel";
-            this.btnOpenWritePanel.Size = new System.Drawing.Size(41, 47);
-            this.btnOpenWritePanel.TabIndex = 6;
-            this.btnOpenWritePanel.UseVisualStyleBackColor = true;
-            this.btnOpenWritePanel.Click += new System.EventHandler(this.btnOpenWritePanel_Click);
-            // 
             // DiaryForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1120, 690);
             this.Controls.Add(this.BodyPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

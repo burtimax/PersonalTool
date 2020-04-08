@@ -56,9 +56,6 @@
             // 
             // LayoutPanelSettings
             // 
-            this.LayoutPanelSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LayoutPanelSettings.Controls.Add(this.labelSettingsDirectory);
             this.LayoutPanelSettings.Controls.Add(this.panelDirectorySetting);
             this.LayoutPanelSettings.Controls.Add(this.labelStoryDirectory);
@@ -83,15 +80,18 @@
             this.panelDirectorySetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDirectorySetting.Controls.Add(this.btnOpenFolderDialog);
             this.panelDirectorySetting.Controls.Add(this.labelDirectorySetting);
+            this.panelDirectorySetting.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDirectorySetting.Location = new System.Drawing.Point(3, 20);
             this.panelDirectorySetting.Name = "panelDirectorySetting";
-            this.panelDirectorySetting.Size = new System.Drawing.Size(1030, 65);
+            this.panelDirectorySetting.Size = new System.Drawing.Size(189, 65);
             this.panelDirectorySetting.TabIndex = 0;
             // 
             // btnOpenFolderDialog
             // 
+            this.btnOpenFolderDialog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFolderDialog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolderDialog.Location = new System.Drawing.Point(971, 12);
+            this.btnOpenFolderDialog.Location = new System.Drawing.Point(132, 12);
             this.btnOpenFolderDialog.Name = "btnOpenFolderDialog";
             this.btnOpenFolderDialog.Size = new System.Drawing.Size(40, 40);
             this.btnOpenFolderDialog.TabIndex = 1;
@@ -101,10 +101,11 @@
             // 
             // labelDirectorySetting
             // 
+            this.labelDirectorySetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDirectorySetting.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDirectorySetting.Location = new System.Drawing.Point(3, -2);
+            this.labelDirectorySetting.Location = new System.Drawing.Point(-1, -1);
             this.labelDirectorySetting.Name = "labelDirectorySetting";
-            this.labelDirectorySetting.Size = new System.Drawing.Size(962, 65);
+            this.labelDirectorySetting.Size = new System.Drawing.Size(127, 64);
             this.labelDirectorySetting.TabIndex = 0;
             this.labelDirectorySetting.Text = "default directory";
             this.labelDirectorySetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,15 +124,18 @@
             this.panelDirectoryStories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDirectoryStories.Controls.Add(this.btnOpenFolderDialogForStories);
             this.panelDirectoryStories.Controls.Add(this.labelDirectoryStories);
+            this.panelDirectoryStories.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDirectoryStories.Location = new System.Drawing.Point(3, 108);
             this.panelDirectoryStories.Name = "panelDirectoryStories";
-            this.panelDirectoryStories.Size = new System.Drawing.Size(1030, 65);
+            this.panelDirectoryStories.Size = new System.Drawing.Size(189, 65);
             this.panelDirectoryStories.TabIndex = 2;
             // 
             // btnOpenFolderDialogForStories
             // 
+            this.btnOpenFolderDialogForStories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFolderDialogForStories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolderDialogForStories.Location = new System.Drawing.Point(971, 12);
+            this.btnOpenFolderDialogForStories.Location = new System.Drawing.Point(132, 14);
             this.btnOpenFolderDialogForStories.Name = "btnOpenFolderDialogForStories";
             this.btnOpenFolderDialogForStories.Size = new System.Drawing.Size(40, 40);
             this.btnOpenFolderDialogForStories.TabIndex = 1;
@@ -141,10 +145,11 @@
             // 
             // labelDirectoryStories
             // 
+            this.labelDirectoryStories.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDirectoryStories.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDirectoryStories.Location = new System.Drawing.Point(3, -2);
+            this.labelDirectoryStories.Location = new System.Drawing.Point(0, 0);
             this.labelDirectoryStories.Name = "labelDirectoryStories";
-            this.labelDirectoryStories.Size = new System.Drawing.Size(962, 65);
+            this.labelDirectoryStories.Size = new System.Drawing.Size(126, 65);
             this.labelDirectoryStories.TabIndex = 0;
             this.labelDirectoryStories.Text = "default directory";
             this.labelDirectoryStories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

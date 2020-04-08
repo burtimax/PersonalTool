@@ -12,7 +12,8 @@ namespace DiaryWinFormsNetFramework.View
 {
     public partial class DiaryForm
     {
-        readonly string storyDirectory = Settings.GetSetting(Settings.StoryDirectory);
+        //Папка для записей
+        string storyDirectory;
         readonly string extension = ".xml";
         private readonly string filePattern = "*N-?????*.*";
         Regex fileNumberDiaryRegex = new Regex(@"N-(?<Number>\d{5})\s*");
@@ -27,8 +28,8 @@ namespace DiaryWinFormsNetFramework.View
         {
             var files = GetDiaryFiles(dir);
             if (files == null) return null;
-
-            int max = 0;
+            //все номера файлов неотрицательные, поэтому задаем -1
+            int max = -1;
             string maxPath = null;
             foreach(var f in files)
             {
@@ -56,6 +57,10 @@ namespace DiaryWinFormsNetFramework.View
                 dir = storyDirectory;
             }
 
+            if(Directory.Exists(dir) == false)
+            {
+                return null;
+            }
             return Directory.GetFiles(dir, filePattern, SearchOption.TopDirectoryOnly).ToList<string>();
         }
 
@@ -72,6 +77,8 @@ namespace DiaryWinFormsNetFramework.View
             }
 
             var docs = GetDiaryFiles(dir);
+            if (docs == null || docs.Count == 0) return null;
+
             for(var i = 0; i< docs.Count; i++)
             {
                 HelperFileName.ParsePath(docs[i], out var _, out var fname, out var __);
@@ -95,6 +102,12 @@ namespace DiaryWinFormsNetFramework.View
             if (matchNumber.Success)
             {
                 var strNum = matchNumber.Groups["Number"].Value.TrimStart(' ', '0');
+                //первая запись начнется с номера 0, поэтому обработаем исключение.
+                if (string.IsNullOrEmpty(strNum))
+                {
+                    strNum = "0";
+                }
+
                 if(int.TryParse(strNum, out var num))
                 {
                     number = num;

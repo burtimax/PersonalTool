@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnOpenFolderDialogForStories_Click(object sender, EventArgs e)
-        {
+        {          
             this.FolderDialog.ShowDialog();
             var res = FolderDialog.SelectedPath;
             if (string.IsNullOrEmpty(res) == false)
@@ -61,13 +62,11 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
         }
 
 
-
         private void FillElements()
         {
             this.labelDirectorySetting.Text = Settings.GetSetting(Settings.SettingsDirectory);
             this.labelDirectoryStories.Text = Settings.GetSetting(Settings.StoryDirectory);
         }
 
-        
     }
 }

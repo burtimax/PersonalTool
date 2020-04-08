@@ -17,6 +17,9 @@ namespace DiaryClassLibStandart.Helpers
                 case "docx":
                     return new WordReader();
                     break;
+                case "xml":
+                    return new XmlReader();
+                    break;
                 default:
                     return null;
             }
