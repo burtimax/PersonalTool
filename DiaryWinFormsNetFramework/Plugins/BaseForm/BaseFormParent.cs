@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 {
-    public partial class BaseFormParent : Form
+    public abstract partial class BaseFormParent : Form
     {
         static BaseFormParent CurrentForm;
         static Dictionary<Type, InstanceKey> typeInstanceDict = new Dictionary<Type, InstanceKey>();
@@ -77,9 +77,9 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
         protected virtual void PerformAction() { }
 
 
-        protected void Invoke(Action action)
+        protected void Invoke(BaseFormParent form, Action action)
         {
-            BaseFormParent.CurrentForm?.Invoke(action);
+            form?.Invoke(action);
         }
 
         protected void DoAsync(Action action)

@@ -189,12 +189,12 @@ namespace DiaryWinFormsNetFramework.View
         void LoadExistingData()
         {
             if (HasFileForCurrentDate(out var pathCurFile))
-            {           
+            {
                 this.Diary.Open(pathCurFile);
                 this.StoryTextContainer.Title = this.Diary.GetText(this.Diary.Fields.Title);
                 this.StoryTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Story);
                 this.IdeaTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Ideas);
-                this.AchievemantsTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Achievements);                
+                this.AchievemantsTextContainer.TextField.Text = this.Diary.GetText(this.Diary.Fields.Achievements);
             }
             //загрузили нужные данные, отметим, что текстовые поля не изменялись
             this.Diary.IsSaved = true;

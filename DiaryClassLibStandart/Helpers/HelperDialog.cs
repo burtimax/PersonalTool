@@ -17,5 +17,9 @@ namespace DiaryClassLibStandart.Helpers
             return MessageBox.Show(info, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);        
         }
 
+        //public static string ShowInputBox()
+        //{
+        //    var dialog = InputBox
+        //}
     }
 }

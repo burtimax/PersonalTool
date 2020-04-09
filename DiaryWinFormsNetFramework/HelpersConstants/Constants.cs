@@ -9,6 +9,7 @@ namespace DiaryWinFormsNetFramework.HelpersConstants
 {
     public class Constants
     {
+        public static bool ACCESS = false;
         public static Color COLOR_LIGHT_GREY = Color.FromArgb(236, 236, 236);
         public static Color COLOR_GREY = Color.FromArgb(210, 210, 210);
     }
