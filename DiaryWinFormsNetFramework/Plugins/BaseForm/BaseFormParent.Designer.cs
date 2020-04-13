@@ -1,6 +1,6 @@
 ﻿namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 {
-    abstract partial class BaseFormParent
+    partial class BaseFormParent
     {
         /// <summary>
         /// Required designer variable.

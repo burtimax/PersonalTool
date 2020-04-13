@@ -1,4 +1,6 @@
 ﻿using DiaryClassLibStandart.Class;
+using DiaryClassLibStandart.Helpers;
+using DiaryWinFormsNetFramework.HelpersConstants;
 using DiaryWinFormsNetFramework.Plugins.BaseForm;
 using System;
 using System.Collections.Generic;
@@ -68,5 +70,13 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
             this.labelDirectoryStories.Text = Settings.GetSetting(Settings.StoryDirectory);
         }
 
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            var res = HelperDialog.ShowYesNoDialog("Вы действительно хотите поменять пароль?");
+            if(res == DialogResult.Yes)
+            {
+                this.SendData(Constants.MESSAGE_CHANGE_PASSWORD,PerformOptions.SyncProcess);
+            }
+        }
     }
 }

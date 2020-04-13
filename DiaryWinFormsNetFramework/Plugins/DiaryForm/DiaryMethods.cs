@@ -1,5 +1,6 @@
 ﻿using DiaryClassLibStandart.Class;
 using DiaryClassLibStandart.Helpers;
+using DiaryWinFormsNetFramework.HelpersConstants;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,14 @@ namespace DiaryWinFormsNetFramework.View
         private readonly string filePattern = "*N-?????*.*";
         Regex fileNumberDiaryRegex = new Regex(@"N-(?<Number>\d{5})\s*");
         Regex fileDateDiaryRegex = new Regex(@"(?<Date>\s\d{1,2}.\d{1,2}.\d{4}\s)");
+
+
+        protected override void ReceiveData(object data)
+        {
+            if (data == null) return;      
+            base.ReceiveData(data);
+        }
+
 
         /// <summary>
         /// Поиск последней записи в папке

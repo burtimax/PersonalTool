@@ -12,7 +12,7 @@ namespace DiaryClassLibStandart.Helpers
             MessageBox.Show(info, caption,MessageBoxButtons.OK,MessageBoxIcon.Warning);
         }
 
-        public static DialogResult ShowYesNoDialog(string info, string caption)
+        public static DialogResult ShowYesNoDialog(string info, string caption = null)
         {
             return MessageBox.Show(info, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);        
         }

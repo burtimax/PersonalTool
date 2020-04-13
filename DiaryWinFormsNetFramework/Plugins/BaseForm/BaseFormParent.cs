@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 {
-    public abstract partial class BaseFormParent : Form
+    public partial class BaseFormParent : Form
     {
         static BaseFormParent CurrentForm;
         static Dictionary<Type, InstanceKey> typeInstanceDict = new Dictionary<Type, InstanceKey>();

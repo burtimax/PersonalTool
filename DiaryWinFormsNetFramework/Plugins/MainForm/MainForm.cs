@@ -43,6 +43,21 @@ namespace DiaryWinFormsNetFramework
             AuthentificateUser();
         }
 
+        protected override void ReceiveData(object data)
+        {
+            base.ReceiveData(data);
+
+            if (data == null) return;
+            
+            if(data is string)
+            {
+                string strCmd = (string)data;
+                if (string.Equals(strCmd, Constants.MESSAGE_CHANGE_PASSWORD)){
+                    ChangePassword();
+                }
+            }
+        }
+
 
         private void AuthentificateUser()
         {
@@ -207,8 +222,8 @@ namespace DiaryWinFormsNetFramework
         /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //ctrl + shift + O (Дать внеочередной доступ к программе)
-            if(keyData == (Keys.Control | Keys.Shift | Keys.O))
+            //ctrl + shift + O + P (Дать внеочередной доступ к программе)
+            if(keyData == (Keys.Control | Keys.Shift | Keys.O | Keys.P))
             {
                 GiveAccess();
             }
@@ -226,6 +241,23 @@ namespace DiaryWinFormsNetFramework
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
+        /// Поменять пароль
+        /// </summary>
+        private void ChangePassword()
+        {
+            //Деактивируем все элементы внутри основной панели
+            foreach(var childControl in formPanel.Controls)
+            {
+                var c = (Control)childControl;
+                HelperForm.DeactivateControl(c);
+            }
+            //Активируем панель смены пароля
+            HelperForm.ActivateControl(PasswordPanel);
+            HelperForm.DeactivateControl(InputPasswordPanel);
+            HelperForm.ActivateControl(SetNewPasswordPanel);
         }
     }
 }
