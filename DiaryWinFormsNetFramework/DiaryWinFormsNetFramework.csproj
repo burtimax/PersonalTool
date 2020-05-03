@@ -75,6 +75,9 @@
     <Compile Include="HelpersConstants\CoreData.cs" />
     <Compile Include="HelpersConstants\HelperForm.cs" />
     <Compile Include="HelpersConstants\InstanceGenerator.cs" />
+    <Compile Include="OverrideControls\CustomPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Plugins\BaseForm\BaseFormParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +92,12 @@
     </Compile>
     <Compile Include="Plugins\SettingsForm\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\WorkForm\WorkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\WorkForm\WorkForm.Designer.cs">
+      <DependentUpon>WorkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainNavItem.cs">
       <SubType>UserControl</SubType>
@@ -126,6 +135,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Plugins\SettingsForm\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\WorkForm\WorkForm.resx">
+      <DependentUpon>WorkForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MainNavItem.resx">
       <DependentUpon>MainNavItem.cs</DependentUpon>

@@ -34,3 +34,4 @@ D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\Dia
 D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.CopyComplete
 D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.exe
 D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.pdb
+D:\Programming\Realise Projects\LifeBook\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.ToDoPlanForm.WorkForm.resources

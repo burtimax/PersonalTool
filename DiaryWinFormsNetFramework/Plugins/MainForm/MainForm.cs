@@ -222,8 +222,8 @@ namespace DiaryWinFormsNetFramework
         /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //ctrl + shift + O + P (Дать внеочередной доступ к программе)
-            if(keyData == (Keys.Control | Keys.Shift | Keys.O | Keys.P))
+            //ctrl + shift + P (Дать внеочередной доступ к программе)
+            if(keyData == (Keys.Control | Keys.Shift | Keys.P))
             {
                 GiveAccess();
             }
