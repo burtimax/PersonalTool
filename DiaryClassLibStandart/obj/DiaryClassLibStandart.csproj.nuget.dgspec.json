@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\Realise Projects\\LifeBook\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj": {}
+    "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\Realise Projects\\LifeBook\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj": {
+    "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\Realise Projects\\LifeBook\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
+        "projectUniqueName": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
         "projectName": "DiaryClassLibStandart",
-        "projectPath": "D:\\Programming\\Realise Projects\\LifeBook\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
+        "projectPath": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
         "packagesPath": "C:\\Users\\timof\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\Realise Projects\\LifeBook\\DiaryClassLibStandart\\obj\\",
+        "outputPath": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"

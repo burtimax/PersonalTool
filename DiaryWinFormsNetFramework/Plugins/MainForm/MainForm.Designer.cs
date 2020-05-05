@@ -57,6 +57,7 @@ namespace DiaryWinFormsNetFramework
             this.btnCloseCircle = new System.Windows.Forms.Button();
             this.btnWrapCircle = new System.Windows.Forms.Button();
             this.btnOpenCircle = new System.Windows.Forms.Button();
+            this.btnNavItemIdeas = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.BodyPanel.SuspendLayout();
             this.LeftNavPanel.SuspendLayout();
@@ -96,6 +97,7 @@ namespace DiaryWinFormsNetFramework
             this.LeftNavPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.LeftNavPanel.BackColor = System.Drawing.Color.LightGray;
+            this.LeftNavPanel.Controls.Add(this.btnNavItemIdeas);
             this.LeftNavPanel.Controls.Add(this.btnNavItemDiary);
             this.LeftNavPanel.Controls.Add(this.btnNavItemSettings);
             this.LeftNavPanel.Location = new System.Drawing.Point(0, 0);
@@ -318,6 +320,19 @@ namespace DiaryWinFormsNetFramework
             this.btnOpenCircle.TabIndex = 2;
             this.btnOpenCircle.UseVisualStyleBackColor = false;
             // 
+            // btnNavItemIdeas
+            // 
+            this.btnNavItemIdeas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemIdeas.BackgroundImage")));
+            this.btnNavItemIdeas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNavItemIdeas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavItemIdeas.Location = new System.Drawing.Point(0, 160);
+            this.btnNavItemIdeas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNavItemIdeas.Name = "btnNavItemIdeas";
+            this.btnNavItemIdeas.Size = new System.Drawing.Size(80, 80);
+            this.btnNavItemIdeas.TabIndex = 2;
+            this.btnNavItemIdeas.UseVisualStyleBackColor = true;
+            this.btnNavItemIdeas.Click += new System.EventHandler(this.btnNavItemIdeas_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -370,6 +385,7 @@ namespace DiaryWinFormsNetFramework
         private Panel InputPasswordPanel;
         private TextBox SetPasswordTextBox;
         private Label label4;
+        private Button btnNavItemIdeas;
     }
 }
 

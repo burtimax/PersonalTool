@@ -93,11 +93,17 @@
     <Compile Include="Plugins\SettingsForm\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\WorkForm\WorkForm.cs">
+    <Compile Include="Plugins\WorkForm\IdeasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\WorkForm\WorkForm.Designer.cs">
-      <DependentUpon>WorkForm.cs</DependentUpon>
+    <Compile Include="Plugins\WorkForm\IdeasForm.Designer.cs">
+      <DependentUpon>IdeasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\IdeaListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\IdeaListItem.Designer.cs">
+      <DependentUpon>IdeaListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainNavItem.cs">
       <SubType>UserControl</SubType>
@@ -136,8 +142,11 @@
     <EmbeddedResource Include="Plugins\SettingsForm\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\WorkForm\WorkForm.resx">
-      <DependentUpon>WorkForm.cs</DependentUpon>
+    <EmbeddedResource Include="Plugins\WorkForm\IdeasForm.resx">
+      <DependentUpon>IdeasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\IdeaListItem.resx">
+      <DependentUpon>IdeaListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MainNavItem.resx">
       <DependentUpon>MainNavItem.cs</DependentUpon>
@@ -162,6 +171,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DiaryWinFormsNetFramework.View.DiaryForm.datasource" />
@@ -211,6 +221,9 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

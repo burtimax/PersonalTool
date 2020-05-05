@@ -17,6 +17,7 @@ using DiaryWinFormsNetFramework.View;
 using DiaryWinFormsNetFramework.Plugins.SettingsForm;
 using System.Windows;
 using DiaryWinFormsNetFramework.HelpersConstants;
+using DiaryWinFormsNetFramework.Plugins.ToDoPlanForm;
 
 namespace DiaryWinFormsNetFramework
 {
@@ -150,6 +151,14 @@ namespace DiaryWinFormsNetFramework
             OpenForm(InstanceOf<DiaryForm>());
         }
 
+        /// <summary>
+        /// Нажатие кнопки (Идеи) на боковой панели
+        /// </summary>
+        private void btnNavItemIdeas_Click(object sender, EventArgs e)
+        {
+            OpenForm(InstanceOf<IdeasForm>());
+        }
+
 
         //Перед закрытием гланой формы, вызовем методы OnCloseForm для каждой активной формы.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -259,5 +268,8 @@ namespace DiaryWinFormsNetFramework
             HelperForm.DeactivateControl(InputPasswordPanel);
             HelperForm.ActivateControl(SetNewPasswordPanel);
         }
+
+
+        
     }
 }
