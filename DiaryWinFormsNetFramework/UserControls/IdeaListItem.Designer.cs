@@ -30,41 +30,53 @@
         {
             this.Title = new System.Windows.Forms.Label();
             this.Mark = new System.Windows.Forms.Label();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Title
             // 
-            this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Title.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(0, 0);
+            this.Title.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Title.Font = new System.Drawing.Font("Nirmala UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(50, 0);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(273, 50);
+            this.Title.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.Title.Size = new System.Drawing.Size(350, 50);
             this.Title.TabIndex = 1;
-            this.Title.Text = TitleProp;
+            this.Title.Text = "title";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Mark
             // 
-            this.Mark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Mark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mark.Location = new System.Drawing.Point(279, 0);
+            this.Mark.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Mark.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Mark.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.Mark.ForeColor = System.Drawing.Color.White;
+            this.Mark.Location = new System.Drawing.Point(0, 0);
             this.Mark.Name = "Mark";
-            this.Mark.Size = new System.Drawing.Size(39, 50);
+            this.Mark.Size = new System.Drawing.Size(50, 50);
             this.Mark.TabIndex = 2;
-            this.Mark.Text = MarkProp;
             this.Mark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Controls.Add(this.Title);
+            this.MainPanel.Controls.Add(this.Mark);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(400, 50);
+            this.MainPanel.TabIndex = 3;
             // 
             // IdeaListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Mark);
-            this.Controls.Add(this.Title);
+            this.Controls.Add(this.MainPanel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "IdeaListItem";
-            this.Size = new System.Drawing.Size(318, 50);
+            this.Size = new System.Drawing.Size(400, 50);
+            this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -73,5 +85,6 @@
 
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Label Mark;
+        private System.Windows.Forms.Panel MainPanel;
     }
 }

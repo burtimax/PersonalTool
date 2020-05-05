@@ -54,4 +54,4 @@ D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debu
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.csproj.CopyComplete
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.exe
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.pdb
-D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.ToDoPlanForm.IdeasForm.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.IdeaForm.IdeasForm.resources

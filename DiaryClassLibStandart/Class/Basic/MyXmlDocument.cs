@@ -18,7 +18,7 @@ namespace DiaryClassLibStandart.Class
         private string _path;
 
         private bool IsDocumentOpened = false;
-        private XmlDocument Doc;
+        public XmlDocument Doc;
         public XmlElement Body;
 
         public string FileName { get => _filename; set => _filename = value; }

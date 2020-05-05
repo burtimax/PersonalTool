@@ -87,16 +87,19 @@
     <Compile Include="Plugins\DiaryForm\DiaryMethods.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Plugins\IdeasForm\IdeasMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugins\SettingsForm\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Plugins\SettingsForm\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\WorkForm\IdeasForm.cs">
+    <Compile Include="Plugins\IdeasForm\IdeasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\WorkForm\IdeasForm.Designer.cs">
+    <Compile Include="Plugins\IdeasForm\IdeasForm.Designer.cs">
       <DependentUpon>IdeasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IdeaListItem.cs">
@@ -142,7 +145,7 @@
     <EmbeddedResource Include="Plugins\SettingsForm\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\WorkForm\IdeasForm.resx">
+    <EmbeddedResource Include="Plugins\IdeasForm\IdeasForm.resx">
       <DependentUpon>IdeasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IdeaListItem.resx">

@@ -28,7 +28,7 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
         /// <returns></returns>
         private string GenerateId()
         {
-            return DateTime.Now.Ticks.ToString();
+            return ((long)Math.Abs(DateTime.Now.GetHashCode()+this.GetHashCode())).ToString();
         }
 
         /// <summary>
@@ -84,12 +84,43 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
             set => _description = value;
         }
 
+        /// <summary>
+        /// Использовать только для ручной установки Id
+        /// </summary>
+        /// <param name="Id"></param>
+        public void SetId(string Id)
+        {
+            this.Id = Id;
+        }
 
+        /// <summary>
+        /// Использовать только для ручной установки времени
+        /// </summary>
+        /// <param name="time"></param>
+        public void SetTime(string time)
+        {
+            if (DateTime.TryParse(time, out var t) == false)
+            {
+                throw new Exception("Ошибка преобразования из string в DateTime ["+time+"]");
+            }
+
+            this.Time = t;
+        }
+
+        /// <summary>
+        /// Использовать только для ручной установки времени
+        /// </summary>
+        /// <param name="time"></param>
+        public void SetTime(DateTime time)
+        {
+            this.Time = time;
+        }
 
     }
 
     public enum IdeaSections
     {
+        Empty,
         All,
         Life,
         Productivity,

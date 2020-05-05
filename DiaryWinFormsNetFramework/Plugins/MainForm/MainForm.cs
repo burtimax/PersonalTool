@@ -17,7 +17,7 @@ using DiaryWinFormsNetFramework.View;
 using DiaryWinFormsNetFramework.Plugins.SettingsForm;
 using System.Windows;
 using DiaryWinFormsNetFramework.HelpersConstants;
-using DiaryWinFormsNetFramework.Plugins.ToDoPlanForm;
+using DiaryWinFormsNetFramework.Plugins.IdeaForm;
 
 namespace DiaryWinFormsNetFramework
 {

@@ -12,13 +12,22 @@ using DiaryWinFormsNetFramework.HelpersConstants;
 using DiaryWinFormsNetFramework.Plugins.BaseForm;
 using DiaryWinFormsNetFramework.UserControls;
 
-namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
+namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 {
-    public partial class IdeasForm : BaseFormParent 
+    public partial class IdeasForm : BaseFormParent
     {
+        private IdeaListItem SelectedListItem;
+        private IdeaDoc Document;
+
         public IdeasForm()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            this.Document = new IdeaDoc(IdeasDirectory, GetIdeasFilename());
         }
 
         /// <summary>
@@ -27,12 +36,18 @@ namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
         private void IdeasForm_Load(object sender, EventArgs e)
         {
             InitComboBoxes();
+            FillIdeaList();
         }
 
         /// <summary>
         /// Open AddIdeaPanel
         /// </summary>
         private void btnAddIdea_Click(object sender, EventArgs e)
+        {
+            ActivateCreateIdeaPanel();
+        }
+
+        private void ActivateCreateIdeaPanel()
         {
             HelperForm.DeactivateControl(SearchShowIdeaPanel);
             HelperForm.ActivateControl(CreateIdeaPanel);
@@ -42,6 +57,11 @@ namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
         /// Open Search and Show Data Panel
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
+        {
+            ActivateIdeaDataSearchPanel();
+        }
+
+        private void ActivateIdeaDataSearchPanel()
         {
             HelperForm.DeactivateControl(CreateIdeaPanel);
             HelperForm.ActivateControl(SearchShowIdeaPanel);
@@ -71,16 +91,25 @@ namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
                 return;
             }
 
+            this.Document.AddIdea(idea);
+            AddIdeaListItem(idea);
+        }
+
+        /// <summary>
+        /// Добавить в список IdeaListItem (пользовательский элемент идеи)
+        /// </summary>
+        /// <param name="idea"></param>
+        private void AddIdeaListItem(Idea idea)
+        {
             IdeaListItem IdeaListItem = new IdeaListItem(idea);
+            //IdeaListItem.Click -= SelectIdeaItem;
+            IdeaListItem.SetOnClick(SelectIdeaItem);
             IdeaListItem.TitleProp = idea.Title;
             IdeaListItem.MarkProp = idea.Mark.ToString();
-            Random r = new Random(DateTime.Now.Second);
-            Color color = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
-            IdeaListItem.ColorProp = color;
-            IdeaListFlowPanel.Controls.Add(IdeaListItem);
-            IdeaListFlowPanel.Controls.SetChildIndex(IdeaListItem,0);
-            IdeaListItem.Dock = DockStyle.Top;
-
+            IdeaListItem.SectionColorProp = Constants.SectionsColors[idea.Section];
+            IdeaListItem.Width = flowLayoutPanelIdeas.Width - 20;
+            flowLayoutPanelIdeas.Controls.Add(IdeaListItem);
+            flowLayoutPanelIdeas.Controls.SetChildIndex(IdeaListItem, 0);
         }
 
         /// <summary>
@@ -98,12 +127,57 @@ namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
             }
 
             idea.Title = IdeaTitle.Text;
-            idea.Section = IdeaSection.SelectedItem.ToString();
+            idea.Section = IdeaSection?.SelectedItem?.ToString();
             idea.Description = IdeaDescription.Text;
             idea.Mark = Convert.ToInt32(IdeaMark.SelectedItem.ToString());
 
             return true;
         }
 
+        /// <summary>
+        /// Заполнить список идеями из файла
+        /// </summary>
+        private void FillIdeaList()
+        {
+            var ideas = this.Document.GetAllIdeas();
+            foreach (var idea in ideas)
+            {
+                AddIdeaListItem(idea.Value);
+            }
+        }
+
+        private void SelectIdeaItem(object sender, EventArgs e)
+        {
+            Control c = sender as Control;
+            if(c.Parent.Parent is IdeaListItem == false)
+            {
+                return;
+            }
+            IdeaListItem ideaItem = c.Parent.Parent as IdeaListItem;
+            ChangeColorSelectedIdeaItem(ideaItem);
+            ShowIdeaTitle.Text = ideaItem.Idea.Title;
+            ShowIdeaDescription.Text = ideaItem.Idea.Description;
+            ShowIdeaMark.Text = ideaItem.Idea.Mark.ToString();
+            ShowIdeaSection.Text = ideaItem.Idea.Section;
+            
+            ActivateIdeaDataSearchPanel();
+        }
+
+        /// <summary>
+        /// Поменять цвет для выбранного элемента
+        /// </summary>
+        private void ChangeColorSelectedIdeaItem(IdeaListItem ideaListItem)
+        {
+            if (this.SelectedListItem != null)
+            {
+                this.SelectedListItem.BackColorProp = Color.Transparent;
+            }
+
+            this.SelectedListItem = ideaListItem;
+            this.SelectedListItem.BackColor = Color.FromArgb(218, 218, 218);
+
+        }
+
+       
     }
 }

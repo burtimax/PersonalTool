@@ -30,7 +30,7 @@ namespace DiaryWinFormsNetFramework.View
 
         TextContainer activeTextContainer;
 
-        DiaryRecord Diary;
+        DiaryDoc Diary;
 
         public DiaryForm()
         {
@@ -75,7 +75,7 @@ namespace DiaryWinFormsNetFramework.View
                 //если поменяли путь к папке, то старые записи нам не нужны, очистим содержимое полей.\
                 //ToDo (Добавить условие, что очищаем только если записи сохранены.)
                 ClearAllVisibleFields();
-                this.Diary = new DiaryRecord();
+                this.Diary = new DiaryDoc();
             }
             
             //вызываем обработчик загрузки окна

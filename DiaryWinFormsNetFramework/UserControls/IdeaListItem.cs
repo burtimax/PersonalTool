@@ -26,11 +26,9 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void Init()
         {
 
-            this.Dock = DockStyle.Top;
-            
         }
 
-        public IdeaListItem(Idea idea) : base()
+        public IdeaListItem(Idea idea) : this()
         {
             this._idea = idea;
         }
@@ -45,6 +43,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Свойство (заголовок объекта (label.text))
         /// </summary>
+        [Category("CustomProps")]
         public string TitleProp
         {
             get=>_title;
@@ -62,12 +61,21 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Оценка идеи (label.text)
         /// </summary>
+        [Category("CustomProps")]
         public string MarkProp
         {
-            get => _mark;
+            get
+            {
+                if(_mark == "0")
+                {
+                    return null;
+                }
+
+                return _mark;
+            } 
             set
             {
-                if (Mark != null)
+                if (Mark != null && value != "0")
                 {
                     Mark.Text = value;
                 }
@@ -79,10 +87,32 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Цвет пользовательского элемента
         /// </summary>
-        public Color ColorProp{
+        [Category("CustomProps")]
+        public Color BackColorProp{
             get { return this.BackColor; }
             set { this.BackColor = value; }
         }
-       
+
+        /// <summary>
+        /// Цвет для обозначения категории идеи (Section Color)
+        /// </summary>
+        [Category("CustomProps")]
+        public Color SectionColorProp
+        {
+            get { return this.Mark.BackColor; }
+            set { this.Mark.BackColor = value; }
+        }
+
+
+        public void SetOnClick(EventHandler handler)
+        {
+            foreach (Control control in this.MainPanel.Controls)
+            {
+                //control.Click -= handler;
+                control.Click += handler;
+            }
+        }
+
+      
     }
 }

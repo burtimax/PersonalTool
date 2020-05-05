@@ -1,4 +1,4 @@
-﻿namespace DiaryWinFormsNetFramework.Plugins.ToDoPlanForm
+﻿namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 {
     partial class IdeasForm
     {
@@ -33,11 +33,18 @@
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.RightPanel = new System.Windows.Forms.Panel();
             this.IdeasListPanel = new System.Windows.Forms.Panel();
-            this.IdeaListFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelIdeas = new System.Windows.Forms.FlowLayoutPanel();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnAddIdea = new System.Windows.Forms.Button();
+            this.SearchShowIdeaPanel = new System.Windows.Forms.Panel();
+            this.ShowIdeaDataPanel = new System.Windows.Forms.Panel();
+            this.ShowIdeaDescription = new System.Windows.Forms.RichTextBox();
+            this.ShowIdeaMark = new System.Windows.Forms.ComboBox();
+            this.ShowIdeaSection = new System.Windows.Forms.ComboBox();
+            this.btnChangeIdeaData = new System.Windows.Forms.Button();
+            this.ShowIdeaTitle = new System.Windows.Forms.TextBox();
             this.CreateIdeaPanel = new System.Windows.Forms.Panel();
             this.CreateIdeaElementsPanel = new System.Windows.Forms.Panel();
             this.btnSaveIdea = new System.Windows.Forms.Button();
@@ -45,23 +52,16 @@
             this.IdeaMark = new System.Windows.Forms.ComboBox();
             this.IdeaSection = new System.Windows.Forms.ComboBox();
             this.IdeaTitle = new System.Windows.Forms.TextBox();
-            this.SearchShowIdeaPanel = new System.Windows.Forms.Panel();
-            this.ShowIdeaDataPanel = new System.Windows.Forms.Panel();
-            this.btnChangeIdeaData = new System.Windows.Forms.Button();
-            this.ShowIdeaDescription = new System.Windows.Forms.RichTextBox();
-            this.ShowIdeaMark = new System.Windows.Forms.ComboBox();
-            this.ShowIdeaSection = new System.Windows.Forms.ComboBox();
-            this.ShowIdeaTitle = new System.Windows.Forms.TextBox();
             this.MainPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
             this.RightPanel.SuspendLayout();
             this.IdeasListPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
-            this.CreateIdeaPanel.SuspendLayout();
-            this.CreateIdeaElementsPanel.SuspendLayout();
             this.SearchShowIdeaPanel.SuspendLayout();
             this.ShowIdeaDataPanel.SuspendLayout();
+            this.CreateIdeaPanel.SuspendLayout();
+            this.CreateIdeaElementsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -87,6 +87,7 @@
             // 
             // RightPanel
             // 
+            this.RightPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.RightPanel.Controls.Add(this.IdeasListPanel);
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RightPanel.Location = new System.Drawing.Point(593, 0);
@@ -96,21 +97,22 @@
             // 
             // IdeasListPanel
             // 
-            this.IdeasListPanel.Controls.Add(this.IdeaListFlowPanel);
+            this.IdeasListPanel.Controls.Add(this.flowLayoutPanelIdeas);
             this.IdeasListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.IdeasListPanel.Location = new System.Drawing.Point(0, 0);
             this.IdeasListPanel.Name = "IdeasListPanel";
             this.IdeasListPanel.Size = new System.Drawing.Size(485, 619);
             this.IdeasListPanel.TabIndex = 1;
             // 
-            // IdeaListFlowPanel
+            // flowLayoutPanelIdeas
             // 
-            this.IdeaListFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IdeaListFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.IdeaListFlowPanel.Location = new System.Drawing.Point(0, 0);
-            this.IdeaListFlowPanel.Name = "IdeaListFlowPanel";
-            this.IdeaListFlowPanel.Size = new System.Drawing.Size(485, 619);
-            this.IdeaListFlowPanel.TabIndex = 0;
+            this.flowLayoutPanelIdeas.AutoScroll = true;
+            this.flowLayoutPanelIdeas.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.flowLayoutPanelIdeas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelIdeas.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelIdeas.Name = "flowLayoutPanelIdeas";
+            this.flowLayoutPanelIdeas.Size = new System.Drawing.Size(485, 619);
+            this.flowLayoutPanelIdeas.TabIndex = 0;
             // 
             // LeftPanel
             // 
@@ -169,6 +171,93 @@
             this.btnAddIdea.UseVisualStyleBackColor = false;
             this.btnAddIdea.Click += new System.EventHandler(this.btnAddIdea_Click);
             // 
+            // SearchShowIdeaPanel
+            // 
+            this.SearchShowIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchShowIdeaPanel.Controls.Add(this.ShowIdeaDataPanel);
+            this.SearchShowIdeaPanel.Location = new System.Drawing.Point(0, 58);
+            this.SearchShowIdeaPanel.Name = "SearchShowIdeaPanel";
+            this.SearchShowIdeaPanel.Size = new System.Drawing.Size(585, 558);
+            this.SearchShowIdeaPanel.TabIndex = 3;
+            // 
+            // ShowIdeaDataPanel
+            // 
+            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaDescription);
+            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaMark);
+            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaSection);
+            this.ShowIdeaDataPanel.Controls.Add(this.btnChangeIdeaData);
+            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaTitle);
+            this.ShowIdeaDataPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ShowIdeaDataPanel.Location = new System.Drawing.Point(0, 253);
+            this.ShowIdeaDataPanel.Name = "ShowIdeaDataPanel";
+            this.ShowIdeaDataPanel.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
+            this.ShowIdeaDataPanel.Size = new System.Drawing.Size(585, 305);
+            this.ShowIdeaDataPanel.TabIndex = 1;
+            // 
+            // ShowIdeaDescription
+            // 
+            this.ShowIdeaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowIdeaDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ShowIdeaDescription.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowIdeaDescription.Location = new System.Drawing.Point(53, 84);
+            this.ShowIdeaDescription.Name = "ShowIdeaDescription";
+            this.ShowIdeaDescription.Size = new System.Drawing.Size(482, 174);
+            this.ShowIdeaDescription.TabIndex = 3;
+            this.ShowIdeaDescription.Text = "";
+            // 
+            // ShowIdeaMark
+            // 
+            this.ShowIdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowIdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowIdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowIdeaMark.FormattingEnabled = true;
+            this.ShowIdeaMark.Location = new System.Drawing.Point(470, 39);
+            this.ShowIdeaMark.Name = "ShowIdeaMark";
+            this.ShowIdeaMark.Size = new System.Drawing.Size(65, 36);
+            this.ShowIdeaMark.TabIndex = 2;
+            // 
+            // ShowIdeaSection
+            // 
+            this.ShowIdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowIdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowIdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowIdeaSection.FormattingEnabled = true;
+            this.ShowIdeaSection.Location = new System.Drawing.Point(53, 40);
+            this.ShowIdeaSection.Name = "ShowIdeaSection";
+            this.ShowIdeaSection.Size = new System.Drawing.Size(410, 36);
+            this.ShowIdeaSection.TabIndex = 1;
+            // 
+            // btnChangeIdeaData
+            // 
+            this.btnChangeIdeaData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChangeIdeaData.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.save_Icon;
+            this.btnChangeIdeaData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnChangeIdeaData.FlatAppearance.BorderSize = 0;
+            this.btnChangeIdeaData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeIdeaData.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeIdeaData.Location = new System.Drawing.Point(488, 262);
+            this.btnChangeIdeaData.Name = "btnChangeIdeaData";
+            this.btnChangeIdeaData.Size = new System.Drawing.Size(44, 40);
+            this.btnChangeIdeaData.TabIndex = 4;
+            this.btnChangeIdeaData.UseVisualStyleBackColor = true;
+            // 
+            // ShowIdeaTitle
+            // 
+            this.ShowIdeaTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ShowIdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ShowIdeaTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ShowIdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowIdeaTitle.Location = new System.Drawing.Point(50, 0);
+            this.ShowIdeaTitle.Name = "ShowIdeaTitle";
+            this.ShowIdeaTitle.Size = new System.Drawing.Size(485, 31);
+            this.ShowIdeaTitle.TabIndex = 0;
+            this.ShowIdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // CreateIdeaPanel
             // 
             this.CreateIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -214,9 +303,10 @@
             this.IdeaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdeaDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IdeaDescription.Location = new System.Drawing.Point(53, 84);
+            this.IdeaDescription.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaDescription.Location = new System.Drawing.Point(50, 84);
             this.IdeaDescription.Name = "IdeaDescription";
-            this.IdeaDescription.Size = new System.Drawing.Size(475, 174);
+            this.IdeaDescription.Size = new System.Drawing.Size(480, 174);
             this.IdeaDescription.TabIndex = 3;
             this.IdeaDescription.Text = "";
             // 
@@ -227,7 +317,7 @@
             this.IdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.IdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaMark.FormattingEnabled = true;
-            this.IdeaMark.Location = new System.Drawing.Point(463, 42);
+            this.IdeaMark.Location = new System.Drawing.Point(465, 39);
             this.IdeaMark.Name = "IdeaMark";
             this.IdeaMark.Size = new System.Drawing.Size(65, 36);
             this.IdeaMark.TabIndex = 2;
@@ -239,7 +329,7 @@
             this.IdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.IdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaSection.FormattingEnabled = true;
-            this.IdeaSection.Location = new System.Drawing.Point(53, 42);
+            this.IdeaSection.Location = new System.Drawing.Point(50, 39);
             this.IdeaSection.Name = "IdeaSection";
             this.IdeaSection.Size = new System.Drawing.Size(404, 36);
             this.IdeaSection.TabIndex = 1;
@@ -249,98 +339,12 @@
             this.IdeaTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.IdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.IdeaTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaTitle.Location = new System.Drawing.Point(50, 0);
             this.IdeaTitle.Name = "IdeaTitle";
-            this.IdeaTitle.Size = new System.Drawing.Size(481, 36);
+            this.IdeaTitle.Size = new System.Drawing.Size(481, 29);
             this.IdeaTitle.TabIndex = 0;
             this.IdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // SearchShowIdeaPanel
-            // 
-            this.SearchShowIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchShowIdeaPanel.Controls.Add(this.ShowIdeaDataPanel);
-            this.SearchShowIdeaPanel.Location = new System.Drawing.Point(0, 58);
-            this.SearchShowIdeaPanel.Name = "SearchShowIdeaPanel";
-            this.SearchShowIdeaPanel.Size = new System.Drawing.Size(585, 558);
-            this.SearchShowIdeaPanel.TabIndex = 3;
-            // 
-            // ShowIdeaDataPanel
-            // 
-            this.ShowIdeaDataPanel.Controls.Add(this.btnChangeIdeaData);
-            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaDescription);
-            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaMark);
-            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaSection);
-            this.ShowIdeaDataPanel.Controls.Add(this.ShowIdeaTitle);
-            this.ShowIdeaDataPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ShowIdeaDataPanel.Location = new System.Drawing.Point(0, 253);
-            this.ShowIdeaDataPanel.Name = "ShowIdeaDataPanel";
-            this.ShowIdeaDataPanel.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
-            this.ShowIdeaDataPanel.Size = new System.Drawing.Size(585, 305);
-            this.ShowIdeaDataPanel.TabIndex = 1;
-            // 
-            // btnChangeIdeaData
-            // 
-            this.btnChangeIdeaData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangeIdeaData.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.save_Icon;
-            this.btnChangeIdeaData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnChangeIdeaData.FlatAppearance.BorderSize = 0;
-            this.btnChangeIdeaData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeIdeaData.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeIdeaData.Location = new System.Drawing.Point(488, 262);
-            this.btnChangeIdeaData.Name = "btnChangeIdeaData";
-            this.btnChangeIdeaData.Size = new System.Drawing.Size(44, 40);
-            this.btnChangeIdeaData.TabIndex = 4;
-            this.btnChangeIdeaData.UseVisualStyleBackColor = true;
-            // 
-            // ShowIdeaDescription
-            // 
-            this.ShowIdeaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ShowIdeaDescription.Location = new System.Drawing.Point(53, 84);
-            this.ShowIdeaDescription.Name = "ShowIdeaDescription";
-            this.ShowIdeaDescription.Size = new System.Drawing.Size(482, 174);
-            this.ShowIdeaDescription.TabIndex = 3;
-            this.ShowIdeaDescription.Text = "";
-            // 
-            // ShowIdeaMark
-            // 
-            this.ShowIdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ShowIdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowIdeaMark.FormattingEnabled = true;
-            this.ShowIdeaMark.Location = new System.Drawing.Point(470, 39);
-            this.ShowIdeaMark.Name = "ShowIdeaMark";
-            this.ShowIdeaMark.Size = new System.Drawing.Size(65, 36);
-            this.ShowIdeaMark.TabIndex = 2;
-            // 
-            // ShowIdeaSection
-            // 
-            this.ShowIdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ShowIdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowIdeaSection.FormattingEnabled = true;
-            this.ShowIdeaSection.Location = new System.Drawing.Point(53, 40);
-            this.ShowIdeaSection.Name = "ShowIdeaSection";
-            this.ShowIdeaSection.Size = new System.Drawing.Size(410, 36);
-            this.ShowIdeaSection.TabIndex = 1;
-            // 
-            // ShowIdeaTitle
-            // 
-            this.ShowIdeaTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ShowIdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ShowIdeaTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ShowIdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowIdeaTitle.Location = new System.Drawing.Point(50, 0);
-            this.ShowIdeaTitle.Name = "ShowIdeaTitle";
-            this.ShowIdeaTitle.Size = new System.Drawing.Size(485, 31);
-            this.ShowIdeaTitle.TabIndex = 0;
-            this.ShowIdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // IdeasForm
             // 
@@ -358,12 +362,12 @@
             this.IdeasListPanel.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
             this.ButtonsPanel.ResumeLayout(false);
-            this.CreateIdeaPanel.ResumeLayout(false);
-            this.CreateIdeaElementsPanel.ResumeLayout(false);
-            this.CreateIdeaElementsPanel.PerformLayout();
             this.SearchShowIdeaPanel.ResumeLayout(false);
             this.ShowIdeaDataPanel.ResumeLayout(false);
             this.ShowIdeaDataPanel.PerformLayout();
+            this.CreateIdeaPanel.ResumeLayout(false);
+            this.CreateIdeaElementsPanel.ResumeLayout(false);
+            this.CreateIdeaElementsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -392,6 +396,6 @@
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSaveIdea;
-        private System.Windows.Forms.FlowLayoutPanel IdeaListFlowPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelIdeas;
     }
 }

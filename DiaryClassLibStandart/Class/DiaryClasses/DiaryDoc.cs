@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DiaryClassLibStandart.Class
 {
-    public class DiaryRecord
+    public class DiaryDoc
     {
         MyXmlDocument Doc;
         DiaryFields fields;
@@ -15,15 +15,15 @@ namespace DiaryClassLibStandart.Class
         {
             get { return fields; }
         }       
-        public DiaryRecord()
+        public DiaryDoc()
         {
             this.fields = new DiaryFields();
         }
-        public DiaryRecord(string Directory, string FileName):this()
+        public DiaryDoc(string Directory, string FileName):this()
         {
             this.Doc = new MyXmlDocument(Directory, FileName);  
         }
-        public DiaryRecord(string Path):this()
+        public DiaryDoc(string Path):this()
         {
             this.Doc = new MyXmlDocument(Path);
         }

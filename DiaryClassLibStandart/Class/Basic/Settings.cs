@@ -10,7 +10,7 @@ namespace DiaryClassLibStandart.Class
     {
         public static readonly string SettingsDirectory = "SettingsDirectory";
         public static readonly string StoryDirectory = "StoryDirectory";
-
+        public static readonly string IdeasDirectory = "IdeasDIrectory";
 
         readonly static string DirectorySettingsFile = Directory.GetCurrentDirectory();
         readonly static string SettingFileName = "settings";
