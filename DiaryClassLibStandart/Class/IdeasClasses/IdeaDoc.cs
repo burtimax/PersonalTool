@@ -46,6 +46,39 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
             this.Doc.Save();
         }
 
+        /// <summary>
+        /// Изменяем данные идеи в документе
+        /// </summary>
+        public void ChangeIdea(Idea idea)
+        {
+            var xmlIdea = SearchIdeaXmlDocument(idea);
+
+            //Если не нашли идею в документе, то создадим её и добавим в документ
+            if(xmlIdea == null)
+            {
+                this.AddIdea(idea);
+            }
+            //Если нашли идею, то сделаем изменения 
+            else
+            {
+                IdeaXmlPresenter.ChangeDataInXmlIdea(ref xmlIdea, idea);
+            }
+            this.Doc.Save();
+        }
+
+        public void DeleteIdea(Idea idea)
+        {
+            var xmlIdea = SearchIdeaXmlDocument(idea);
+            if (xmlIdea == null) return;
+
+            this.Doc.Body.RemoveChild(xmlIdea);
+            this.Doc.Save();
+        }
+
+        /// <summary>
+        /// Список всех идеи в документе
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, Idea> GetAllIdeas()
         {
             if (Doc?.Body == null) return null;
@@ -66,6 +99,26 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
             return result;
         }
 
-        
+
+
+        /// <summary>
+        /// Поиск елемента xml (<Idea>) для idea
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="idea"></param>
+        /// <returns></returns>
+        private XmlElement SearchIdeaXmlDocument(Idea idea)
+        {
+            //Ищем элемент с атрибутом равным Id идеи
+            var res = this.Doc.Body.SelectSingleNode("Idea[@Id='" + idea.Id + "']");
+            if (res == null || (res is XmlElement == false))
+            {
+                return null;
+            }
+
+            return res as XmlElement;
+        }
+
+
     }
 }

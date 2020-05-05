@@ -16,7 +16,7 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
         {
             XmlAttribute ideaAttribute = doc.CreateAttribute("Id");
             ideaAttribute.InnerText = idea.Id;
-            
+
             XmlElement titleElement = doc.CreateElement("Title");
             XmlText titleElementText = doc.CreateTextNode(idea.Title);
             titleElement.AppendChild(titleElementText);
@@ -60,6 +60,29 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
             idea.Section = xml.GetElementsByTagName("Section")?.Item(0).InnerText;
 
             return idea;
+        }
+
+        public static void ChangeDataInXmlIdea(ref XmlElement xmlIdea, Idea idea)
+        {
+            if (xmlIdea == null || idea == null) return;
+            if (xmlIdea.Name != "Idea")
+            {
+                throw new Exception("Передан элемент не принадлежащий <Idea>");
+            }
+
+            XmlAttribute id = xmlIdea.Attributes["Id"];
+            id.InnerText = idea.Id;
+
+            if (xmlIdea.GetElementsByTagName("Title")?.Item(0) is XmlElement title) title.InnerText = idea.Title;
+
+            if (xmlIdea.GetElementsByTagName("Mark")?.Item(0) is XmlElement mark) mark.InnerText = idea.Mark.ToString();
+
+            if (xmlIdea.GetElementsByTagName("Section")?.Item(0) is XmlElement section) section.InnerText = idea.Section;
+           
+            if (xmlIdea.GetElementsByTagName("Description")?.Item(0) is XmlElement desc) desc.InnerText = idea.Description;
+
+            if (xmlIdea.GetElementsByTagName("Time")?.Item(0) is XmlElement time) time.InnerText = idea.Time.ToString();
+            
         }
     }
 }

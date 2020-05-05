@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiaryClassLibStandart.Class.IdeasClasses;
+using DiaryClassLibStandart.Helpers;
 using DiaryWinFormsNetFramework.HelpersConstants;
 using DiaryWinFormsNetFramework.Plugins.BaseForm;
 using DiaryWinFormsNetFramework.UserControls;
@@ -153,15 +154,33 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             {
                 return;
             }
+            //Получим элемент UserControl IdeaListItem
             IdeaListItem ideaItem = c.Parent.Parent as IdeaListItem;
+            if (ideaItem == null)
+            {
+                return;
+            }
+
+            //Поменяем цвет для выделенной идеи
             ChangeColorSelectedIdeaItem(ideaItem);
-            ShowIdeaTitle.Text = ideaItem.Idea.Title;
-            ShowIdeaDescription.Text = ideaItem.Idea.Description;
-            ShowIdeaMark.Text = ideaItem.Idea.Mark.ToString();
-            ShowIdeaSection.Text = ideaItem.Idea.Section;
-            
+           
+            ShowDataForIdea(ideaItem.Idea);
+        }
+
+        /// <summary>
+        /// Показать данные по идеи
+        /// </summary>
+        /// <param name=""></param>
+        private void ShowDataForIdea(Idea idea)
+        {
+            ShowIdeaTitle.Text = idea.Title;
+            ShowIdeaDescription.Text = idea.Description;
+            ShowIdeaMark.Text = idea.Mark.ToString();
+            ShowIdeaSection.Text = idea.Section;
+            //Активируем панель для показа данных по идеи
             ActivateIdeaDataSearchPanel();
         }
+
 
         /// <summary>
         /// Поменять цвет для выбранного элемента
@@ -178,6 +197,75 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 
         }
 
-       
+        /// <summary>
+        /// Сохраняем изменения в данных идеи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChangeIdeaData_Click(object sender, EventArgs e)
+        {
+            if (SelectedListItem == null)
+            {
+                HelperDialog.ShowWarningDialog("Выберете элемент из списка", "");
+                return;
+            }
+
+            Idea idea = SelectedListItem?.Idea;
+
+            //Изменяем поля объекта idea в соответствии с данными текстовых полей
+            SetIdeaDataFromTextFields(ref idea);
+            //Изменяем визуальный элемент в списке идей
+            SetIdeaItemListTextFields(SelectedListItem, idea);
+
+            //Изменяем данные в документе
+            this.Document.ChangeIdea(idea);
+        }
+
+        /// <summary>
+        /// Меняем текст и цвет элемента в соответствиис с данными
+        /// </summary>
+        private void SetIdeaItemListTextFields(IdeaListItem item, Idea idea)
+        {
+            item.TitleProp = idea.Title;
+            item.MarkProp = idea.Mark.ToString();
+            item.SectionColorProp = Constants.SectionsColors[idea.Section];
+            SelectedListItem.Idea = idea;
+        }
+
+        /// <summary>
+        /// Изменяем данные идеи в соответствии с текстовыми полями
+        /// </summary>
+        private void SetIdeaDataFromTextFields(ref Idea idea)
+        {
+            idea.Title = ShowIdeaTitle.Text;
+            idea.Mark = Convert.ToInt32(ShowIdeaMark.Text);//ToDo Convert exception may be 
+            idea.Description = ShowIdeaDescription.Text;
+            idea.Section = ShowIdeaSection.Text;
+        }
+
+        /// <summary>
+        /// Обработчик нажатия н кнопку удаления идеи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteIdea_Click(object sender, EventArgs e)
+        {
+            if (SelectedListItem == null) return;
+            this.Document.DeleteIdea(SelectedListItem?.Idea);
+            this.flowLayoutPanelIdeas.Controls.Remove(SelectedListItem);
+            SelectedListItem = null;
+            ClearTextFieldsInShowIdeaPanel();
+        }
+
+        /// <summary>
+        /// Очистить все текстовые поля в панели показа данных идеи
+        /// </summary>
+        private void ClearTextFieldsInShowIdeaPanel()
+        {
+            ShowIdeaTitle.Text = "";
+            ShowIdeaMark.Select(0,1);
+            ShowIdeaSection.Select(0,1);
+            ShowIdeaDescription.Text = "";
+        }
     }
 }

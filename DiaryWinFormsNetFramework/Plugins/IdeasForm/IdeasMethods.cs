@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using DiaryClassLibStandart.Class;
+using DiaryClassLibStandart.Class.IdeasClasses;
 
 namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 {
@@ -23,5 +25,8 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             return "Ideas_" + DateTime.Now.Year.ToString();
         }
 
+       
+
+        
     }
 }

@@ -120,7 +120,7 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
 
     public enum IdeaSections
     {
-        Empty,
+        Underfined,
         All,
         Life,
         Productivity,
