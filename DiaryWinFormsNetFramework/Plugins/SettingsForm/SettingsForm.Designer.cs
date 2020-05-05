@@ -31,27 +31,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.ContentPanel = new System.Windows.Forms.Panel();
+            this.panelDirectoryIdeas = new System.Windows.Forms.Panel();
+            this.btnOpenFolderDialogForIdeasDirectory = new System.Windows.Forms.Button();
+            this.labelDirectoryIdeas = new System.Windows.Forms.Label();
+            this.labelIdeasDirectory = new System.Windows.Forms.Label();
             this.panelDirectoryStories = new System.Windows.Forms.Panel();
             this.btnOpenFolderDialogForStories = new System.Windows.Forms.Button();
             this.labelDirectoryStories = new System.Windows.Forms.Label();
-            this.BottomCommandsPanel = new System.Windows.Forms.Panel();
-            this.btnChangePassword = new System.Windows.Forms.Button();
             this.labelStoryDirectory = new System.Windows.Forms.Label();
             this.panelDirectorySetting = new System.Windows.Forms.Panel();
             this.btnOpenFolderDialog = new System.Windows.Forms.Button();
             this.labelDirectorySetting = new System.Windows.Forms.Label();
             this.labelSettingsDirectory = new System.Windows.Forms.Label();
+            this.BottomCommandsPanel = new System.Windows.Forms.Panel();
+            this.btnChangePassword = new System.Windows.Forms.Button();
             this.FolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.labelIdeasDirectory = new System.Windows.Forms.Label();
-            this.panelDirectoryIdeas = new System.Windows.Forms.Panel();
-            this.btnOpenFolderDialogForIdeasDirectory = new System.Windows.Forms.Button();
-            this.labelDirectoryIdeas = new System.Windows.Forms.Label();
             this.BodyPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
-            this.panelDirectoryStories.SuspendLayout();
-            this.BottomCommandsPanel.SuspendLayout();
-            this.panelDirectorySetting.SuspendLayout();
             this.panelDirectoryIdeas.SuspendLayout();
+            this.panelDirectoryStories.SuspendLayout();
+            this.panelDirectorySetting.SuspendLayout();
+            this.BottomCommandsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // BodyPanel
@@ -79,6 +79,52 @@
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.Size = new System.Drawing.Size(1064, 648);
             this.ContentPanel.TabIndex = 4;
+            // 
+            // panelDirectoryIdeas
+            // 
+            this.panelDirectoryIdeas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDirectoryIdeas.Controls.Add(this.btnOpenFolderDialogForIdeasDirectory);
+            this.panelDirectoryIdeas.Controls.Add(this.labelDirectoryIdeas);
+            this.panelDirectoryIdeas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelDirectoryIdeas.Location = new System.Drawing.Point(0, 125);
+            this.panelDirectoryIdeas.Name = "panelDirectoryIdeas";
+            this.panelDirectoryIdeas.Size = new System.Drawing.Size(1064, 37);
+            this.panelDirectoryIdeas.TabIndex = 3;
+            // 
+            // btnOpenFolderDialogForIdeasDirectory
+            // 
+            this.btnOpenFolderDialogForIdeasDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolderDialogForIdeasDirectory.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnOpenFolderDialogForIdeasDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFolderDialogForIdeasDirectory.Location = new System.Drawing.Point(1007, -1);
+            this.btnOpenFolderDialogForIdeasDirectory.Name = "btnOpenFolderDialogForIdeasDirectory";
+            this.btnOpenFolderDialogForIdeasDirectory.Size = new System.Drawing.Size(56, 37);
+            this.btnOpenFolderDialogForIdeasDirectory.TabIndex = 1;
+            this.btnOpenFolderDialogForIdeasDirectory.Text = "...";
+            this.btnOpenFolderDialogForIdeasDirectory.UseVisualStyleBackColor = false;
+            this.btnOpenFolderDialogForIdeasDirectory.Click += new System.EventHandler(this.btnOpenFolderDialogForIdeasDirectory_Click);
+            // 
+            // labelDirectoryIdeas
+            // 
+            this.labelDirectoryIdeas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDirectoryIdeas.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDirectoryIdeas.Location = new System.Drawing.Point(0, 0);
+            this.labelDirectoryIdeas.Name = "labelDirectoryIdeas";
+            this.labelDirectoryIdeas.Size = new System.Drawing.Size(1001, 35);
+            this.labelDirectoryIdeas.TabIndex = 0;
+            this.labelDirectoryIdeas.Text = "default directory";
+            this.labelDirectoryIdeas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelIdeasDirectory
+            // 
+            this.labelIdeasDirectory.AutoSize = true;
+            this.labelIdeasDirectory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelIdeasDirectory.Location = new System.Drawing.Point(0, 108);
+            this.labelIdeasDirectory.Name = "labelIdeasDirectory";
+            this.labelIdeasDirectory.Size = new System.Drawing.Size(130, 17);
+            this.labelIdeasDirectory.TabIndex = 5;
+            this.labelIdeasDirectory.Text = "Ideas files directory";
             // 
             // panelDirectoryStories
             // 
@@ -115,29 +161,6 @@
             this.labelDirectoryStories.TabIndex = 0;
             this.labelDirectoryStories.Text = "default directory";
             this.labelDirectoryStories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BottomCommandsPanel
-            // 
-            this.BottomCommandsPanel.Controls.Add(this.btnChangePassword);
-            this.BottomCommandsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomCommandsPanel.Location = new System.Drawing.Point(0, 595);
-            this.BottomCommandsPanel.Name = "BottomCommandsPanel";
-            this.BottomCommandsPanel.Size = new System.Drawing.Size(1064, 53);
-            this.BottomCommandsPanel.TabIndex = 4;
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.BackgroundImage")));
-            this.btnChangePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnChangePassword.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnChangePassword.FlatAppearance.BorderSize = 0;
-            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangePassword.Location = new System.Drawing.Point(0, 0);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(61, 53);
-            this.btnChangePassword.TabIndex = 6;
-            this.btnChangePassword.UseVisualStyleBackColor = true;
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // labelStoryDirectory
             // 
@@ -195,51 +218,28 @@
             this.labelSettingsDirectory.TabIndex = 2;
             this.labelSettingsDirectory.Text = "Application settings directory";
             // 
-            // labelIdeasDirectory
+            // BottomCommandsPanel
             // 
-            this.labelIdeasDirectory.AutoSize = true;
-            this.labelIdeasDirectory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelIdeasDirectory.Location = new System.Drawing.Point(0, 108);
-            this.labelIdeasDirectory.Name = "labelIdeasDirectory";
-            this.labelIdeasDirectory.Size = new System.Drawing.Size(130, 17);
-            this.labelIdeasDirectory.TabIndex = 5;
-            this.labelIdeasDirectory.Text = "Ideas files directory";
+            this.BottomCommandsPanel.Controls.Add(this.btnChangePassword);
+            this.BottomCommandsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomCommandsPanel.Location = new System.Drawing.Point(0, 595);
+            this.BottomCommandsPanel.Name = "BottomCommandsPanel";
+            this.BottomCommandsPanel.Size = new System.Drawing.Size(1064, 53);
+            this.BottomCommandsPanel.TabIndex = 4;
             // 
-            // panelDirectoryIdeas
+            // btnChangePassword
             // 
-            this.panelDirectoryIdeas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDirectoryIdeas.Controls.Add(this.btnOpenFolderDialogForIdeasDirectory);
-            this.panelDirectoryIdeas.Controls.Add(this.labelDirectoryIdeas);
-            this.panelDirectoryIdeas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDirectoryIdeas.Location = new System.Drawing.Point(0, 125);
-            this.panelDirectoryIdeas.Name = "panelDirectoryIdeas";
-            this.panelDirectoryIdeas.Size = new System.Drawing.Size(1064, 37);
-            this.panelDirectoryIdeas.TabIndex = 3;
-            // 
-            // btnOpenFolderDialogForIdeasDirectory
-            // 
-            this.btnOpenFolderDialogForIdeasDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFolderDialogForIdeasDirectory.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnOpenFolderDialogForIdeasDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolderDialogForIdeasDirectory.Location = new System.Drawing.Point(1007, -1);
-            this.btnOpenFolderDialogForIdeasDirectory.Name = "btnOpenFolderDialogForIdeasDirectory";
-            this.btnOpenFolderDialogForIdeasDirectory.Size = new System.Drawing.Size(56, 37);
-            this.btnOpenFolderDialogForIdeasDirectory.TabIndex = 1;
-            this.btnOpenFolderDialogForIdeasDirectory.Text = "...";
-            this.btnOpenFolderDialogForIdeasDirectory.UseVisualStyleBackColor = false;
-            this.btnOpenFolderDialogForIdeasDirectory.Click += new System.EventHandler(this.btnOpenFolderDialogForIdeasDirectory_Click);
-            // 
-            // labelDirectoryIdeas
-            // 
-            this.labelDirectoryIdeas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDirectoryIdeas.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDirectoryIdeas.Location = new System.Drawing.Point(0, 0);
-            this.labelDirectoryIdeas.Name = "labelDirectoryIdeas";
-            this.labelDirectoryIdeas.Size = new System.Drawing.Size(1001, 35);
-            this.labelDirectoryIdeas.TabIndex = 0;
-            this.labelDirectoryIdeas.Text = "default directory";
-            this.labelDirectoryIdeas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChangePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.BackgroundImage")));
+            this.btnChangePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnChangePassword.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnChangePassword.FlatAppearance.BorderSize = 0;
+            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangePassword.Location = new System.Drawing.Point(0, 0);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(61, 53);
+            this.btnChangePassword.TabIndex = 6;
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // SettingsForm
             // 
@@ -253,10 +253,10 @@
             this.BodyPanel.ResumeLayout(false);
             this.ContentPanel.ResumeLayout(false);
             this.ContentPanel.PerformLayout();
-            this.panelDirectoryStories.ResumeLayout(false);
-            this.BottomCommandsPanel.ResumeLayout(false);
-            this.panelDirectorySetting.ResumeLayout(false);
             this.panelDirectoryIdeas.ResumeLayout(false);
+            this.panelDirectoryStories.ResumeLayout(false);
+            this.panelDirectorySetting.ResumeLayout(false);
+            this.BottomCommandsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

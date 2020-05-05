@@ -180,10 +180,12 @@
             // 
             // SearchShowIdeaPanel
             // 
+            this.SearchShowIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchShowIdeaPanel.BackColor = System.Drawing.Color.Transparent;
             this.SearchShowIdeaPanel.Controls.Add(this.ShowIdeaDataPanel);
-            this.SearchShowIdeaPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SearchShowIdeaPanel.Location = new System.Drawing.Point(0, 52);
+            this.SearchShowIdeaPanel.Location = new System.Drawing.Point(0, 53);
             this.SearchShowIdeaPanel.Name = "SearchShowIdeaPanel";
             this.SearchShowIdeaPanel.Size = new System.Drawing.Size(585, 557);
             this.SearchShowIdeaPanel.TabIndex = 3;
@@ -243,7 +245,7 @@
             // ShowIdeaMark
             // 
             this.ShowIdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaMark.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ShowIdeaMark.BackColor = System.Drawing.Color.LightGray;
             this.ShowIdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ShowIdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShowIdeaMark.FormattingEnabled = true;
@@ -256,7 +258,7 @@
             // 
             this.ShowIdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ShowIdeaSection.BackColor = System.Drawing.Color.LightGray;
             this.ShowIdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ShowIdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShowIdeaSection.FormattingEnabled = true;
@@ -285,7 +287,7 @@
             // 
             this.ShowTitleBackPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowTitleBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ShowTitleBackPanel.BackColor = System.Drawing.Color.LightGray;
             this.ShowTitleBackPanel.Controls.Add(this.ShowIdeaTitle);
             this.ShowTitleBackPanel.Location = new System.Drawing.Point(30, 30);
             this.ShowTitleBackPanel.Name = "ShowTitleBackPanel";
@@ -297,7 +299,7 @@
             this.ShowIdeaTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowIdeaTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ShowIdeaTitle.BackColor = System.Drawing.Color.LightGray;
             this.ShowIdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ShowIdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShowIdeaTitle.Location = new System.Drawing.Point(20, 25);
@@ -308,10 +310,12 @@
             // 
             // CreateIdeaPanel
             // 
+            this.CreateIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateIdeaPanel.BackColor = System.Drawing.Color.Transparent;
             this.CreateIdeaPanel.Controls.Add(this.CreateIdeaElementsPanel);
-            this.CreateIdeaPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CreateIdeaPanel.Location = new System.Drawing.Point(0, 609);
+            this.CreateIdeaPanel.Location = new System.Drawing.Point(0, 58);
             this.CreateIdeaPanel.Name = "CreateIdeaPanel";
             this.CreateIdeaPanel.Size = new System.Drawing.Size(585, 555);
             this.CreateIdeaPanel.TabIndex = 2;
@@ -352,7 +356,7 @@
             // IdeaMark
             // 
             this.IdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaMark.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.IdeaMark.BackColor = System.Drawing.Color.LightGray;
             this.IdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.IdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaMark.FormattingEnabled = true;
@@ -365,7 +369,7 @@
             // 
             this.IdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.IdeaSection.BackColor = System.Drawing.Color.LightGray;
             this.IdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.IdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaSection.FormattingEnabled = true;
@@ -388,13 +392,13 @@
             this.IdeaDescription.Name = "IdeaDescription";
             this.IdeaDescription.Size = new System.Drawing.Size(522, 196);
             this.IdeaDescription.TabIndex = 3;
-            this.IdeaDescription.Text = "hello";
+            this.IdeaDescription.Text = "";
             // 
             // IdeaTitleBackPanel
             // 
             this.IdeaTitleBackPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaTitleBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.IdeaTitleBackPanel.BackColor = System.Drawing.Color.LightGray;
             this.IdeaTitleBackPanel.Controls.Add(this.IdeaTitle);
             this.IdeaTitleBackPanel.Location = new System.Drawing.Point(30, 30);
             this.IdeaTitleBackPanel.Name = "IdeaTitleBackPanel";
@@ -406,7 +410,7 @@
             this.IdeaTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.IdeaTitle.BackColor = System.Drawing.Color.LightGray;
             this.IdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.IdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdeaTitle.Location = new System.Drawing.Point(20, 25);

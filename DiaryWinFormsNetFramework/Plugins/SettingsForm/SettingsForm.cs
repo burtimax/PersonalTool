@@ -79,6 +79,7 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
         {
             this.labelDirectorySetting.Text = Settings.GetSetting(Settings.SettingsDirectory);
             this.labelDirectoryStories.Text = Settings.GetSetting(Settings.StoryDirectory);
+            this.labelDirectoryIdeas.Text = Settings.GetSetting(Settings.IdeasDirectory);
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
