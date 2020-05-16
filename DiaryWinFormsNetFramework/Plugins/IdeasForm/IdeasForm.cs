@@ -94,6 +94,8 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 
             this.Document.AddIdea(idea);
             AddIdeaListItem(idea);
+
+            ClearCreateIdeaTextFields();
         }
 
         /// <summary>
@@ -108,7 +110,7 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             IdeaListItem.TitleProp = idea.Title;
             IdeaListItem.MarkProp = idea.Mark.ToString();
             IdeaListItem.SectionColorProp = Constants.SectionsColors[idea.Section];
-            IdeaListItem.Width = flowLayoutPanelIdeas.Width - 20;
+            IdeaListItem.Width = flowLayoutPanelIdeas.Width - 25;
             flowLayoutPanelIdeas.Controls.Add(IdeaListItem);
             flowLayoutPanelIdeas.Controls.SetChildIndex(IdeaListItem, 0);
         }
@@ -263,9 +265,20 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
         private void ClearTextFieldsInShowIdeaPanel()
         {
             ShowIdeaTitle.Text = "";
-            ShowIdeaMark.Select(0,1);
-            ShowIdeaSection.Select(0,1);
+            ShowIdeaMark.SelectedIndex = 0;
+            ShowIdeaSection.SelectedIndex = 0;
             ShowIdeaDescription.Text = "";
+        }
+
+        /// <summary>
+        /// Очистить все текстовые поля в панели создания идеи
+        /// </summary>
+        private void ClearCreateIdeaTextFields()
+        {
+            IdeaTitle.Text = "";
+            IdeaDescription.Text = "";
+            IdeaSection.SelectedIndex = 0;
+            IdeaMark.SelectedIndex = 0;
         }
     }
 }

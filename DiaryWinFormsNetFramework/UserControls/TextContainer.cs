@@ -80,7 +80,11 @@ namespace DiaryWinFormsNetFramework.UserControls
                 //ControlPaint.DrawBorder(pen, this.mainPanel.ClientRectangle, Color.FromArgb(219, 219, 219), ButtonBorderStyle.Solid);
                 e.Graphics.DrawRectangle(pen, rect);
             }
+        }
 
+        public void Select()
+        {
+            this.rtbField.Select();
         }
     }
 }

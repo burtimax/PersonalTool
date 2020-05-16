@@ -72,7 +72,6 @@ namespace DiaryWinFormsNetFramework
             {
                 //Активируем панель для создания пароля
                 HelperForm.ActivateControl(this.SetNewPasswordPanel);
-                //this.FirstPasswordTextBox.Select();
             }
             //Если пароль существует, то войдем в приложение
             else
@@ -169,11 +168,23 @@ namespace DiaryWinFormsNetFramework
             }
         }
 
+        /// <summary>
+        /// Вызываем при загрузке окна
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SetFormSize();            
+            SetFormSize();
+
+            //Сделаем поле для ввода пароля активным! Чтобы не наводить мышь!
+            this.SetPasswordTextBox.Select();
         }
 
+
+        /// <summary>
+        /// Устанавливаем высоту и ширину главного окна приложения, чтобы красиво выглядело
+        /// </summary>
         void SetFormSize()
         {
             //var width = (int)SystemParameters.VirtualScreenWidth;
@@ -189,7 +200,7 @@ namespace DiaryWinFormsNetFramework
         }
 
 
-        //Событие изменения текста панели подтверждения пароля
+        ///Событие изменения текста панели подтверждения пароля
         private void SecondPasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             //Установим пароль автоматически, если текст из второго поля совпал с текстом первого поля
@@ -231,8 +242,8 @@ namespace DiaryWinFormsNetFramework
         /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //ctrl + shift + P (Дать внеочередной доступ к программе)
-            if(keyData == (Keys.Control | Keys.Shift | Keys.P))
+            //ctrl + shift + 0 (Дать внеочередной доступ к программе)
+            if(keyData == (Keys.Control | Keys.Shift | Keys.D0))
             {
                 GiveAccess();
             }

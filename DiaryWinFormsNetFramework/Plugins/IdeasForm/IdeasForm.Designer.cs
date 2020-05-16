@@ -35,9 +35,14 @@
             this.IdeasListPanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanelIdeas = new System.Windows.Forms.FlowLayoutPanel();
             this.LeftPanel = new System.Windows.Forms.Panel();
-            this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnAddIdea = new System.Windows.Forms.Button();
+            this.CreateIdeaPanel = new System.Windows.Forms.Panel();
+            this.CreateIdeaElementsPanel = new System.Windows.Forms.Panel();
+            this.btnSaveIdea = new System.Windows.Forms.Button();
+            this.IdeaMark = new System.Windows.Forms.ComboBox();
+            this.IdeaSection = new System.Windows.Forms.ComboBox();
+            this.IdeaDescription = new System.Windows.Forms.RichTextBox();
+            this.IdeaTitleBackPanel = new System.Windows.Forms.Panel();
+            this.IdeaTitle = new System.Windows.Forms.TextBox();
             this.SearchShowIdeaPanel = new System.Windows.Forms.Panel();
             this.ShowIdeaDataPanel = new System.Windows.Forms.Panel();
             this.btnDeleteIdea = new System.Windows.Forms.Button();
@@ -47,26 +52,21 @@
             this.ShowIdeaDescription = new System.Windows.Forms.RichTextBox();
             this.ShowTitleBackPanel = new System.Windows.Forms.Panel();
             this.ShowIdeaTitle = new System.Windows.Forms.TextBox();
-            this.CreateIdeaPanel = new System.Windows.Forms.Panel();
-            this.CreateIdeaElementsPanel = new System.Windows.Forms.Panel();
-            this.btnSaveIdea = new System.Windows.Forms.Button();
-            this.IdeaMark = new System.Windows.Forms.ComboBox();
-            this.IdeaSection = new System.Windows.Forms.ComboBox();
-            this.IdeaDescription = new System.Windows.Forms.RichTextBox();
-            this.IdeaTitleBackPanel = new System.Windows.Forms.Panel();
-            this.IdeaTitle = new System.Windows.Forms.TextBox();
+            this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnAddIdea = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
             this.RightPanel.SuspendLayout();
             this.IdeasListPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
-            this.ButtonsPanel.SuspendLayout();
-            this.SearchShowIdeaPanel.SuspendLayout();
-            this.ShowIdeaDataPanel.SuspendLayout();
-            this.ShowTitleBackPanel.SuspendLayout();
             this.CreateIdeaPanel.SuspendLayout();
             this.CreateIdeaElementsPanel.SuspendLayout();
             this.IdeaTitleBackPanel.SuspendLayout();
+            this.SearchShowIdeaPanel.SuspendLayout();
+            this.ShowIdeaDataPanel.SuspendLayout();
+            this.ShowTitleBackPanel.SuspendLayout();
+            this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -133,50 +133,116 @@
             this.LeftPanel.Size = new System.Drawing.Size(585, 616);
             this.LeftPanel.TabIndex = 2;
             // 
-            // ButtonsPanel
+            // CreateIdeaPanel
             // 
-            this.ButtonsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonsPanel.Controls.Add(this.btnSearch);
-            this.ButtonsPanel.Controls.Add(this.btnAddIdea);
-            this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonsPanel.Location = new System.Drawing.Point(0, 0);
-            this.ButtonsPanel.Name = "ButtonsPanel";
-            this.ButtonsPanel.Size = new System.Drawing.Size(585, 52);
-            this.ButtonsPanel.TabIndex = 1;
+            this.CreateIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateIdeaPanel.BackColor = System.Drawing.Color.Transparent;
+            this.CreateIdeaPanel.Controls.Add(this.CreateIdeaElementsPanel);
+            this.CreateIdeaPanel.Location = new System.Drawing.Point(0, 58);
+            this.CreateIdeaPanel.Name = "CreateIdeaPanel";
+            this.CreateIdeaPanel.Size = new System.Drawing.Size(585, 555);
+            this.CreateIdeaPanel.TabIndex = 2;
             // 
-            // btnSearch
+            // CreateIdeaElementsPanel
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
-            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSearch.Location = new System.Drawing.Point(60, 0);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(60, 52);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.CreateIdeaElementsPanel.Controls.Add(this.btnSaveIdea);
+            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaMark);
+            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaSection);
+            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaDescription);
+            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaTitleBackPanel);
+            this.CreateIdeaElementsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CreateIdeaElementsPanel.Location = new System.Drawing.Point(0, 0);
+            this.CreateIdeaElementsPanel.Name = "CreateIdeaElementsPanel";
+            this.CreateIdeaElementsPanel.Padding = new System.Windows.Forms.Padding(30, 30, 30, 0);
+            this.CreateIdeaElementsPanel.Size = new System.Drawing.Size(585, 555);
+            this.CreateIdeaElementsPanel.TabIndex = 0;
             // 
-            // btnAddIdea
+            // btnSaveIdea
             // 
-            this.btnAddIdea.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddIdea.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddIdea.BackgroundImage")));
-            this.btnAddIdea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddIdea.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAddIdea.FlatAppearance.BorderSize = 0;
-            this.btnAddIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddIdea.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAddIdea.Location = new System.Drawing.Point(0, 0);
-            this.btnAddIdea.Name = "btnAddIdea";
-            this.btnAddIdea.Size = new System.Drawing.Size(60, 52);
-            this.btnAddIdea.TabIndex = 5;
-            this.btnAddIdea.UseVisualStyleBackColor = false;
-            this.btnAddIdea.Click += new System.EventHandler(this.btnAddIdea_Click);
+            this.btnSaveIdea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveIdea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaveIdea.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSaveIdea.FlatAppearance.BorderSize = 3;
+            this.btnSaveIdea.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btnSaveIdea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSaveIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveIdea.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnSaveIdea.Location = new System.Drawing.Point(421, 364);
+            this.btnSaveIdea.Name = "btnSaveIdea";
+            this.btnSaveIdea.Size = new System.Drawing.Size(134, 51);
+            this.btnSaveIdea.TabIndex = 5;
+            this.btnSaveIdea.Text = "ADD IDEA";
+            this.btnSaveIdea.UseVisualStyleBackColor = true;
+            this.btnSaveIdea.Click += new System.EventHandler(this.btnSaveIdea_Click);
+            // 
+            // IdeaMark
+            // 
+            this.IdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdeaMark.BackColor = System.Drawing.Color.LightGray;
+            this.IdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaMark.FormattingEnabled = true;
+            this.IdeaMark.Location = new System.Drawing.Point(401, 116);
+            this.IdeaMark.Name = "IdeaMark";
+            this.IdeaMark.Size = new System.Drawing.Size(154, 36);
+            this.IdeaMark.TabIndex = 2;
+            // 
+            // IdeaSection
+            // 
+            this.IdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdeaSection.BackColor = System.Drawing.Color.LightGray;
+            this.IdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaSection.FormattingEnabled = true;
+            this.IdeaSection.Location = new System.Drawing.Point(30, 117);
+            this.IdeaSection.Name = "IdeaSection";
+            this.IdeaSection.Size = new System.Drawing.Size(365, 36);
+            this.IdeaSection.TabIndex = 1;
+            // 
+            // IdeaDescription
+            // 
+            this.IdeaDescription.AcceptsTab = true;
+            this.IdeaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdeaDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.IdeaDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.IdeaDescription.BulletIndent = 1;
+            this.IdeaDescription.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.IdeaDescription.Location = new System.Drawing.Point(33, 159);
+            this.IdeaDescription.Name = "IdeaDescription";
+            this.IdeaDescription.Size = new System.Drawing.Size(522, 196);
+            this.IdeaDescription.TabIndex = 3;
+            this.IdeaDescription.Text = "";
+            // 
+            // IdeaTitleBackPanel
+            // 
+            this.IdeaTitleBackPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdeaTitleBackPanel.BackColor = System.Drawing.Color.LightGray;
+            this.IdeaTitleBackPanel.Controls.Add(this.IdeaTitle);
+            this.IdeaTitleBackPanel.Location = new System.Drawing.Point(30, 30);
+            this.IdeaTitleBackPanel.Name = "IdeaTitleBackPanel";
+            this.IdeaTitleBackPanel.Size = new System.Drawing.Size(525, 80);
+            this.IdeaTitleBackPanel.TabIndex = 6;
+            // 
+            // IdeaTitle
+            // 
+            this.IdeaTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdeaTitle.BackColor = System.Drawing.Color.LightGray;
+            this.IdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.IdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdeaTitle.Location = new System.Drawing.Point(20, 25);
+            this.IdeaTitle.Name = "IdeaTitle";
+            this.IdeaTitle.Size = new System.Drawing.Size(485, 29);
+            this.IdeaTitle.TabIndex = 0;
+            this.IdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SearchShowIdeaPanel
             // 
@@ -308,116 +374,50 @@
             this.ShowIdeaTitle.TabIndex = 0;
             this.ShowIdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // CreateIdeaPanel
+            // ButtonsPanel
             // 
-            this.CreateIdeaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateIdeaPanel.BackColor = System.Drawing.Color.Transparent;
-            this.CreateIdeaPanel.Controls.Add(this.CreateIdeaElementsPanel);
-            this.CreateIdeaPanel.Location = new System.Drawing.Point(0, 58);
-            this.CreateIdeaPanel.Name = "CreateIdeaPanel";
-            this.CreateIdeaPanel.Size = new System.Drawing.Size(585, 555);
-            this.CreateIdeaPanel.TabIndex = 2;
+            this.ButtonsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonsPanel.Controls.Add(this.btnSearch);
+            this.ButtonsPanel.Controls.Add(this.btnAddIdea);
+            this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonsPanel.Location = new System.Drawing.Point(0, 0);
+            this.ButtonsPanel.Name = "ButtonsPanel";
+            this.ButtonsPanel.Size = new System.Drawing.Size(585, 52);
+            this.ButtonsPanel.TabIndex = 1;
             // 
-            // CreateIdeaElementsPanel
+            // btnSearch
             // 
-            this.CreateIdeaElementsPanel.Controls.Add(this.btnSaveIdea);
-            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaMark);
-            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaSection);
-            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaDescription);
-            this.CreateIdeaElementsPanel.Controls.Add(this.IdeaTitleBackPanel);
-            this.CreateIdeaElementsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CreateIdeaElementsPanel.Location = new System.Drawing.Point(0, 0);
-            this.CreateIdeaElementsPanel.Name = "CreateIdeaElementsPanel";
-            this.CreateIdeaElementsPanel.Padding = new System.Windows.Forms.Padding(30, 30, 30, 0);
-            this.CreateIdeaElementsPanel.Size = new System.Drawing.Size(585, 555);
-            this.CreateIdeaElementsPanel.TabIndex = 0;
+            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
+            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearch.Location = new System.Drawing.Point(60, 0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(60, 52);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // btnSaveIdea
+            // btnAddIdea
             // 
-            this.btnSaveIdea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveIdea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSaveIdea.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSaveIdea.FlatAppearance.BorderSize = 3;
-            this.btnSaveIdea.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.btnSaveIdea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSaveIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveIdea.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnSaveIdea.Location = new System.Drawing.Point(421, 364);
-            this.btnSaveIdea.Name = "btnSaveIdea";
-            this.btnSaveIdea.Size = new System.Drawing.Size(134, 51);
-            this.btnSaveIdea.TabIndex = 5;
-            this.btnSaveIdea.Text = "ADD IDEA";
-            this.btnSaveIdea.UseVisualStyleBackColor = true;
-            this.btnSaveIdea.Click += new System.EventHandler(this.btnSaveIdea_Click);
-            // 
-            // IdeaMark
-            // 
-            this.IdeaMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaMark.BackColor = System.Drawing.Color.LightGray;
-            this.IdeaMark.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.IdeaMark.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdeaMark.FormattingEnabled = true;
-            this.IdeaMark.Location = new System.Drawing.Point(401, 116);
-            this.IdeaMark.Name = "IdeaMark";
-            this.IdeaMark.Size = new System.Drawing.Size(154, 36);
-            this.IdeaMark.TabIndex = 2;
-            // 
-            // IdeaSection
-            // 
-            this.IdeaSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaSection.BackColor = System.Drawing.Color.LightGray;
-            this.IdeaSection.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.IdeaSection.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdeaSection.FormattingEnabled = true;
-            this.IdeaSection.Location = new System.Drawing.Point(30, 117);
-            this.IdeaSection.Name = "IdeaSection";
-            this.IdeaSection.Size = new System.Drawing.Size(365, 36);
-            this.IdeaSection.TabIndex = 1;
-            // 
-            // IdeaDescription
-            // 
-            this.IdeaDescription.AcceptsTab = true;
-            this.IdeaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.IdeaDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IdeaDescription.BulletIndent = 1;
-            this.IdeaDescription.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdeaDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.IdeaDescription.Location = new System.Drawing.Point(33, 159);
-            this.IdeaDescription.Name = "IdeaDescription";
-            this.IdeaDescription.Size = new System.Drawing.Size(522, 196);
-            this.IdeaDescription.TabIndex = 3;
-            this.IdeaDescription.Text = "";
-            // 
-            // IdeaTitleBackPanel
-            // 
-            this.IdeaTitleBackPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaTitleBackPanel.BackColor = System.Drawing.Color.LightGray;
-            this.IdeaTitleBackPanel.Controls.Add(this.IdeaTitle);
-            this.IdeaTitleBackPanel.Location = new System.Drawing.Point(30, 30);
-            this.IdeaTitleBackPanel.Name = "IdeaTitleBackPanel";
-            this.IdeaTitleBackPanel.Size = new System.Drawing.Size(525, 80);
-            this.IdeaTitleBackPanel.TabIndex = 6;
-            // 
-            // IdeaTitle
-            // 
-            this.IdeaTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdeaTitle.BackColor = System.Drawing.Color.LightGray;
-            this.IdeaTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IdeaTitle.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdeaTitle.Location = new System.Drawing.Point(20, 25);
-            this.IdeaTitle.Name = "IdeaTitle";
-            this.IdeaTitle.Size = new System.Drawing.Size(485, 29);
-            this.IdeaTitle.TabIndex = 0;
-            this.IdeaTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAddIdea.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddIdea.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddIdea.BackgroundImage")));
+            this.btnAddIdea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddIdea.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddIdea.FlatAppearance.BorderSize = 0;
+            this.btnAddIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddIdea.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAddIdea.Location = new System.Drawing.Point(0, 0);
+            this.btnAddIdea.Name = "btnAddIdea";
+            this.btnAddIdea.Size = new System.Drawing.Size(60, 52);
+            this.btnAddIdea.TabIndex = 5;
+            this.btnAddIdea.UseVisualStyleBackColor = false;
+            this.btnAddIdea.Click += new System.EventHandler(this.btnAddIdea_Click);
             // 
             // IdeasForm
             // 
@@ -434,15 +434,15 @@
             this.RightPanel.ResumeLayout(false);
             this.IdeasListPanel.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
-            this.ButtonsPanel.ResumeLayout(false);
-            this.SearchShowIdeaPanel.ResumeLayout(false);
-            this.ShowIdeaDataPanel.ResumeLayout(false);
-            this.ShowTitleBackPanel.ResumeLayout(false);
-            this.ShowTitleBackPanel.PerformLayout();
             this.CreateIdeaPanel.ResumeLayout(false);
             this.CreateIdeaElementsPanel.ResumeLayout(false);
             this.IdeaTitleBackPanel.ResumeLayout(false);
             this.IdeaTitleBackPanel.PerformLayout();
+            this.SearchShowIdeaPanel.ResumeLayout(false);
+            this.ShowIdeaDataPanel.ResumeLayout(false);
+            this.ShowTitleBackPanel.ResumeLayout(false);
+            this.ShowTitleBackPanel.PerformLayout();
+            this.ButtonsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

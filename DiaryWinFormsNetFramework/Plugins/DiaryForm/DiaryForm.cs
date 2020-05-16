@@ -43,6 +43,9 @@ namespace DiaryWinFormsNetFramework.View
             this.RefreshData();
             //Initialize tabs
             this.InitTabs();
+
+            //Активируем курсор в текстовом поле.
+            StoryTextContainer.Select();
         }
 
         //Проинициализировать все табы (кнопки с поведением вкладок)
@@ -60,7 +63,7 @@ namespace DiaryWinFormsNetFramework.View
                 //Устанавливаем обработчик события изменения содержимого текста в TextContainers
                 item.Value.TextField.TextChanged += TextContainer_TextChanged;
             }
-            
+
         }
 
         /// <summary>
@@ -84,6 +87,9 @@ namespace DiaryWinFormsNetFramework.View
         }
 
 
+        
+
+
         /// <summary>
         /// Обрабатываем горячие клавиши
         /// </summary>
@@ -93,6 +99,31 @@ namespace DiaryWinFormsNetFramework.View
             if(keyData == (Keys.Control | Keys.S))
             {
                 this.SaveDiaryData();
+            }
+
+            //Сделаем быстрый переход между вкладками
+            if(keyData == (Keys.Control | Keys.OemPeriod) ||
+               keyData == (Keys.Control | Keys.Oemcomma))
+            {
+                //Находим визуально видимую вкладку и активируем следующую.
+                for(int i = 0; i < TabList.Count; i++)
+                {
+                    //Нашли текущую вкладку
+                    if(TabList.ElementAt(i).Value.Visible == true)
+                    {
+                        //Индекс следующей вкладки
+                        int indexNextTextContainer = (i + 1) % TabList.Count;
+                        //Если пользователь нажал на кнопку для активации предыдущего таб, а не следующего.
+                        if (keyData == (Keys.Control | Keys.Oemcomma))
+                        {
+                            indexNextTextContainer = (i + TabList.Count - 1) % TabList.Count;
+                        }
+                        //Активируем событие обработки нажатия на кнопки вкладки
+                        TabList.ElementAt(indexNextTextContainer).Key.PerformClick();
+                        //Не забываем выйти из цикла, так как уже активировали нужную вкладку.
+                        break;
+                    }
+                }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -118,6 +149,8 @@ namespace DiaryWinFormsNetFramework.View
             if (radio.Checked == true)
             {
                 HelperForm.ActivateControl(TabList[radio]);
+                //Активируем курсор в текстовом поле
+                TabList[radio].Select();
             }
             else
             {

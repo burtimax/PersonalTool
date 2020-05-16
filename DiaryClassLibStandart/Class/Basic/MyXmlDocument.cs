@@ -10,6 +10,7 @@ namespace DiaryClassLibStandart.Class
 {
     public class MyXmlDocument
     {
+        private string DefaultNameForFileSaving = "FILE";
         private string extension = ".xml";
         private string rootElementName = "Document";
 
@@ -147,7 +148,7 @@ namespace DiaryClassLibStandart.Class
                 this.Doc.AppendChild(this.Body);               
             }
             
-            this.Doc.Save(path);
+            this.SaveDocumentData(this.Doc, path);
         }
 
         public void SaveAs(string path, bool rewriteExistFile = false)
@@ -158,7 +159,7 @@ namespace DiaryClassLibStandart.Class
             }
             else
             {
-                this.Doc.Save(this.AltPath);
+                this.SaveDocumentData(this.Doc, AltPath);
             }
         }
 
@@ -171,7 +172,7 @@ namespace DiaryClassLibStandart.Class
         {
             XmlDocument doc = new XmlDocument();
             doc.AppendChild(doc.CreateElement("Root"));
-            doc.Save(Path);
+            SaveDocumentData(doc, path);
         }
 
         private void InitDocAndBody(string docPath = null)
@@ -190,7 +191,7 @@ namespace DiaryClassLibStandart.Class
 
             if (string.IsNullOrEmpty(docPath) == false)
             {
-                this.Doc.Load(this.Path);
+                LoadDocumentData(this.Doc, docPath);
                 this.Body = this.Doc.DocumentElement;
             }           
         }
@@ -231,6 +232,77 @@ namespace DiaryClassLibStandart.Class
         {
             this.Doc = null;
             this.Body = null;
+        }
+
+        /// <summary>
+        /// Безопасное сохранение XmlDocument
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="fileName"></param>
+        private void SaveDocumentData(XmlDocument doc, string fileName)
+        {
+            try
+            {
+                doc.Save(fileName);
+            }
+            //Ошибка при сохранении файла
+            catch(Exception e)
+            {
+                HelperFileName.ParsePath(fileName, out var dir, out var fname, out var ext);
+                fname = GetDefaultErrorFileName(fname);
+                string localPath = dir + @"\" + fname + ext;
+                doc.Save(localPath);
+                HelperDialog.ShowWarningDialog($"Файл сохранен под названием [{fname}] в текущей директории!", "Ошибка сохранения файла");
+            }
+        }
+
+
+        /// <summary>
+        /// Безопасное извлечение или загрузка XmlDocument
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="path"></param>
+        private void LoadDocumentData(XmlDocument doc, string path)
+        {
+            try
+            {
+                doc.Load(path);
+            }
+            //Поймали ошибку, имя файла содержит недопустимые символы
+            catch(Exception e)
+            {
+                HelperFileName.ParsePath(path, out var dir, out var fname, out var ext);
+                fname = GetDefaultErrorFileName(fname);
+                string localPath = dir + @"\" + fname + ext;
+                doc.Load(localPath);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName">Только имя файла, без директории, без расширения</param>
+        /// <returns></returns>
+        private string GetDefaultErrorFileName(string fname)
+        {
+            int openBracket = -1;
+            openBracket = fname.IndexOf('{');
+            int closeBracket = -1;
+            closeBracket = fname.IndexOf('}');
+
+            //Если содержит фигурные скобки, то поменяем название внутри фигурных скобок
+            if (openBracket > -1 && closeBracket > -1)
+            {
+                fname = fname.Remove(openBracket + 1, closeBracket - openBracket - 1);
+                fname = fname.Insert(openBracket + 1, DefaultNameForFileSaving);
+            }
+            //иначе просто поменяем название
+            else
+            {
+                fname = DateTime.Now.Date.ToShortDateString() + " " + DefaultNameForFileSaving;
+            }
+
+            return fname;
         }
     }
 }

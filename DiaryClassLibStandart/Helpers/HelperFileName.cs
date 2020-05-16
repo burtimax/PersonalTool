@@ -4,6 +4,11 @@ using System.Text;
 
 namespace DiaryClassLibStandart.Helpers
 {
+    /// <summary>
+    /// dir - директория без конечного слэша,
+    /// filename - имя файла без начального и конечного слэша,
+    /// extension - расширение с начальной точкой
+    /// </summary>
     public static class HelperFileName
     {
         public static void ParsePath(string path, out string dir, out string filename, out string extension)

@@ -39,6 +39,7 @@ namespace DiaryWinFormsNetFramework
             this.MainPanel = new System.Windows.Forms.Panel();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.LeftNavPanel = new System.Windows.Forms.Panel();
+            this.btnNavItemIdeas = new System.Windows.Forms.Button();
             this.btnNavItemDiary = new System.Windows.Forms.Button();
             this.btnNavItemSettings = new System.Windows.Forms.Button();
             this.FormsPanel = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@ namespace DiaryWinFormsNetFramework
             this.btnCloseCircle = new System.Windows.Forms.Button();
             this.btnWrapCircle = new System.Windows.Forms.Button();
             this.btnOpenCircle = new System.Windows.Forms.Button();
-            this.btnNavItemIdeas = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.BodyPanel.SuspendLayout();
             this.LeftNavPanel.SuspendLayout();
@@ -105,6 +105,19 @@ namespace DiaryWinFormsNetFramework
             this.LeftNavPanel.Name = "LeftNavPanel";
             this.LeftNavPanel.Size = new System.Drawing.Size(80, 690);
             this.LeftNavPanel.TabIndex = 0;
+            // 
+            // btnNavItemIdeas
+            // 
+            this.btnNavItemIdeas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemIdeas.BackgroundImage")));
+            this.btnNavItemIdeas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNavItemIdeas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavItemIdeas.Location = new System.Drawing.Point(0, 160);
+            this.btnNavItemIdeas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNavItemIdeas.Name = "btnNavItemIdeas";
+            this.btnNavItemIdeas.Size = new System.Drawing.Size(80, 80);
+            this.btnNavItemIdeas.TabIndex = 2;
+            this.btnNavItemIdeas.UseVisualStyleBackColor = true;
+            this.btnNavItemIdeas.Click += new System.EventHandler(this.btnNavItemIdeas_Click);
             // 
             // btnNavItemDiary
             // 
@@ -209,7 +222,7 @@ namespace DiaryWinFormsNetFramework
             this.SecondPasswordTextBox.Name = "SecondPasswordTextBox";
             this.SecondPasswordTextBox.PasswordChar = '*';
             this.SecondPasswordTextBox.Size = new System.Drawing.Size(566, 43);
-            this.SecondPasswordTextBox.TabIndex = 1;
+            this.SecondPasswordTextBox.TabIndex = 2;
             this.SecondPasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SecondPasswordTextBox.TextChanged += new System.EventHandler(this.SecondPasswordTextBox_TextChanged);
             // 
@@ -232,7 +245,7 @@ namespace DiaryWinFormsNetFramework
             this.FirstPasswordTextBox.Name = "FirstPasswordTextBox";
             this.FirstPasswordTextBox.PasswordChar = '*';
             this.FirstPasswordTextBox.Size = new System.Drawing.Size(566, 43);
-            this.FirstPasswordTextBox.TabIndex = 2;
+            this.FirstPasswordTextBox.TabIndex = 1;
             this.FirstPasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -319,19 +332,6 @@ namespace DiaryWinFormsNetFramework
             this.btnOpenCircle.Size = new System.Drawing.Size(20, 20);
             this.btnOpenCircle.TabIndex = 2;
             this.btnOpenCircle.UseVisualStyleBackColor = false;
-            // 
-            // btnNavItemIdeas
-            // 
-            this.btnNavItemIdeas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemIdeas.BackgroundImage")));
-            this.btnNavItemIdeas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNavItemIdeas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNavItemIdeas.Location = new System.Drawing.Point(0, 160);
-            this.btnNavItemIdeas.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNavItemIdeas.Name = "btnNavItemIdeas";
-            this.btnNavItemIdeas.Size = new System.Drawing.Size(80, 80);
-            this.btnNavItemIdeas.TabIndex = 2;
-            this.btnNavItemIdeas.UseVisualStyleBackColor = true;
-            this.btnNavItemIdeas.Click += new System.EventHandler(this.btnNavItemIdeas_Click);
             // 
             // MainForm
             // 
