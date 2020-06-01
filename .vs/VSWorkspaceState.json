@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\DiaryClassLibStandart",
+    "\\DiaryClassLibStandart\\Class",
+    "\\DiaryClassLibStandart\\Class\\TaskClasses",
     "\\DiaryWinFormsNetFramework",
     "\\DiaryWinFormsNetFramework\\Plugins",
     "\\DiaryWinFormsNetFramework\\Plugins\\BaseForm",

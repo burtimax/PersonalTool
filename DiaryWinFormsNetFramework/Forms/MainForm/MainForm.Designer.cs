@@ -39,20 +39,8 @@ namespace DiaryWinFormsNetFramework
             this.MainPanel = new System.Windows.Forms.Panel();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.LeftNavPanel = new System.Windows.Forms.Panel();
-            this.btnNavItemTasks = new System.Windows.Forms.Button();
-            this.btnNavItemIdeas = new System.Windows.Forms.Button();
-            this.btnNavItemDiary = new System.Windows.Forms.Button();
             this.btnNavItemSettings = new System.Windows.Forms.Button();
             this.FormsPanel = new System.Windows.Forms.Panel();
-            this.PasswordPanel = new System.Windows.Forms.Panel();
-            this.InputPasswordPanel = new System.Windows.Forms.Panel();
-            this.SetPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.SetNewPasswordPanel = new System.Windows.Forms.Panel();
-            this.SecondPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.FirstPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.AppHeaderPanel = new System.Windows.Forms.Panel();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,10 +50,6 @@ namespace DiaryWinFormsNetFramework
             this.MainPanel.SuspendLayout();
             this.BodyPanel.SuspendLayout();
             this.LeftNavPanel.SuspendLayout();
-            this.FormsPanel.SuspendLayout();
-            this.PasswordPanel.SuspendLayout();
-            this.InputPasswordPanel.SuspendLayout();
-            this.SetNewPasswordPanel.SuspendLayout();
             this.AppHeaderPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -98,54 +82,12 @@ namespace DiaryWinFormsNetFramework
             this.LeftNavPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.LeftNavPanel.BackColor = System.Drawing.Color.LightGray;
-            this.LeftNavPanel.Controls.Add(this.btnNavItemTasks);
-            this.LeftNavPanel.Controls.Add(this.btnNavItemIdeas);
-            this.LeftNavPanel.Controls.Add(this.btnNavItemDiary);
             this.LeftNavPanel.Controls.Add(this.btnNavItemSettings);
             this.LeftNavPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftNavPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LeftNavPanel.Name = "LeftNavPanel";
             this.LeftNavPanel.Size = new System.Drawing.Size(80, 690);
             this.LeftNavPanel.TabIndex = 0;
-            // 
-            // btnNavItemTasks
-            // 
-            this.btnNavItemTasks.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemTasks.BackgroundImage")));
-            this.btnNavItemTasks.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNavItemTasks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNavItemTasks.Location = new System.Drawing.Point(0, 240);
-            this.btnNavItemTasks.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNavItemTasks.Name = "btnNavItemTasks";
-            this.btnNavItemTasks.Size = new System.Drawing.Size(80, 80);
-            this.btnNavItemTasks.TabIndex = 3;
-            this.btnNavItemTasks.UseVisualStyleBackColor = true;
-            this.btnNavItemTasks.Click += new System.EventHandler(this.btnNavItemTasks_Click);
-            // 
-            // btnNavItemIdeas
-            // 
-            this.btnNavItemIdeas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemIdeas.BackgroundImage")));
-            this.btnNavItemIdeas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNavItemIdeas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNavItemIdeas.Location = new System.Drawing.Point(0, 160);
-            this.btnNavItemIdeas.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNavItemIdeas.Name = "btnNavItemIdeas";
-            this.btnNavItemIdeas.Size = new System.Drawing.Size(80, 80);
-            this.btnNavItemIdeas.TabIndex = 2;
-            this.btnNavItemIdeas.UseVisualStyleBackColor = true;
-            this.btnNavItemIdeas.Click += new System.EventHandler(this.btnNavItemIdeas_Click);
-            // 
-            // btnNavItemDiary
-            // 
-            this.btnNavItemDiary.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNavItemDiary.BackgroundImage")));
-            this.btnNavItemDiary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNavItemDiary.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNavItemDiary.Location = new System.Drawing.Point(0, 80);
-            this.btnNavItemDiary.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNavItemDiary.Name = "btnNavItemDiary";
-            this.btnNavItemDiary.Size = new System.Drawing.Size(80, 80);
-            this.btnNavItemDiary.TabIndex = 0;
-            this.btnNavItemDiary.UseVisualStyleBackColor = true;
-            this.btnNavItemDiary.Click += new System.EventHandler(this.btnNavItemDiary_Click);
             // 
             // btnNavItemSettings
             // 
@@ -166,113 +108,10 @@ namespace DiaryWinFormsNetFramework
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FormsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.FormsPanel.Controls.Add(this.PasswordPanel);
             this.FormsPanel.Location = new System.Drawing.Point(79, 0);
             this.FormsPanel.Name = "FormsPanel";
             this.FormsPanel.Size = new System.Drawing.Size(1120, 690);
             this.FormsPanel.TabIndex = 1;
-            // 
-            // PasswordPanel
-            // 
-            this.PasswordPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PasswordPanel.Controls.Add(this.InputPasswordPanel);
-            this.PasswordPanel.Controls.Add(this.SetNewPasswordPanel);
-            this.PasswordPanel.Location = new System.Drawing.Point(277, 215);
-            this.PasswordPanel.Name = "PasswordPanel";
-            this.PasswordPanel.Size = new System.Drawing.Size(566, 242);
-            this.PasswordPanel.TabIndex = 0;
-            // 
-            // InputPasswordPanel
-            // 
-            this.InputPasswordPanel.Controls.Add(this.SetPasswordTextBox);
-            this.InputPasswordPanel.Controls.Add(this.label4);
-            this.InputPasswordPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InputPasswordPanel.Location = new System.Drawing.Point(0, 0);
-            this.InputPasswordPanel.Name = "InputPasswordPanel";
-            this.InputPasswordPanel.Size = new System.Drawing.Size(566, 242);
-            this.InputPasswordPanel.TabIndex = 0;
-            // 
-            // SetPasswordTextBox
-            // 
-            this.SetPasswordTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SetPasswordTextBox.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetPasswordTextBox.Location = new System.Drawing.Point(0, 36);
-            this.SetPasswordTextBox.Name = "SetPasswordTextBox";
-            this.SetPasswordTextBox.PasswordChar = '*';
-            this.SetPasswordTextBox.Size = new System.Drawing.Size(566, 43);
-            this.SetPasswordTextBox.TabIndex = 1;
-            this.SetPasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SetPasswordTextBox.TextChanged += new System.EventHandler(this.SetPassword_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(566, 36);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Введите пароль";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SetNewPasswordPanel
-            // 
-            this.SetNewPasswordPanel.Controls.Add(this.SecondPasswordTextBox);
-            this.SetNewPasswordPanel.Controls.Add(this.label3);
-            this.SetNewPasswordPanel.Controls.Add(this.FirstPasswordTextBox);
-            this.SetNewPasswordPanel.Controls.Add(this.label2);
-            this.SetNewPasswordPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SetNewPasswordPanel.Location = new System.Drawing.Point(0, 0);
-            this.SetNewPasswordPanel.Name = "SetNewPasswordPanel";
-            this.SetNewPasswordPanel.Size = new System.Drawing.Size(566, 242);
-            this.SetNewPasswordPanel.TabIndex = 1;
-            // 
-            // SecondPasswordTextBox
-            // 
-            this.SecondPasswordTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SecondPasswordTextBox.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecondPasswordTextBox.Location = new System.Drawing.Point(0, 119);
-            this.SecondPasswordTextBox.Name = "SecondPasswordTextBox";
-            this.SecondPasswordTextBox.PasswordChar = '*';
-            this.SecondPasswordTextBox.Size = new System.Drawing.Size(566, 43);
-            this.SecondPasswordTextBox.TabIndex = 2;
-            this.SecondPasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SecondPasswordTextBox.TextChanged += new System.EventHandler(this.SecondPasswordTextBox_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(566, 36);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Подтвердите пароль";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // FirstPasswordTextBox
-            // 
-            this.FirstPasswordTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FirstPasswordTextBox.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstPasswordTextBox.Location = new System.Drawing.Point(0, 40);
-            this.FirstPasswordTextBox.Name = "FirstPasswordTextBox";
-            this.FirstPasswordTextBox.PasswordChar = '*';
-            this.FirstPasswordTextBox.Size = new System.Drawing.Size(566, 43);
-            this.FirstPasswordTextBox.TabIndex = 1;
-            this.FirstPasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(566, 40);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Создайте новый пароль";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AppHeaderPanel
             // 
@@ -318,7 +157,7 @@ namespace DiaryWinFormsNetFramework
             this.btnCloseCircle.Location = new System.Drawing.Point(6, 4);
             this.btnCloseCircle.Name = "btnCloseCircle";
             this.btnCloseCircle.Size = new System.Drawing.Size(20, 20);
-            this.btnCloseCircle.TabIndex = 999999;
+            this.btnCloseCircle.TabIndex = 0;
             this.btnCloseCircle.UseVisualStyleBackColor = false;
             this.btnCloseCircle.Click += new System.EventHandler(this.btnCloseCircle_Click);
             // 
@@ -364,12 +203,6 @@ namespace DiaryWinFormsNetFramework
             this.MainPanel.ResumeLayout(false);
             this.BodyPanel.ResumeLayout(false);
             this.LeftNavPanel.ResumeLayout(false);
-            this.FormsPanel.ResumeLayout(false);
-            this.PasswordPanel.ResumeLayout(false);
-            this.InputPasswordPanel.ResumeLayout(false);
-            this.InputPasswordPanel.PerformLayout();
-            this.SetNewPasswordPanel.ResumeLayout(false);
-            this.SetNewPasswordPanel.PerformLayout();
             this.AppHeaderPanel.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
@@ -389,19 +222,7 @@ namespace DiaryWinFormsNetFramework
         private Label label1;
         private Panel FormsPanel;
         private Panel LeftNavPanel;
-        private Button btnNavItemDiary;
         private Button btnNavItemSettings;
-        private Panel PasswordPanel;
-        private Panel SetNewPasswordPanel;
-        private Label label3;
-        private TextBox SecondPasswordTextBox;
-        private TextBox FirstPasswordTextBox;
-        private Label label2;
-        private Panel InputPasswordPanel;
-        private TextBox SetPasswordTextBox;
-        private Label label4;
-        private Button btnNavItemIdeas;
-        private Button btnNavItemTasks;
     }
 }
 

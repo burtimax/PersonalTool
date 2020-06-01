@@ -18,6 +18,7 @@ using DiaryWinFormsNetFramework.Plugins.SettingsForm;
 using System.Windows;
 using DiaryWinFormsNetFramework.HelpersConstants;
 using DiaryWinFormsNetFramework.Plugins.IdeaForm;
+using DiaryWinFormsNetFramework.Plugins.TaskForm;
 
 namespace DiaryWinFormsNetFramework
 {
@@ -159,6 +160,17 @@ namespace DiaryWinFormsNetFramework
         }
 
 
+        /// <summary>
+        /// Нажатие кнопки на боковой панели. Откроем панель личных задач.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNavItemTasks_Click(object sender, EventArgs e)
+        {
+            OpenForm(InstanceOf<TaskForm>());
+        }
+
+
         //Перед закрытием гланой формы, вызовем методы OnCloseForm для каждой активной формы.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -280,7 +292,6 @@ namespace DiaryWinFormsNetFramework
             HelperForm.ActivateControl(SetNewPasswordPanel);
         }
 
-
-        
+       
     }
 }

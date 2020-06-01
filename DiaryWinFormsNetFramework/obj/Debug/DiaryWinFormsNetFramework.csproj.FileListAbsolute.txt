@@ -55,3 +55,6 @@ D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debu
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.exe
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.pdb
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.IdeaForm.IdeasForm.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.TaskForm.TaskForm.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.SettingsForm.TemplateForm.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.TaskItem.resources
