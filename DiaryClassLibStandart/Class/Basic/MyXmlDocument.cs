@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace DiaryClassLibStandart.Class
@@ -22,41 +23,46 @@ namespace DiaryClassLibStandart.Class
         public XmlDocument Doc;
         public XmlElement Body;
 
-        public string FileName { get => _filename; set => _filename = value; }
-        public string Dir {
-            get 
-            {
-                if(string.IsNullOrEmpty(_directory))
-                {
-                    _directory = Settings.GetSetting(Settings.StoryDirectory);
-                }
-                
-                return _directory;
-            }
-            set => _directory = value; }
-        public string Path { get => this.Dir + @"\" + this.FileName + this.extension; }
+        public string FileName
+        {
+            get => _filename;
+            set => _filename = value;
+        }
 
-        private string AltPath
+        public string Dir
         {
             get
             {
-                return this.Dir + @"\" + this.FileName + $" ({DateTime.Now})" + extension;
+                if (string.IsNullOrEmpty(_directory))
+                {
+                    _directory = Settings.GetSetting(Settings.StoryDirectory);
+                }
+
+                return _directory;
             }
+            set => _directory = value;
+        }
+
+        public string Path
+        {
+            get => this.Dir + @"\" + this.FileName + this.extension;
+        }
+
+        private string AltPath
+        {
+            get { return this.Dir + @"\" + this.FileName + $" ({DateTime.Now})" + extension; }
         }
 
         public MyXmlDocument(string directory, string filename)
         {
             this.Dir = directory;
             this.FileName = filename;
-           
         }
 
         public MyXmlDocument(string path)
         {
             ParsePath(path);
-            
         }
-
 
 
         private void ParsePath(string path)
@@ -113,7 +119,7 @@ namespace DiaryClassLibStandart.Class
 
             if (this.Doc == null && this.Body == null)
             {
-                if(this.Path == null)
+                if (this.Path == null)
                 {
                     InitDocAndBody();
                 }
@@ -133,33 +139,35 @@ namespace DiaryClassLibStandart.Class
 
         public void Save(string path = null)
         {
-            if(this.Doc == null && this.Body == null)
+            if (this.Doc == null && this.Body == null)
             {
                 throw new Exception("Null Elements!");
             }
-            if(this.Doc != null && this.Body == null)
+
+            if (this.Doc != null && this.Body == null)
             {
-                this.Body = this.Doc.CreateElement(rootElementName);   
+                this.Body = this.Doc.CreateElement(rootElementName);
             }
+
             if (path == null) path = this.Path;
 
-            if(this.Doc.ChildNodes.Count == 0 || this.Doc.DocumentElement == null)
+            if (this.Doc.ChildNodes.Count == 0 || this.Doc.DocumentElement == null)
             {
-                this.Doc.AppendChild(this.Body);               
+                this.Doc.AppendChild(this.Body);
             }
-            
-            this.SaveDocumentData(this.Doc, path);
+
+            this.SaveDocumentDataWithSafe(this.Doc, path);
         }
 
         public void SaveAs(string path, bool rewriteExistFile = false)
         {
-            if(rewriteExistFile == true || File.Exists(this.Path) == false)
+            if (rewriteExistFile == true || File.Exists(this.Path) == false)
             {
                 Save(this.Path);
             }
             else
             {
-                this.SaveDocumentData(this.Doc, AltPath);
+                this.SaveDocumentDataWithSafe(this.Doc, AltPath);
             }
         }
 
@@ -172,18 +180,18 @@ namespace DiaryClassLibStandart.Class
         {
             XmlDocument doc = new XmlDocument();
             doc.AppendChild(doc.CreateElement("Root"));
-            SaveDocumentData(doc, path);
+            this.SaveDocumentDataWithSafe(doc, path);
         }
 
         private void InitDocAndBody(string docPath = null)
-        {    
-            if(this.Doc == null)
+        {
+            if (this.Doc == null)
             {
                 this.Doc = new XmlDocument();
             }
-            
+
             this.Body = this.Doc.DocumentElement;
-            if(this.Body == null)
+            if (this.Body == null)
             {
                 this.Body = this.Doc.CreateElement(rootElementName);
                 this.Doc.AppendChild(this.Body);
@@ -193,12 +201,11 @@ namespace DiaryClassLibStandart.Class
             {
                 LoadDocumentData(this.Doc, docPath);
                 this.Body = this.Doc.DocumentElement;
-            }           
+            }
         }
 
         private XmlNode FindElement(string elementName)
         {
-
             foreach (XmlNode node in this.Body)
             {
                 if (node.Name == elementName)
@@ -206,6 +213,7 @@ namespace DiaryClassLibStandart.Class
                     return node;
                 }
             }
+
             return null;
         }
 
@@ -239,20 +247,21 @@ namespace DiaryClassLibStandart.Class
         /// </summary>
         /// <param name="doc"></param>
         /// <param name="fileName"></param>
-        private void SaveDocumentData(XmlDocument doc, string fileName)
+        private bool SaveDocumentData(XmlDocument doc, string fileName)
         {
             try
             {
                 doc.Save(fileName);
+                return true;
             }
             //Ошибка при сохранении файла
-            catch(Exception e)
+            catch (Exception e)
             {
                 HelperFileName.ParsePath(fileName, out var dir, out var fname, out var ext);
                 fname = GetDefaultErrorFileName(fname);
                 string localPath = dir + @"\" + fname + ext;
                 doc.Save(localPath);
-                HelperDialog.ShowWarningDialog($"Файл сохранен под названием [{fname}] в текущей директории!", "Ошибка сохранения файла");
+                return false;
             }
         }
 
@@ -269,7 +278,7 @@ namespace DiaryClassLibStandart.Class
                 doc.Load(path);
             }
             //Поймали ошибку, имя файла содержит недопустимые символы
-            catch(Exception e)
+            catch (Exception e)
             {
                 HelperFileName.ParsePath(path, out var dir, out var fname, out var ext);
                 fname = GetDefaultErrorFileName(fname);
@@ -303,6 +312,24 @@ namespace DiaryClassLibStandart.Class
             }
 
             return fname;
+        }
+
+        /// <summary>
+        /// сохранить файл безопасно, и если будет ошибка, то вывести диалог
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="fileName"></param>
+        private void SaveDocumentDataWithSafe(XmlDocument doc, string fileName)
+        {
+            if (this.SaveDocumentData(doc, fileName) == false)
+            {
+                //ToDo не идеально, но нужно избавиться от MessageBox. Лучше сделать customную обработку ошибок и исключений и customnое логирование.
+                MessageBox.Show(
+                    $"Файл сохранен под названием [{fileName}] в текущей директории!",
+                    "Ошибка сохранения файла",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
+            }
         }
     }
 }
