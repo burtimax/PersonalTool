@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiaryClassLibStandart.Class.TaskClass;
 using DiaryWinFormsNetFramework.UserControls;
 
 namespace DiaryWinFormsNetFramework.Plugins.TaskForm
@@ -23,6 +24,11 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Добавить задачу в текущий проект
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem(0);
@@ -36,6 +42,25 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             TaskPanel.Controls.Add(task.SubTaskPanel);
             TaskPanel.Controls.Add(task);
 
+        }
+
+
+        /// <summary>
+        /// Добавить проект
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddProjectBtn_Click(object sender, EventArgs e)
+        {
+            //Запрашиваем имя проекта.
+            var result = HelperDialog.ShowInputBox("Введите название проекта?");
+            if (result.Status == DialogResult.OK)
+            {
+                ProjectItem proj = new ProjectItem(result.Value);
+                proj.Dock = DockStyle.Top;
+                this.ProjectsPanel.Controls.Add(proj);
+            }
+            
         }
     }
 }

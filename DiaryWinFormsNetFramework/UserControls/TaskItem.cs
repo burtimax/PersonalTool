@@ -98,7 +98,5 @@ namespace DiaryWinFormsNetFramework.UserControls
             this.SubTaskPanel.Controls.SetChildIndex(subTask,1);
             this.SubTaskItems.Add(subTask);
         }
-
-       
     }
 }

@@ -70,9 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IForm.cs" />
+    <Compile Include="CustomDialogs\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomDialogs\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpersConstants\AppVariables.cs" />
     <Compile Include="HelpersConstants\Constants.cs" />
     <Compile Include="HelpersConstants\CoreData.cs" />
+    <Compile Include="HelpersConstants\HelperDialog.cs" />
     <Compile Include="HelpersConstants\HelperForm.cs" />
     <Compile Include="HelpersConstants\InstanceGenerator.cs" />
     <Compile Include="OverrideControls\CustomPanel.cs">
@@ -126,6 +133,12 @@
     <Compile Include="UserControls\MainNavItem.Designer.cs">
       <DependentUpon>MainNavItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ProjectItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ProjectItem.Designer.cs">
+      <DependentUpon>ProjectItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SettingItemPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +173,9 @@
     <Compile Include="Plugins\MainForm\MainFormModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomDialogs\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Plugins\TaskForm\TaskForm.resx">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MainNavItem.resx">
       <DependentUpon>MainNavItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProjectItem.resx">
+      <DependentUpon>ProjectItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SettingItemPanel.resx">
       <DependentUpon>SettingItemPanel.cs</DependentUpon>

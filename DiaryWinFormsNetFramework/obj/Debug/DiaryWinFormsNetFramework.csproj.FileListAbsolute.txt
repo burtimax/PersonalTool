@@ -58,3 +58,5 @@ D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debu
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.TaskForm.TaskForm.resources
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.Plugins.SettingsForm.TemplateForm.resources
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.TaskItem.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.CustomDialogs.InputBox.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.ProjectItem.resources

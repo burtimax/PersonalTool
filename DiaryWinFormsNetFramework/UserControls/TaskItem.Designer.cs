@@ -82,7 +82,7 @@
             this.Controls.Add(this.ContentPanel);
             this.Name = "TaskItem";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(934, 39);
+            this.Size = new System.Drawing.Size(928, 40);
             this.ContentPanel.ResumeLayout(false);
             this.ContentPanel.PerformLayout();
             this.ResumeLayout(false);
