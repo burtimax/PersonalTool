@@ -103,12 +103,15 @@ namespace DiaryWinFormsNetFramework.UserControls
             set { this.Mark.BackColor = value; }
         }
 
-
+        /// <summary>
+        /// Установить обработчик события нажатия на любой элемент текущего userControl
+        /// </summary>
+        /// <param name="handler"></param>
         public void SetOnClick(EventHandler handler)
         {
             foreach (Control control in this.MainPanel.Controls)
             {
-                //control.Click -= handler;
+                control.Click -= handler;
                 control.Click += handler;
             }
         }

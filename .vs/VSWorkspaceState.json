@@ -3,6 +3,7 @@
     "",
     "\\DiaryClassLibStandart",
     "\\DiaryClassLibStandart\\Class",
+    "\\DiaryClassLibStandart\\Class\\DiaryClasses",
     "\\DiaryClassLibStandart\\Class\\TaskClasses",
     "\\DiaryWinFormsNetFramework",
     "\\DiaryWinFormsNetFramework\\Plugins",

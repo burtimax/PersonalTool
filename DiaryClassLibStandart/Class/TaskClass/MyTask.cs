@@ -15,7 +15,8 @@ namespace DiaryClassLibStandart.Class.TaskClass
         public DateTime CreateTime { get; private set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public bool HasChildren { get; set; }
+
+
         //public List<MyTask> SubTasks { get; private set; }
         public int Level { get; set; }
 

@@ -12,11 +12,9 @@ namespace DiaryClassLibStandart.Class.TaskClass
         public string ID { get; set; }
         public string Name { get; set; }
         public DateTime CreateTime { get; set; }
-        public List<MyTask> Tasks { get; set; }
 
         private MyProject()
         {
-            this.Tasks = new List<MyTask>();
             this.CreateTime = DateTime.Now;
         }
 

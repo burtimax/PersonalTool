@@ -152,12 +152,9 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
         private void SelectIdeaItem(object sender, EventArgs e)
         {
             Control c = sender as Control;
-            if(c.Parent.Parent is IdeaListItem == false)
-            {
-                return;
-            }
+            
             //Получим элемент UserControl IdeaListItem
-            IdeaListItem ideaItem = c.Parent.Parent as IdeaListItem;
+            IdeaListItem ideaItem = HelperControls.GetParenByType<IdeaListItem>(c);
             if (ideaItem == null)
             {
                 return;
@@ -168,6 +165,7 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
            
             ShowDataForIdea(ideaItem.Idea);
         }
+
 
         /// <summary>
         /// Показать данные по идеи
@@ -196,8 +194,8 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
 
             this.SelectedListItem = ideaListItem;
             this.SelectedListItem.BackColor = Color.FromArgb(218, 218, 218);
-
         }
+
 
         /// <summary>
         /// Сохраняем изменения в данных идеи
@@ -223,6 +221,7 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             this.Document.ChangeIdea(idea);
         }
 
+
         /// <summary>
         /// Меняем текст и цвет элемента в соответствиис с данными
         /// </summary>
@@ -234,6 +233,7 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             SelectedListItem.Idea = idea;
         }
 
+
         /// <summary>
         /// Изменяем данные идеи в соответствии с текстовыми полями
         /// </summary>
@@ -244,6 +244,7 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             idea.Description = ShowIdeaDescription.Text;
             idea.Section = ShowIdeaSection.Text;
         }
+
 
         /// <summary>
         /// Обработчик нажатия н кнопку удаления идеи
