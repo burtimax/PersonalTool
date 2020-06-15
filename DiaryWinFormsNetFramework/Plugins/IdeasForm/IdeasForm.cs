@@ -105,8 +105,10 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
         private void AddIdeaListItem(Idea idea)
         {
             IdeaListItem IdeaListItem = new IdeaListItem(idea);
-            //IdeaListItem.Click -= SelectIdeaItem;
-            IdeaListItem.SetOnClick(SelectIdeaItem);
+
+            //Устанавливаем обработчик нажатия на все дочерние элементы для корректного визуального выделения объекта идей
+            HelperControls.SetOnClickHandlerForAllElementsInControl(IdeaListItem, SelectIdeaItem);
+
             IdeaListItem.TitleProp = idea.Title;
             IdeaListItem.MarkProp = idea.Mark.ToString();
             IdeaListItem.SectionColorProp = Constants.SectionsColors[idea.Section];

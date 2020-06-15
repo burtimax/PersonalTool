@@ -102,16 +102,23 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <param name="e"></param>
         private void AddSubTask_Click(object sender, EventArgs e)
         {
+            CreateAndAddSubTask();
+        }
+
+        /// <summary>
+        /// Создаем и добавляем подзадачу
+        /// </summary>
+        public void CreateAndAddSubTask()
+        {
             var result = HelperDialog.ShowInputBox("Введите название задачи?");
 
             if (result.Status != DialogResult.OK || string.IsNullOrWhiteSpace(result.Value)) return;
 
-            var subTask = new TaskItem(this.ProjectItem,this, this.Task.Level + 1)
+            var subTask = new TaskItem(this.ProjectItem, this, this.Task.Level + 1)
             {
                 TaskName = result.Value,
                 Dock = DockStyle.Top,
             };
-
 
             this.SubTaskPanel.Controls.Add(subTask.SubTaskPanel);
             this.SubTaskPanel.Controls.Add(subTask);
@@ -121,6 +128,12 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             //покажем кнопку свернуть/развернуть
             HelperForm.ActivateControl(this.OpenCloseArrow);
+
+            //вызовем у проекта событие OnChangeSelectedTaskItem (Что выбрали другую задачу). Вызываем событие через внешний метод. 
+            //Как-то это не хорошо, но пока что так. Не могу вызвать событие напрямую.
+            this.ProjectItem.SelectedTaskItemWasChanged(subTask);
+            //Привязываем обработчик события нажатия для дочерних элементов
+            HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, TaskItem_OnClick);
         }
 
         /// <summary>
@@ -165,7 +178,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void OpenCloseArrow_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox box = sender as CheckBox;
-            BackColor = Color.Transparent;
+            box.BackColor = Color.Transparent;
             if (box.Checked == true)
             {
                 //Меняем картинку у чек-бокса
@@ -263,5 +276,33 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             this.ParentTaskItem?.SubTaskPanel.Controls.Remove(this);
         }
+
+        /// <summary>
+        /// Визуально отобразить, как активную задачу.
+        /// </summary>
+        public void VisualActivate()
+        {
+            this.ContentPanel.BackColor = Constants.COLOR_GREY;
+        }
+
+        /// <summary>
+        /// Визуально отобразить как неактивную задачу
+        /// </summary>
+        public void VisuaLDeactivate()
+        {
+            this.ContentPanel.BackColor = Constants.COLOR_TRANSPARENT;
+        }
+
+        /// <summary>
+        /// Обработчик мобытия нажатия на TaskItem.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void TaskItem_OnClick(object sender, EventArgs args)
+        {
+            TaskItem clickedTaskItem = HelperControls.GetParenByType<TaskItem>(sender as Control);
+            this.ProjectItem.SelectedTaskItemWasChanged(clickedTaskItem);
+        }
+
     }
 }

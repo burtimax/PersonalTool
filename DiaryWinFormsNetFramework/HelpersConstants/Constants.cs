@@ -13,6 +13,11 @@ namespace DiaryWinFormsNetFramework.HelpersConstants
         public static bool ACCESS = false;
         public static Color COLOR_LIGHT_GREY = Color.FromArgb(236, 236, 236);
         public static Color COLOR_GREY = Color.FromArgb(210, 210, 210);
+        public static Color COLOR_DARK_GREY = Color.FromArgb(100, 100, 100);
+        public static Color COLOR_BLACK = Color.Black;
+        public static Color COLOR_WHITE = Color.White;
+        public static Color COLOR_TRANSPARENT = Color.Transparent;
+
         public static string MESSAGE_CHANGE_PASSWORD = "change_password";
 
         public static Dictionary<IdeaSections, string> IdeaSectionsDict = new Dictionary<IdeaSections, string>()

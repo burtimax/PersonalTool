@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiaryClassLibStandart.Class.TaskClass;
+using DiaryWinFormsNetFramework.HelpersConstants;
 
 namespace DiaryWinFormsNetFramework.UserControls
 {
@@ -19,6 +20,15 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// Скрытая задача (вершина дерева задач в проекте) Эта задача не будет отображаться в панели.
         /// </summary>
         public TaskItem MainProjectTaskItem;
+
+        /// <summary>
+        /// Хранит ссылку на текущую (выбранную задачу в проекте)
+        /// </summary>
+        public TaskItem SelectedTaskItem;
+
+        //Делегат и событие изменения текущей задачи
+        public delegate void ChangeSelectedTaskItem(TaskItem selectedTaskItem);
+        public event ChangeSelectedTaskItem OnChangeSelectedTaskItem;
 
         //Отдельная панель задач для каждого проекта. Каждая сущность проекта будет иметь отдельную панель с задачами.
         public Panel TasksPanel;
@@ -38,6 +48,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         {
             InitTasksPanel();
             this.MainProjectTaskItem = new TaskItem(this, level: -1);
+            this.MainProjectTaskItem.SubTaskPanel = this.TasksPanel;
             this.Project = new MyProject(name);
             this.NameTxt.Text = name;
         }
@@ -52,27 +63,35 @@ namespace DiaryWinFormsNetFramework.UserControls
         }
 
 
+        
+
         /// <summary>
-        /// Установить обработчик события нажатия на любой элемент текущего userControl
+        /// Метод, который будет визуально видоизменять элемент проекта, показывая, что проект активен и выбран.
         /// </summary>
-        /// <param name="handler"></param>
-        public void SetOnClick(EventHandler handler)
+        public void VisualActivateProject()
         {
-            this.ContentPanel.Click -= handler;
-            this.ContentPanel.Click += handler;
-            foreach (Control control in this.ContentPanel.Controls)
-            {
-                control.Click -= handler;
-                control.Click += handler;
-            }
+            this.NameTxt.BackColor = Constants.COLOR_DARK_GREY;
+            this.NameTxt.ForeColor = Constants.COLOR_WHITE;
         }
 
         /// <summary>
-        /// Добавить задачу в проект безопасно.
+        /// Метод, который будет визуально видоизменять элемент проекта, показывая, что проект не активен и выбран.
+        /// Возвращаем элемент проекта в исходное, нормальное состояние
         /// </summary>
-        public void AddTaskItemSafe(TaskItem taskItem)
+        public void VisualDeactivateProject()
         {
-            this.MainProjectTaskItem.SubTaskItems.Add(taskItem);
+            this.NameTxt.BackColor = Constants.COLOR_WHITE;
+            this.NameTxt.ForeColor = Constants.COLOR_BLACK;
+        }
+
+
+        /// <summary>
+        /// Метод для вызова события из внешних классов.
+        /// </summary>
+        /// <param name="selectedTaskItem"></param>
+        public void SelectedTaskItemWasChanged(TaskItem selectedTaskItem)
+        {
+            OnChangeSelectedTaskItem?.Invoke(selectedTaskItem);
         }
 
     }

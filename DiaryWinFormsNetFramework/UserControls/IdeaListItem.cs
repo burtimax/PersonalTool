@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiaryClassLibStandart.Class.IdeasClasses;
+using DiaryWinFormsNetFramework.HelpersConstants;
 
 namespace DiaryWinFormsNetFramework.UserControls
 {
@@ -103,19 +104,5 @@ namespace DiaryWinFormsNetFramework.UserControls
             set { this.Mark.BackColor = value; }
         }
 
-        /// <summary>
-        /// Установить обработчик события нажатия на любой элемент текущего userControl
-        /// </summary>
-        /// <param name="handler"></param>
-        public void SetOnClick(EventHandler handler)
-        {
-            foreach (Control control in this.MainPanel.Controls)
-            {
-                control.Click -= handler;
-                control.Click += handler;
-            }
-        }
-
-      
     }
 }

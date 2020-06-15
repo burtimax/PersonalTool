@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskItem));
             this.ContentPanel = new System.Windows.Forms.Panel();
-            this.txtName = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.DeleteTask = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.Label();
             this.StatusCheckBox = new System.Windows.Forms.CheckBox();
             this.AddSubtask = new System.Windows.Forms.Button();
             this.OpenCloseArrow = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.ContentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,29 +57,6 @@
             this.ContentPanel.Size = new System.Drawing.Size(294, 35);
             this.ContentPanel.TabIndex = 2;
             // 
-            // txtName
-            // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(106, 0);
-            this.txtName.Name = "txtName";
-            this.txtName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
-            this.txtName.Size = new System.Drawing.Size(153, 34);
-            this.txtName.TabIndex = 3;
-            this.txtName.Text = "label label";
-            this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 34);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 1);
-            this.panel1.TabIndex = 3;
-            // 
             // DeleteTask
             // 
             this.DeleteTask.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -98,6 +75,21 @@
             this.DeleteTask.TabIndex = 6;
             this.DeleteTask.UseVisualStyleBackColor = false;
             this.DeleteTask.Click += new System.EventHandler(this.DeleteTask_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.BackColor = System.Drawing.Color.Transparent;
+            this.txtName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(106, 0);
+            this.txtName.Name = "txtName";
+            this.txtName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
+            this.txtName.Size = new System.Drawing.Size(153, 38);
+            this.txtName.TabIndex = 3;
+            this.txtName.Text = "label label";
+            this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StatusCheckBox
             // 
@@ -145,6 +137,7 @@
             this.OpenCloseArrow.CheckState = System.Windows.Forms.CheckState.Checked;
             this.OpenCloseArrow.Dock = System.Windows.Forms.DockStyle.Left;
             this.OpenCloseArrow.FlatAppearance.BorderSize = 0;
+            this.OpenCloseArrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
             this.OpenCloseArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCloseArrow.Location = new System.Drawing.Point(0, 0);
             this.OpenCloseArrow.Name = "OpenCloseArrow";
@@ -153,6 +146,15 @@
             this.OpenCloseArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
             this.OpenCloseArrow.CheckedChanged += new System.EventHandler(this.OpenCloseArrow_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 34);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 1);
+            this.panel1.TabIndex = 3;
             // 
             // TaskItem
             // 

@@ -37,7 +37,6 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
         public static CustomDialogResult Show(string ask, string defaultValue = null)
         {
             CustomDialogResult result = new CustomDialogResult(DialogResult.None, null);
-            string res = null;
             InputBox ib = new InputBox(ask, defaultValue);
             ib.CenterToScreen();
 

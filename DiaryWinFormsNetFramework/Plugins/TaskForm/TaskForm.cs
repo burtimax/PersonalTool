@@ -20,7 +20,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
     public partial class TaskForm : BaseFormParent
     {
         private ProjectItem SelectedProjectItem;
-
+        private TaskItem selectedTaskItem;
 
 
         public TaskForm()
@@ -53,26 +53,43 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// Добавить элемент проекта в панель.
         /// </summary>
         /// <param name="parent"></param>
-        private void CreateAndAddProjectItem(Control parent)
+        private void CreateAndAddProjectItem(Control parent, bool askNeme = true)
         {
             //Запрашиваем имя проекта.
             var result = HelperDialog.ShowInputBox("Введите название проекта?");
-            if (result.Status == DialogResult.OK)
+            if (result.Status != DialogResult.OK)
             {
-                ProjectItem proj = new ProjectItem(result.Value);
-                proj.Dock = DockStyle.Top;
-                
-                //привязываем событие нажатия мыши на элемент проекта
-                proj.SetOnClick(ProjectItem_Click);
-
-                //Привязываем элемент проекта к родителю
-                parent.Controls.Add(proj);
-                parent.Controls.SetChildIndex(proj, 0);
-                //Добавляем для проекта его личную панель для задач.
-                this.TaskPanel.Controls.Add(proj.TasksPanel);
-                //Только что созданный проект и будет текущим проектом.
-                ChangeSelectedProjectItem(proj);
+                return;
             }
+
+            ProjectItem proj = new ProjectItem(result.Value);
+            //Добавим проект в панель
+            AddProjectItemToParentPanel(parent, proj);
+        }
+
+        /// <summary>
+        /// Добавить проект в родительскую панель
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="proj"></param>
+        private void AddProjectItemToParentPanel(Control parent, ProjectItem proj)
+        {
+            proj.Dock = DockStyle.Top;
+
+            //привязываем событие нажатия мыши на элемент проекта
+            HelperControls.SetOnClickHandlerForAllElementsInControl(proj, ProjectItem_Click);
+
+            //Привязываем элемент проекта к родителю
+            parent.Controls.Add(proj);
+            parent.Controls.SetChildIndex(proj, 0);
+            //Добавляем для проекта его личную панель для задач.
+            this.TaskPanel.Controls.Add(proj.TasksPanel);
+            //Только что созданный проект и будет текущим проектом.
+            ChangeSelectedProjectItem(proj);
+
+            //Добавим обработчик события изменения текущей(выбранной) задачи
+            proj.OnChangeSelectedTaskItem -= ChangeSelectedTaskItem;
+            proj.OnChangeSelectedTaskItem += ChangeSelectedTaskItem;
         }
 
         /// <summary>
@@ -96,20 +113,58 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         }
 
         /// <summary>
+        /// Вызывается при нажатии на элемент задачи.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void TaskItem_OnClick(object sender, EventArgs args)
+        {
+            var taskItem = HelperControls.GetParenByType<TaskItem>(sender as Control);
+
+            if (taskItem == null) return;
+
+            ChangeSelectedTaskItem(taskItem);
+        }
+
+        /// <summary>
         /// Пользователь выбрал другой проект, нужно выделить визуально выбранный проект.
         /// </summary>
         /// <param name="proj"></param>
         private void ChangeSelectedProjectItem(ProjectItem proj)
         {
-            MessageBox.Show(proj.GetHashCode().ToString());
-
             if(SelectedProjectItem != null)
             {
                 HelperForm.DeactivateControl(this.SelectedProjectItem.TasksPanel);
             }
+
+            ProjectItem prevSelectedProjectItem = this.SelectedProjectItem;
             
             HelperForm.ActivateControl(proj.TasksPanel);
             this.SelectedProjectItem = proj;
+
+            //Нужно поменять текст в поле ProjectNameLabel
+            this.ProjectNameLabel.Text = this.SelectedProjectItem.Project.Name;
+
+            //Визуально выделить активный проект.
+            this.SelectedProjectItem?.VisualActivateProject();
+            //Убрать выделение у предыдущего активного проекта.
+            prevSelectedProjectItem?.VisualDeactivateProject();
+        }
+
+        /// <summary>
+        /// поменять выбранную задачу, обработчик события OnChangeSelectedTaskItem у проекта
+        /// </summary>
+        /// <param name="selectedTaskItem"></param>
+        private void ChangeSelectedTaskItem(TaskItem selectedTaskItem)
+        {
+            if (selectedTaskItem == null) return;
+
+            var prevTaskItem = this.SelectedProjectItem.SelectedTaskItem;
+            this.SelectedProjectItem.SelectedTaskItem = selectedTaskItem;
+
+            prevTaskItem?.VisuaLDeactivate();
+
+            this.SelectedProjectItem.SelectedTaskItem.VisualActivate();
         }
 
         /// <summary>
@@ -118,12 +173,8 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// <param name="project"></param>
         private void CreateAndAddTaskToProject(ProjectItem projItem)
         {
-            TaskItem newTaskItem = CreateNewTaskItem();
-
-            if (newTaskItem == null) return;
             if (projItem == null) return;
-
-            projItem.AddTaskItemSafe(newTaskItem);
+            projItem.MainProjectTaskItem.CreateAndAddSubTask();
         }
 
 
