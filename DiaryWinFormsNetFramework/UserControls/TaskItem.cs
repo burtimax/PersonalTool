@@ -15,8 +15,11 @@ using TaskStatus = DiaryClassLibStandart.Class.TaskClass.TaskStatus;
 
 namespace DiaryWinFormsNetFramework.UserControls
 {
-    public partial class TaskItem : UserControl
+    public partial class TaskItem : UserControl, IDisposable
     {
+        public EventHandler ClickEventHandler;
+        public EventHandler DoubleClickEventHandler;
+
         private TaskItem()
         {
             InitializeComponent();
@@ -77,6 +80,9 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             //спрячем кнопку свернуть/развернуть
             HelperForm.DeactivateControl(this.OpenCloseArrow);
+
+            this.ClickEventHandler = TaskItem_OnClick;
+            this.DoubleClickEventHandler = TaskItem_OnDoubleClick;
         }
 
 
@@ -133,7 +139,8 @@ namespace DiaryWinFormsNetFramework.UserControls
             //Как-то это не хорошо, но пока что так. Не могу вызвать событие напрямую.
             this.ProjectItem.SelectedTaskItemWasChanged(subTask);
             //Привязываем обработчик события нажатия для дочерних элементов
-            HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, TaskItem_OnClick);
+            HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, subTask.ClickEventHandler);
+            HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(subTask, subTask.DoubleClickEventHandler);
         }
 
         /// <summary>
@@ -232,7 +239,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             //Рекурсивно удаляем подзадачи и задачу
             if (this.SubTaskItems == null || this.SubTaskItems.Count == 0)
             {
-                Delete(this);
+                this.Delete();
                 return;
             }
 
@@ -244,18 +251,19 @@ namespace DiaryWinFormsNetFramework.UserControls
             
 
             //После того как удалили подзадачи нужно удалить саму задачу.
-            Delete(this);
+            this.Delete();
         }
 
         /// <summary>
         /// Удалить текущую задачу
         /// </summary>
         /// <param name="task"></param>
-        private void Delete(TaskItem task)
+        private void Delete()
         {
+            this.UnsubscribeClickEvent();
             this.ParentTaskItem.SubTaskItems.Remove(this);
             //ToDo посмотреть как правильно диспозить без утечек памяти, а пока что так.
-            Dispose(true);
+            this.Dispose();
         }
 
         /// <summary>
@@ -265,6 +273,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         {
             if (this.SubTaskItems == null || this.SubTaskItems.Count == 0)
             {
+                this.ParentTaskItem?.SubTaskPanel.Controls.Remove(this.SubTaskPanel);
                 this.ParentTaskItem?.SubTaskPanel.Controls.Remove(this);
                 return;
             }
@@ -274,6 +283,7 @@ namespace DiaryWinFormsNetFramework.UserControls
                 item.DeleteCurrentTaskFromPanel();
             }
 
+            this.ParentTaskItem?.SubTaskPanel.Controls.Remove(this.SubTaskPanel);
             this.ParentTaskItem?.SubTaskPanel.Controls.Remove(this);
         }
 
@@ -301,8 +311,55 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void TaskItem_OnClick(object sender, EventArgs args)
         {
             TaskItem clickedTaskItem = HelperControls.GetParenByType<TaskItem>(sender as Control);
-            this.ProjectItem.SelectedTaskItemWasChanged(clickedTaskItem);
+            this.ProjectItem?.SelectedTaskItemWasChanged(clickedTaskItem);
         }
 
+        /// <summary>
+        /// Обработчик cобытия двойного нажатия на TaskItem.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void TaskItem_OnDoubleClick(object sender, EventArgs args)
+        {
+            TaskItem clickedTaskItem = HelperControls.GetParenByType<TaskItem>(sender as Control);
+            this.EditTaskItemData();
+        }
+
+        /// <summary>
+        /// Отписываемся от события нажатия на дочерний контрол
+        /// </summary>
+        public void UnsubscribeClickEvent()
+        {
+            var allControls = HelperControls.GetAllChildrenControls(this.SubTaskPanel);
+            foreach(var itemControl in allControls)
+            {
+                itemControl.Click -= this.ClickEventHandler;
+                itemControl.DoubleClick -= this.DoubleClickEventHandler;
+            }
+        }
+
+        /// <summary>
+        /// Редактировать элемент задачи (Поменять название задачи)
+        /// </summary>
+        private void EditTaskItemData()
+        {
+            //Вызываем окошко для редактирования названия задачи
+            var res = HelperDialog.ShowInputBox($"Изменить задачу: ({this.TaskName})");
+            if (res.Status != DialogResult.OK || string.IsNullOrEmpty(res.Value)) return;
+
+            this.TaskName = res.Value;
+        }
+
+        public void Dispose()
+        {
+            this.ClickEventHandler = null;
+            this.ParentTaskItem = null;
+            this.ProjectItem = null;
+            this.SubTaskItems = null;
+            this.Task = null;
+            this.SubTaskPanel = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

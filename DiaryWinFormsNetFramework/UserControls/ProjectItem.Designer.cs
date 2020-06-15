@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.ContentPanel = new System.Windows.Forms.Panel();
-            this.NameTxt = new System.Windows.Forms.Label();
-            this.BottomColorPanel = new System.Windows.Forms.Panel();
             this.LeftColorPanel = new System.Windows.Forms.Panel();
+            this.BottomColorPanel = new System.Windows.Forms.Panel();
+            this.NameTxt = new System.Windows.Forms.Label();
             this.ContentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,25 @@
             this.ContentPanel.Size = new System.Drawing.Size(300, 80);
             this.ContentPanel.TabIndex = 0;
             // 
+            // LeftColorPanel
+            // 
+            this.LeftColorPanel.BackColor = System.Drawing.Color.DimGray;
+            this.LeftColorPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LeftColorPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftColorPanel.Name = "LeftColorPanel";
+            this.LeftColorPanel.Size = new System.Drawing.Size(10, 77);
+            this.LeftColorPanel.TabIndex = 0;
+            // 
+            // BottomColorPanel
+            // 
+            this.BottomColorPanel.BackColor = System.Drawing.Color.Gray;
+            this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomColorPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BottomColorPanel.Location = new System.Drawing.Point(0, 77);
+            this.BottomColorPanel.Name = "BottomColorPanel";
+            this.BottomColorPanel.Size = new System.Drawing.Size(300, 3);
+            this.BottomColorPanel.TabIndex = 1;
+            // 
             // NameTxt
             // 
             this.NameTxt.BackColor = System.Drawing.Color.White;
@@ -63,25 +82,6 @@
             this.NameTxt.TabIndex = 0;
             this.NameTxt.Text = "label1";
             this.NameTxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BottomColorPanel
-            // 
-            this.BottomColorPanel.BackColor = System.Drawing.Color.Gray;
-            this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomColorPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BottomColorPanel.Location = new System.Drawing.Point(0, 77);
-            this.BottomColorPanel.Name = "BottomColorPanel";
-            this.BottomColorPanel.Size = new System.Drawing.Size(300, 3);
-            this.BottomColorPanel.TabIndex = 1;
-            // 
-            // LeftColorPanel
-            // 
-            this.LeftColorPanel.BackColor = System.Drawing.Color.DimGray;
-            this.LeftColorPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftColorPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftColorPanel.Name = "LeftColorPanel";
-            this.LeftColorPanel.Size = new System.Drawing.Size(10, 77);
-            this.LeftColorPanel.TabIndex = 0;
             // 
             // ProjectItem
             // 

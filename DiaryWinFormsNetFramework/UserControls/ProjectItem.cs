@@ -94,5 +94,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             OnChangeSelectedTaskItem?.Invoke(selectedTaskItem);
         }
 
+        
+
     }
 }

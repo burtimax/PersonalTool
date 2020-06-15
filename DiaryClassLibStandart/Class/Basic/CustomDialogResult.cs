@@ -20,5 +20,11 @@ namespace DiaryClassLibStandart.Class.Basic
 
         public DialogResult Status;
         public string Value = null;
+
+        /*public void Dispose()
+        {
+            this.Value = null;
+            this.Status = default(DialogResult);
+        }*/
     }
 }

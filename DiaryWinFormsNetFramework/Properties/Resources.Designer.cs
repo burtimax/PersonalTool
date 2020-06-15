@@ -143,6 +143,26 @@ namespace DiaryWinFormsNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconDelete {
+            get {
+                object obj = ResourceManager.GetObject("iconDelete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconDeleteBig {
+            get {
+                object obj = ResourceManager.GetObject("iconDeleteBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RedSmallBtnWithSpace {
             get {
                 object obj = ResourceManager.GetObject("RedSmallBtnWithSpace", resourceCulture);

@@ -57,7 +57,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         {
             //Запрашиваем имя проекта.
             var result = HelperDialog.ShowInputBox("Введите название проекта?");
-            if (result.Status != DialogResult.OK)
+            if (result.Status != DialogResult.OK || string.IsNullOrWhiteSpace(result?.Value))
             {
                 return;
             }

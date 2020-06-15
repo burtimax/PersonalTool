@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskItem));
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.DeleteTask = new System.Windows.Forms.Button();
@@ -35,8 +36,11 @@
             this.StatusCheckBox = new System.Windows.Forms.CheckBox();
             this.AddSubtask = new System.Windows.Forms.Button();
             this.OpenCloseArrow = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.BottomColorPanel = new System.Windows.Forms.Panel();
+            this.ContextMenuTaskItem = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxtStartTomato = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
+            this.ContextMenuTaskItem.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -49,7 +53,7 @@
             this.ContentPanel.Controls.Add(this.StatusCheckBox);
             this.ContentPanel.Controls.Add(this.AddSubtask);
             this.ContentPanel.Controls.Add(this.OpenCloseArrow);
-            this.ContentPanel.Controls.Add(this.panel1);
+            this.ContentPanel.Controls.Add(this.BottomColorPanel);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ContentPanel.Location = new System.Drawing.Point(3, 3);
             this.ContentPanel.MinimumSize = new System.Drawing.Size(100, 35);
@@ -61,7 +65,7 @@
             // 
             this.DeleteTask.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.DeleteTask.BackColor = System.Drawing.Color.Transparent;
-            this.DeleteTask.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.deleteIcon;
+            this.DeleteTask.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.iconDeleteBig;
             this.DeleteTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.DeleteTask.Dock = System.Windows.Forms.DockStyle.Right;
             this.DeleteTask.FlatAppearance.BorderSize = 0;
@@ -86,9 +90,9 @@
             this.txtName.Location = new System.Drawing.Point(106, 0);
             this.txtName.Name = "txtName";
             this.txtName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
-            this.txtName.Size = new System.Drawing.Size(153, 38);
+            this.txtName.Size = new System.Drawing.Size(147, 38);
             this.txtName.TabIndex = 3;
-            this.txtName.Text = "label label";
+            this.txtName.Text = "name";
             this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StatusCheckBox
@@ -147,14 +151,33 @@
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
             this.OpenCloseArrow.CheckedChanged += new System.EventHandler(this.OpenCloseArrow_CheckedChanged);
             // 
-            // panel1
+            // BottomColorPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 34);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 1);
-            this.panel1.TabIndex = 3;
+            this.BottomColorPanel.BackColor = System.Drawing.Color.LightGray;
+            this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomColorPanel.Location = new System.Drawing.Point(0, 34);
+            this.BottomColorPanel.Name = "BottomColorPanel";
+            this.BottomColorPanel.Size = new System.Drawing.Size(294, 1);
+            this.BottomColorPanel.TabIndex = 3;
+            // 
+            // ContextMenuTaskItem
+            // 
+            this.ContextMenuTaskItem.DropShadowEnabled = false;
+            this.ContextMenuTaskItem.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextMenuTaskItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxtStartTomato});
+            this.ContextMenuTaskItem.Name = "ContextMenuTaskItem";
+            this.ContextMenuTaskItem.Size = new System.Drawing.Size(211, 56);
+            // 
+            // ctxtStartTomato
+            // 
+            this.ctxtStartTomato.BackColor = System.Drawing.Color.DarkRed;
+            this.ctxtStartTomato.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ctxtStartTomato.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctxtStartTomato.ForeColor = System.Drawing.Color.White;
+            this.ctxtStartTomato.Name = "ctxtStartTomato";
+            this.ctxtStartTomato.Size = new System.Drawing.Size(210, 24);
+            this.ctxtStartTomato.Text = "Помидорка";
             // 
             // TaskItem
             // 
@@ -163,12 +186,14 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.ContextMenuStrip = this.ContextMenuTaskItem;
             this.Controls.Add(this.ContentPanel);
             this.MinimumSize = new System.Drawing.Size(300, 0);
             this.Name = "TaskItem";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(300, 41);
+            this.Size = new System.Drawing.Size(300, 71);
             this.ContentPanel.ResumeLayout(false);
+            this.ContextMenuTaskItem.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,8 +204,10 @@
         private System.Windows.Forms.Panel ContentPanel;
         private System.Windows.Forms.Label txtName;
         private System.Windows.Forms.CheckBox StatusCheckBox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel BottomColorPanel;
         private System.Windows.Forms.CheckBox OpenCloseArrow;
         private System.Windows.Forms.Button DeleteTask;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuTaskItem;
+        private System.Windows.Forms.ToolStripMenuItem ctxtStartTomato;
     }
 }

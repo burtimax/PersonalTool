@@ -319,6 +319,12 @@
   <ItemGroup>
     <None Include="Resources\deleteIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconDeleteBig.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

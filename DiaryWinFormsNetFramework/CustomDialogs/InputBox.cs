@@ -37,32 +37,35 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
         public static CustomDialogResult Show(string ask, string defaultValue = null)
         {
             CustomDialogResult result = new CustomDialogResult(DialogResult.None, null);
-            InputBox ib = new InputBox(ask, defaultValue);
-            ib.CenterToScreen();
-
-            //Accept button (What happens when Enter clicked)
-            Button acceptBtn = new Button();
-            acceptBtn.Click += delegate(object sender, EventArgs args)
+            using (InputBox ib = new InputBox(ask, defaultValue))
             {
-                result.Value = ib.InputTxt.Text;
-                result.Status = DialogResult.OK;
-                ib.Close();
-                ib.Dispose();
-            };
+                ib.CenterToScreen();
 
-            Button declineBtn = new Button();
-            declineBtn.Click += delegate (object sender, EventArgs args)
-            {
-                result.Status = DialogResult.Cancel;
-                ib.Close();
-                ib.Dispose();
-            };
+                //Accept button (What happens when Enter clicked)
+                using (Button acceptBtn = new Button())
+                {
+                    acceptBtn.Click += delegate (object sender, EventArgs args)
+                    {
+                        result.Value = ib.InputTxt.Text;
+                        result.Status = DialogResult.OK;
+                        ib.Close();
+                        ib.Dispose();
+                    };
 
-            ib.AcceptButton = acceptBtn;
-            ib.CancelButton = declineBtn;
-            ib.ShowInTaskbar = false;
-            ib.ShowDialog();
-            return result;
+                    Button declineBtn = new Button();
+                    declineBtn.Click += delegate (object sender, EventArgs args)
+                    {
+                        result.Status = DialogResult.Cancel;
+                        ib.Close();
+                    };
+
+                    ib.AcceptButton = acceptBtn;
+                    ib.CancelButton = declineBtn;
+                    ib.ShowInTaskbar = false;
+                    ib.ShowDialog();
+                    return result;
+                }
+            }
         }
     }
 }

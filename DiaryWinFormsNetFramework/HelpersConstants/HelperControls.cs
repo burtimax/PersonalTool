@@ -48,8 +48,6 @@ namespace DiaryWinFormsNetFramework.HelpersConstants
 
                     parentControls = parentControls?.Concat(itemControls);
                 }
-
-                return parentControls;
             }
 
             return parentControls;
@@ -68,6 +66,22 @@ namespace DiaryWinFormsNetFramework.HelpersConstants
             {
                 itemControl.Click -= handler;
                 itemControl.Click += handler;
+            }
+        }
+
+
+        /// <summary>
+        /// Устанавливает обработчик OnClick для control и всех его дочерних элементов.
+        /// Применяю для визуального выделения объекта.
+        /// </summary>
+        /// <param name="control"></param>
+        public static void SetOnDoubleClickHandlerForAllElementsInControl(Control control, EventHandler handler)
+        {
+            var allControls = HelperControls.GetAllChildrenControls(control);
+            foreach (var itemControl in allControls)
+            {
+                itemControl.DoubleClick -= handler;
+                itemControl.DoubleClick += handler;
             }
         }
     }
