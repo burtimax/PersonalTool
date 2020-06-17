@@ -178,6 +178,7 @@
             this.ctxtStartTomato.Name = "ctxtStartTomato";
             this.ctxtStartTomato.Size = new System.Drawing.Size(210, 24);
             this.ctxtStartTomato.Text = "Помидорка";
+            this.ctxtStartTomato.Click += new System.EventHandler(this.ctxtStartTomato_Click);
             // 
             // TaskItem
             // 

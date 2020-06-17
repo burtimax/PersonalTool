@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace DiaryClassLibStandart.Class.IdeasClasses
 {
-    class IdeaXmlPresenter
+    public class IdeaXmlPresenter
     {
         /// <summary>
         /// Представляем объект Idea в виде XML элемента

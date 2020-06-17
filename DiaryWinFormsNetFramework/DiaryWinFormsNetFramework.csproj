@@ -78,9 +78,16 @@
     <Compile Include="CustomDialogs\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomDialogs\TomatoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomDialogs\TomatoBox.Designer.cs">
+      <DependentUpon>TomatoBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpersConstants\AppVariables.cs" />
     <Compile Include="HelpersConstants\Constants.cs" />
     <Compile Include="HelpersConstants\CoreData.cs" />
+    <Compile Include="HelpersConstants\Enums\MoveDirection.cs" />
     <Compile Include="HelpersConstants\HelperControls.cs" />
     <Compile Include="HelpersConstants\HelperDialog.cs" />
     <Compile Include="HelpersConstants\HelperForm.cs" />
@@ -184,6 +191,9 @@
     <EmbeddedResource Include="CustomDialogs\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomDialogs\TomatoBox.resx">
+      <DependentUpon>TomatoBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Plugins\TaskForm\TaskForm.resx">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Class\" />
-    <Folder Include="Model\" />
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
         }
 
         /// <summary>
-        /// Сгенерировать ID
+        /// Сгенерировать Id
         /// </summary>
         /// <returns></returns>
         private string GenerateId()
@@ -32,7 +32,7 @@ namespace DiaryClassLibStandart.Class.IdeasClasses
         }
 
         /// <summary>
-        /// ID номер
+        /// Id номер
         /// </summary>
         public string Id
         {

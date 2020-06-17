@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiaryClassLibStandart.Class.TaskClass;
+using DiaryClassLibStandart.Helpers;
 using DiaryWinFormsNetFramework.HelpersConstants;
 
 namespace DiaryWinFormsNetFramework.UserControls
@@ -19,7 +21,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Скрытая задача (вершина дерева задач в проекте) Эта задача не будет отображаться в панели.
         /// </summary>
-        public TaskItem MainProjectTaskItem;
+        public TaskItem MainProjectTaskRoot;
 
         /// <summary>
         /// Хранит ссылку на текущую (выбранную задачу в проекте)
@@ -33,6 +35,11 @@ namespace DiaryWinFormsNetFramework.UserControls
         //Отдельная панель задач для каждого проекта. Каждая сущность проекта будет иметь отдельную панель с задачами.
         public Panel TasksPanel;
 
+        public ProjectItem(MyProject proj)
+        {
+            InitializeComponent();
+            Init(proj.Name);
+        }
 
         public ProjectItem(string name)
         {
@@ -47,9 +54,12 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void Init(string name)
         {
             InitTasksPanel();
-            this.MainProjectTaskItem = new TaskItem(this, level: -1);
-            this.MainProjectTaskItem.SubTaskPanel = this.TasksPanel;
+            this.MainProjectTaskRoot = new TaskItem(this, level: -1);
+            this.MainProjectTaskRoot.SubTaskPanel = this.TasksPanel;
+
             this.Project = new MyProject(name);
+            this.Project.TaskRoot = this.MainProjectTaskRoot.Task;
+
             this.NameTxt.Text = name;
         }
 
@@ -94,7 +104,68 @@ namespace DiaryWinFormsNetFramework.UserControls
             OnChangeSelectedTaskItem?.Invoke(selectedTaskItem);
         }
 
-        
+        /// <summary>
+        /// Редактировать данные проекта 
+        /// </summary>
+        public void EditProjectData()
+        {
+            var res = HelperDialog.ShowInputBox($"Изменить имя проекта ({this.Project.Name})");
+
+            if (res.Status != DialogResult.OK || string.IsNullOrWhiteSpace(res.Value)) return;
+
+            if (SetName(res.Value) == false)
+            {
+                HelperDialog.ShowWarningDialog("Невозможно переименовать файл проекта", "Имя проекта содержит недопустимые символы!");
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Поменять название проекта
+        /// </summary>
+        /// <param name="newName"></param>
+        private bool SetName(string newName)
+        {
+            //Поменять имя файла проекта
+            if (RenameProjectFile(newName) == false)
+            {
+                return false;
+            }
+
+            //Поменять имя MyProject
+            this.Project.Name = newName;
+            this.NameTxt.Text = newName;
+            return true;
+        }
+
+        /// <summary>
+        /// Переименовать файл проекта
+        /// </summary>
+        /// <returns>Если удачно переименовали, то возвращаем true, else false</returns>
+        private bool RenameProjectFile(string newFileName)
+        {
+            if (File.Exists(this.Project.ProjectFilePath) == false) return true;
+
+            //Поменять имя файла проекта
+            HelperFileName.ParsePath(this.Project.ProjectFilePath,
+                out var dir,
+                out var fname,
+                out var ext);
+            string newPath = dir + "\\" + newFileName + ext;
+
+            try
+            {
+                File.Move(this.Project.ProjectFilePath,
+                    newPath);
+            }
+            catch
+            {
+                //Поймали ошибку, не смогли переименовать файл, возвращаем false
+                return false;
+            }
+
+            return true;
+        }
 
     }
 }

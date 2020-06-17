@@ -60,3 +60,4 @@ D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debu
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.TaskItem.resources
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.CustomDialogs.InputBox.resources
 D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.UserControls.ProjectItem.resources
+D:\Programming\Realise Projects\LifeBookAlpha\DiaryWinFormsNetFramework\obj\Debug\DiaryWinFormsNetFramework.CustomDialogs.TomatoBox.resources

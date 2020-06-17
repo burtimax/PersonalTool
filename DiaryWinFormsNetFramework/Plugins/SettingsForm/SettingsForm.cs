@@ -69,6 +69,22 @@ namespace DiaryWinFormsNetFramework.Plugins.SettingsForm
             }
         }
 
+        /// <summary>
+        /// Chose Folder And Save Path For Projects
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFolderDialogForProjectsDirectory_Click(object sender, EventArgs e)
+        {
+            this.FolderDialog.ShowDialog();
+            var res = FolderDialog.SelectedPath;
+            if (string.IsNullOrEmpty(res) == false)
+            {
+                Settings.SetSetting(Settings.ProjectsDirectory, res);
+                this.labelDirectoryProjects.Text = res;
+            }
+        }
+
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             FillElements();
