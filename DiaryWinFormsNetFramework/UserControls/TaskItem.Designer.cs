@@ -52,13 +52,12 @@
             this.ContentPanel.Controls.Add(this.txtName);
             this.ContentPanel.Controls.Add(this.StatusCheckBox);
             this.ContentPanel.Controls.Add(this.AddSubtask);
-            this.ContentPanel.Controls.Add(this.OpenCloseArrow);
             this.ContentPanel.Controls.Add(this.BottomColorPanel);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ContentPanel.Location = new System.Drawing.Point(3, 3);
+            this.ContentPanel.Location = new System.Drawing.Point(33, 3);
             this.ContentPanel.MinimumSize = new System.Drawing.Size(100, 35);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(294, 35);
+            this.ContentPanel.Size = new System.Drawing.Size(264, 35);
             this.ContentPanel.TabIndex = 2;
             // 
             // DeleteTask
@@ -73,7 +72,7 @@
             this.DeleteTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.DeleteTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteTask.ForeColor = System.Drawing.Color.Transparent;
-            this.DeleteTask.Location = new System.Drawing.Point(259, 0);
+            this.DeleteTask.Location = new System.Drawing.Point(229, 0);
             this.DeleteTask.Name = "DeleteTask";
             this.DeleteTask.Size = new System.Drawing.Size(35, 34);
             this.DeleteTask.TabIndex = 6;
@@ -87,10 +86,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.BackColor = System.Drawing.Color.Transparent;
             this.txtName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(106, 0);
+            this.txtName.Location = new System.Drawing.Point(70, 0);
             this.txtName.Name = "txtName";
             this.txtName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
-            this.txtName.Size = new System.Drawing.Size(147, 38);
+            this.txtName.Size = new System.Drawing.Size(153, 32);
             this.txtName.TabIndex = 3;
             this.txtName.Text = "name";
             this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -104,7 +103,7 @@
             this.StatusCheckBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.StatusCheckBox.FlatAppearance.BorderSize = 0;
             this.StatusCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusCheckBox.Location = new System.Drawing.Point(65, 0);
+            this.StatusCheckBox.Location = new System.Drawing.Point(35, 0);
             this.StatusCheckBox.Name = "StatusCheckBox";
             this.StatusCheckBox.Size = new System.Drawing.Size(36, 34);
             this.StatusCheckBox.TabIndex = 4;
@@ -124,7 +123,7 @@
             this.AddSubtask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.AddSubtask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddSubtask.ForeColor = System.Drawing.Color.Transparent;
-            this.AddSubtask.Location = new System.Drawing.Point(30, 0);
+            this.AddSubtask.Location = new System.Drawing.Point(0, 0);
             this.AddSubtask.Name = "AddSubtask";
             this.AddSubtask.Size = new System.Drawing.Size(35, 34);
             this.AddSubtask.TabIndex = 1;
@@ -143,9 +142,9 @@
             this.OpenCloseArrow.FlatAppearance.BorderSize = 0;
             this.OpenCloseArrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
             this.OpenCloseArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenCloseArrow.Location = new System.Drawing.Point(0, 0);
+            this.OpenCloseArrow.Location = new System.Drawing.Point(3, 3);
             this.OpenCloseArrow.Name = "OpenCloseArrow";
-            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 34);
+            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 35);
             this.OpenCloseArrow.TabIndex = 5;
             this.OpenCloseArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
@@ -157,7 +156,7 @@
             this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomColorPanel.Location = new System.Drawing.Point(0, 34);
             this.BottomColorPanel.Name = "BottomColorPanel";
-            this.BottomColorPanel.Size = new System.Drawing.Size(294, 1);
+            this.BottomColorPanel.Size = new System.Drawing.Size(264, 1);
             this.BottomColorPanel.TabIndex = 3;
             // 
             // ContextMenuTaskItem
@@ -167,7 +166,7 @@
             this.ContextMenuTaskItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctxtStartTomato});
             this.ContextMenuTaskItem.Name = "ContextMenuTaskItem";
-            this.ContextMenuTaskItem.Size = new System.Drawing.Size(211, 56);
+            this.ContextMenuTaskItem.Size = new System.Drawing.Size(169, 28);
             // 
             // ctxtStartTomato
             // 
@@ -176,7 +175,7 @@
             this.ctxtStartTomato.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctxtStartTomato.ForeColor = System.Drawing.Color.White;
             this.ctxtStartTomato.Name = "ctxtStartTomato";
-            this.ctxtStartTomato.Size = new System.Drawing.Size(210, 24);
+            this.ctxtStartTomato.Size = new System.Drawing.Size(168, 24);
             this.ctxtStartTomato.Text = "Помидорка";
             this.ctxtStartTomato.Click += new System.EventHandler(this.ctxtStartTomato_Click);
             // 
@@ -189,10 +188,11 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.ContextMenuStrip = this.ContextMenuTaskItem;
             this.Controls.Add(this.ContentPanel);
+            this.Controls.Add(this.OpenCloseArrow);
             this.MinimumSize = new System.Drawing.Size(300, 0);
             this.Name = "TaskItem";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(300, 71);
+            this.Size = new System.Drawing.Size(300, 41);
             this.ContentPanel.ResumeLayout(false);
             this.ContextMenuTaskItem.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using DiaryClassLibStandart.Helpers;
 
 namespace DiaryClassLibStandart.Class.TaskClass
 {
@@ -28,6 +29,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
         private MyProject()
         {
             this.CreateTime = DateTime.Now;
+            this.Id = KeyGenerator.CreateIntegerKey(this).ToString();
         }
 
         public MyProject(string name):this()

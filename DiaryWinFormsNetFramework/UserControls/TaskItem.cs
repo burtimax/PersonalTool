@@ -99,7 +99,9 @@ namespace DiaryWinFormsNetFramework.UserControls
             this.SubTaskItems.CollectionChanged += SubTasks_CollectionChanged;
 
             //спрячем кнопку свернуть/развернуть
-            HelperForm.DeactivateControl(this.OpenCloseArrow);
+            //HelperForm.DeactivateControl(this.OpenCloseArrow);
+            HelperForm.ActivateControl(this.OpenCloseArrow);
+            this.OpenCloseArrow.BackgroundImage = null;
 
             this.ClickEventHandler = TaskItem_OnClick;
             this.DoubleClickEventHandler = TaskItem_OnDoubleClick;
@@ -114,7 +116,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             this._subPanel.AutoSize = true;
             if (this.Task.Level + 1 > 0)
             {
-                this._subPanel.Padding = new Padding(22,
+                this._subPanel.Padding = new Padding(27,
                     this._subPanel.Padding.Top,
                     this._subPanel.Padding.Right,
                     this._subPanel.Padding.Bottom);
@@ -136,6 +138,8 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// </summary>
         public void CreateAndAddSubTask()
         {
+            this.AddSubtask.Select();
+
             var result = HelperDialog.ShowInputBox("Введите название задачи?");
 
             if (result.Status != DialogResult.OK || string.IsNullOrWhiteSpace(result.Value)) return;
@@ -183,6 +187,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, subTask.ClickEventHandler);
             HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(subTask, subTask.DoubleClickEventHandler);
 
+            
         }
 
         /// <summary>
@@ -193,7 +198,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void StatusCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox box = sender as CheckBox;
-            BackColor = Color.Transparent;
+            box.BackColor = Color.Transparent;
             if (box.Checked == true)
             {
                 //Меняем статус задачи
@@ -227,6 +232,13 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void OpenCloseArrow_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox box = sender as CheckBox;
+
+            if (this.SubTaskItems.Count == 0)
+            {
+                box.BackgroundImage = null;
+                return;
+            }
+
             box.BackColor = Color.Transparent;
             if (box.Checked == true)
             {
@@ -256,7 +268,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         }
 
 
-        private void DeleteTaskItem()
+        public void DeleteTaskItem()
         {
             //Если у задачи есть подзадачи, то спросить у пользователя, удалять подзадачи.
             if (this.SubTaskItems != null && this.SubTaskItems.Count > 0)
@@ -275,7 +287,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Удаляем подзадачи и текущую задачу рекурсивно
         /// </summary>
-        public void DeleteCurrentTaskFromProject()
+        private void DeleteCurrentTaskFromProject()
         {
             //Рекурсивно удаляем подзадачи и задачу
             if (this.SubTaskItems == null || this.SubTaskItems.Count == 0)
@@ -310,7 +322,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Удалить текущий TaskItem из панели и удалить панель этого TaskItem. Рекурсивно.
         /// </summary>
-        public void DeleteCurrentTaskFromPanel()
+        private void DeleteCurrentTaskFromPanel()
         {
             if (this.SubTaskItems == null || this.SubTaskItems.Count == 0)
             {
@@ -382,7 +394,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <summary>
         /// Редактировать элемент задачи (Поменять название задачи)
         /// </summary>
-        private void EditTaskItemData()
+        public void EditTaskItemData()
         {
             //Вызываем окошко для редактирования названия задачи
             var res = HelperDialog.ShowInputBox($"Изменить задачу: ({this.TaskName})");
@@ -426,13 +438,7 @@ namespace DiaryWinFormsNetFramework.UserControls
                 TaskItem newElement = e.NewItems[0] as TaskItem;
                 if (newElement == null) return;
 
-                //покажем кнопку свернуть/развернуть
-                if(this.OpenCloseArrow.Enabled == false)
-                {
-                    HelperForm.ActivateControl(this.OpenCloseArrow);
-                }
-
-                if(this.Task.SubTasks != null)
+                if (this.Task.SubTasks != null)
                 {
                     foreach (var item in e.NewItems)
                     {
@@ -444,6 +450,11 @@ namespace DiaryWinFormsNetFramework.UserControls
                     }
                 }
 
+                //покажем кнопку свернуть / развернуть
+                //HelperForm.ActivateControl(this.OpenCloseArrow);
+                this.OpenCloseArrow.BackgroundImage = Resources.downArrow;
+                this.OpenCloseArrow.Checked = true;
+
             }
 
             //If element was removed
@@ -451,11 +462,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             {
                 TaskItem removedElement = e.OldItems[0] as TaskItem;
                 if (removedElement == null) return;
-                //Если у родителя была удалена подзадача и больше нет дочерних подзадач, то убираем кнопку свернуть/развернуть
-                if (this.SubTaskItems.Count == 0)
-                {
-                    HelperForm.DeactivateControl(this.OpenCloseArrow);
-                }
+                
 
                 if(this.Task.SubTasks != null)
                 {
@@ -468,6 +475,13 @@ namespace DiaryWinFormsNetFramework.UserControls
                         }
                     }
                 }
+
+                //Если у родителя была удалена подзадача и больше нет дочерних подзадач, то убираем кнопку свернуть/развернуть
+                if (this.SubTaskItems.Count == 0)
+                {
+                    //HelperForm.DeactivateControl(this.OpenCloseArrow);
+                    this.OpenCloseArrow.BackgroundImage = null;
+                }
             }
 
             if(e.Action == NotifyCollectionChangedAction.Move)
@@ -476,7 +490,13 @@ namespace DiaryWinFormsNetFramework.UserControls
             }
         }
 
-       
+        /// <summary>
+        /// Изменить статус задачи
+        /// </summary>
+        public void ChangeTaskStatus()
+        {
+            this.StatusCheckBox.Checked = !this.StatusCheckBox.Checked;
+        }
 
         /// <summary>
         /// Поднять задачу вверх на один уровень
@@ -521,6 +541,14 @@ namespace DiaryWinFormsNetFramework.UserControls
             }
             //Если задача находится на первом месте среди дочерних подзадач, то двигать вверх уже нельзя
             
+        }
+
+        /// <summary>
+        /// Открыть/закрыть панель подзадач
+        /// </summary>
+        public void OpenCloseSubTasksPanel()
+        {
+            this.OpenCloseArrow.Checked = !this.OpenCloseArrow.Checked;
         }
     }
 }

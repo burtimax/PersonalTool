@@ -21,7 +21,20 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
 {
     public partial class TaskForm : BaseFormParent
     {
-        private ProjectItem SelectedProjectItem;
+        private ProjectItem _selecteProjectItem = null;
+        private ProjectItem SelectedProjectItem
+        {
+            get
+            {
+                if(this._selecteProjectItem?.Parent != null)
+                {
+                    return this._selecteProjectItem;
+                }
+
+                return null;
+            }
+            set { this._selecteProjectItem = value; }
+        }
 
         private string ProjectsDirectory
         {
@@ -61,14 +74,28 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// <param name="parent"></param>
         private void CreateAndAddProjectItem(Control parent, bool askNeme = true)
         {
-            //Запрашиваем имя проекта.
-            var result = HelperDialog.ShowInputBox("Введите название проекта?");
-            if (result.Status != DialogResult.OK || string.IsNullOrWhiteSpace(result?.Value))
+            ProjectItem proj = new ProjectItem("___");
+
+            bool approveName = false;
+            while(!approveName)
             {
-                return;
+                //Запрашиваем имя проекта.
+                var result = HelperDialog.ShowInputBox("Введите название нового проекта?");
+                if (result.Status != DialogResult.OK || string.IsNullOrWhiteSpace(result?.Value))
+                {
+                    return;
+                }
+
+                if (proj.SetName(result.Value) == false)
+                {
+                    HelperDialog.ShowWarningDialog("Попробуйте ввести название снова!",
+                        "Имя проекта содержит недопустимые символы!");
+                    continue;
+                }
+
+                approveName = true;
             }
 
-            ProjectItem proj = new ProjectItem(result.Value);
             //Добавим проект в панель
             AddProjectItemToParentPanel(parent, proj);
         }
@@ -129,6 +156,8 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             ProjectItem proj = HelperControls.GetParenByType<ProjectItem>(sender as Control);
             //ПО ДВОЙНОМУ КЛИКУ БУДЕМ РЕДАКТИРОВАТЬ ЭЛЕМЕНТ ПРОЕКТА
             proj.EditProjectData();
+            //данные по проекту изменились, как-будто мы поменяли элемент
+            this.ChangeSelectedProjectItem(proj);
         }
 
         /// <summary>
@@ -163,20 +192,23 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                 HelperForm.ActivateControl(proj.TasksPanel);
                 this.SelectedProjectItem = proj;
 
-                //Нужно поменять текст в поле ProjectNameLabel
-                this.ProjectNameLabel.Text = this.SelectedProjectItem.Project.Name;
-
                 //Убрать выделение у предыдущего активного проекта.
                 prevSelectedProjectItem?.VisualDeactivateProject();
 
                 //Визуально выделить активный проект.
                 this.SelectedProjectItem?.VisualActivateProject();
             }
-            
+
+            //Нужно поменять текст в поле ProjectNameLabel
+            this.ProjectNameLabel.Text = this.SelectedProjectItem.Project.Name;
+
             //Если проект не имеет задач, вероятно нужно загрузить задачи
             if (loadDataForSelectedProject && this.SelectedProjectItem.MainProjectTaskRoot.SubTaskItems.Count == 0)
             {
-                this.LoadProjectDataFromFile(ref this.SelectedProjectItem);
+                if (this._selecteProjectItem != null)
+                {
+                    this.LoadProjectDataFromFile(ref this._selecteProjectItem);
+                }
             }
         }
 
@@ -247,7 +279,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// <param name="e"></param>
         private void TaskForm_Load(object sender, EventArgs e)
         {
-
+            this.LoadProjectsList();
         }
 
         /// <summary>
@@ -260,13 +292,14 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         {
             if(keyData == (Keys.Control | Keys.S))
             {
-                this.SaveProject(this.SelectedProjectItem);
-                HelperDialog.ShowWarningDialog("Saved", "save project!");
+                this.SelectedProjectItem?.SaveProjetData();
+                return base.ProcessCmdKey(ref msg, keyData);
             }
 
             if (keyData == (Keys.Control | Keys.L))
             {
                 this.LoadProjectsList();
+                return base.ProcessCmdKey(ref msg, keyData);
             }
 
             if (this.SelectedProjectItem?.SelectedTaskItem == null) return false;
@@ -274,26 +307,147 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             if (keyData == (Keys.Control | Keys.Up))
             {
                 this.SelectedProjectItem.SelectedTaskItem.MoveTaskItem(MoveDirection.Top);
+                return base.ProcessCmdKey(ref msg, keyData);
             }
             
             if (keyData == (Keys.Control | Keys.Down))
             {
                 this.SelectedProjectItem.SelectedTaskItem.MoveTaskItem(MoveDirection.Down);
+                return base.ProcessCmdKey(ref msg, keyData);
             }
-            
-            
-            
+
+            if (keyData == (Keys.Down))
+            {
+                if(this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    SelectNextTaskItem(this.SelectedProjectItem.SelectedTaskItem);
+                }
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Up))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    SelectPreviosTaskItem(this.SelectedProjectItem.SelectedTaskItem);
+                }
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Control | Keys.N))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    this.SelectedProjectItem.SelectedTaskItem.CreateAndAddSubTask();
+                }
+                
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Control | Keys.W))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    var taskForDelete = this.SelectedProjectItem.SelectedTaskItem;
+                    SelectNextTaskItem(this.SelectedProjectItem.SelectedTaskItem);
+                    taskForDelete.DeleteTaskItem();
+                }
+
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Control | Keys.D))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    this.SelectedProjectItem.SelectedTaskItem.ChangeTaskStatus();
+                }
+
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Control | Keys.X))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    this.SelectedProjectItem.SelectedTaskItem.OpenCloseSubTasksPanel();
+                }
+
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == (Keys.Control | Keys.R))
+            {
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
+                {
+                    this.SelectedProjectItem.SelectedTaskItem.EditTaskItemData();
+                }
+
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void SaveProject(ProjectItem proj)
+        /// <summary>
+        /// Выделить следующую по списку задачу (Рекурсивные переходы)
+        /// </summary>
+        private void SelectNextTaskItem(TaskItem curTaskItem, bool goToChildren = true)
         {
-            ProjectDoc doc = new ProjectDoc(proj.Project.ProjectFilePath);
-            doc.SaveProject(proj.Project);
+            if (Equals(curTaskItem, this.SelectedProjectItem.MainProjectTaskRoot.SubTaskItems.LastOrDefault()) == true &&
+                (curTaskItem.SubTaskItems.Count == 0 || goToChildren == false))
+            {
+                return;
+            }
+
+            if (Equals(curTaskItem.ParentTaskItem.SubTaskItems.LastOrDefault(), curTaskItem) == true &&
+                (curTaskItem.SubTaskItems.Count == 0 || goToChildren == false))
+            {
+                SelectNextTaskItem(curTaskItem.ParentTaskItem, false);
+                return;
+            }
+
+            if (curTaskItem.SubTaskItems.Count > 0 && goToChildren)
+            {
+                ChangeSelectedTaskItem(curTaskItem.SubTaskItems[0]);
+                return;
+            }
+
+            int nextIndex = curTaskItem.ParentTaskItem.SubTaskItems.IndexOf(curTaskItem) + 1;
+            ChangeSelectedTaskItem(curTaskItem.ParentTaskItem.SubTaskItems[nextIndex]);
         }
 
-        
-      
+
+
+        /// <summary>
+        /// Выделить предыдущую по списку задачу (Рекурсивные переходы)
+        /// </summary>
+        private void SelectPreviosTaskItem(TaskItem curTaskItem, bool goToChildren = true)
+        {
+            if (Equals(curTaskItem, this.SelectedProjectItem.MainProjectTaskRoot.SubTaskItems.FirstOrDefault()) == true)
+            {
+                return;
+            }
+
+            if (Equals(curTaskItem.ParentTaskItem.SubTaskItems.FirstOrDefault(), curTaskItem) == true)
+            {
+                ChangeSelectedTaskItem(curTaskItem.ParentTaskItem);
+                return;
+            }
+
+
+
+            int previosIndex = curTaskItem.ParentTaskItem.SubTaskItems.IndexOf(curTaskItem) - 1;
+            var prevTaskItem = curTaskItem.ParentTaskItem.SubTaskItems[previosIndex];
+            if (prevTaskItem.SubTaskItems.Count > 0)
+            {
+                ChangeSelectedTaskItem(prevTaskItem.SubTaskItems.LastOrDefault());
+                return;
+            }
+
+            ChangeSelectedTaskItem(prevTaskItem);
+        }
+
         /// <summary>
         /// Загружаем только элементы проектов. Данные по проектам не загружаем.
         /// </summary>
@@ -352,7 +506,6 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             }
         }
 
-
         /// <summary>
         /// Получаем имена всех файлов проектов, или MyProjects в формате xml
         /// </summary>
@@ -360,8 +513,21 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         private List<(string path, string fileName)> GetAllProjectFileNames()
         {
             var allFiles = Directory.GetFiles(ProjectsDirectory).ToList();
+            if (allFiles == null || allFiles.Count == 0) return null;
 
             List<(string path, string fileName)> files = new List<(string,string)>();
+
+            foreach (var projItemControl in this.ProjectsPanel.Controls)
+            {
+                ProjectItem projItem = projItemControl as ProjectItem;
+                if(projItem == null) continue;
+
+                if (allFiles.Contains(projItem.Project.Name))
+                {
+                    allFiles.Remove(projItem.Project.Name);
+                }
+            }
+
             foreach (var path in allFiles)
             {
                 HelperFileName.ParsePath(path, out var _, out var fname, out var ext);

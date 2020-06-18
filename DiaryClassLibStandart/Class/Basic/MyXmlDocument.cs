@@ -117,15 +117,15 @@ namespace DiaryClassLibStandart.Class
                 CreateNewFile(this.Path);
             }
 
-            if (this.Doc == null && this.Body == null)
+            if (this.Doc == null || this.Body == null)
             {
                 if (this.Path == null)
                 {
-                    InitDocAndBody();
+                    InitDocAndBodyIfNeed();
                 }
                 else
                 {
-                    InitDocAndBody(this.Path);
+                    InitDocAndBodyIfNeed(this.Path);
                 }
             }
 
@@ -183,7 +183,7 @@ namespace DiaryClassLibStandart.Class
             this.SaveDocumentDataWithSafe(doc, path);
         }
 
-        private void InitDocAndBody(string docPath = null)
+        private void InitDocAndBodyIfNeed(string docPath = null)
         {
             if (this.Doc == null)
             {
@@ -280,6 +280,13 @@ namespace DiaryClassLibStandart.Class
             //Поймали ошибку, имя файла содержит недопустимые символы
             catch (Exception e)
             {
+                //Обработаем ошибку отсутствия корневого элемента в xml файле
+                //Просто если корневого елемента нет, ничего не делать.
+                if (String.Equals(e.Message, "Отсутствует корневой элемент."))
+                {
+                    return;
+                }
+
                 HelperFileName.ParsePath(path, out var dir, out var fname, out var ext);
                 fname = GetDefaultErrorFileName(fname);
                 string localPath = dir + @"\" + fname + ext;

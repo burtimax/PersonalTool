@@ -10,7 +10,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
     {
         private MyXmlDocument Doc;
 
-        public ProjectDoc()
+        private ProjectDoc()
         {
         }
 
@@ -46,7 +46,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
             if (File.Exists(this.Doc.Path) == false) return false;
 
             return MyTaskXmlPresenter.GetMyProjectFromXmlElement(ref proj,
-                this.Doc.Body.GetElementsByTagName("Project")?.Item(0) as XmlElement);
+                this?.Doc?.Body?.GetElementsByTagName("Project")?.Item(0) as XmlElement);
         }
 
     }

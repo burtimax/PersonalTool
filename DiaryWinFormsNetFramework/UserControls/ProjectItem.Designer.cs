@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.LeftColorPanel = new System.Windows.Forms.Panel();
             this.BottomColorPanel = new System.Windows.Forms.Panel();
             this.NameTxt = new System.Windows.Forms.Label();
+            this.ContextMenuProjectItem = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxtEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtSave = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
+            this.ContextMenuProjectItem.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -83,6 +90,45 @@
             this.NameTxt.Text = "label1";
             this.NameTxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ContextMenuProjectItem
+            // 
+            this.ContextMenuProjectItem.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextMenuProjectItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxtSave,
+            this.ctxtEdit,
+            this.ctxtArchive,
+            this.ctxtDelete});
+            this.ContextMenuProjectItem.Name = "ContextMenuProjectItem";
+            this.ContextMenuProjectItem.Size = new System.Drawing.Size(211, 128);
+            // 
+            // ctxtEdit
+            // 
+            this.ctxtEdit.Name = "ctxtEdit";
+            this.ctxtEdit.Size = new System.Drawing.Size(210, 24);
+            this.ctxtEdit.Text = "Редактировать";
+            this.ctxtEdit.Click += new System.EventHandler(this.ctxtEdit_Click);
+            // 
+            // ctxtDelete
+            // 
+            this.ctxtDelete.Name = "ctxtDelete";
+            this.ctxtDelete.Size = new System.Drawing.Size(210, 24);
+            this.ctxtDelete.Text = "Удалить проект";
+            this.ctxtDelete.Click += new System.EventHandler(this.ctxtDelete_Click);
+            // 
+            // ctxtArchive
+            // 
+            this.ctxtArchive.Name = "ctxtArchive";
+            this.ctxtArchive.Size = new System.Drawing.Size(210, 24);
+            this.ctxtArchive.Text = "Архивировать";
+            this.ctxtArchive.Click += new System.EventHandler(this.ctxtArchive_Click);
+            // 
+            // ctxtSave
+            // 
+            this.ctxtSave.Name = "ctxtSave";
+            this.ctxtSave.Size = new System.Drawing.Size(210, 24);
+            this.ctxtSave.Text = "Сохранить";
+            this.ctxtSave.Click += new System.EventHandler(this.ctxtSave_Click);
+            // 
             // ProjectItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -90,11 +136,13 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.ContextMenuStrip = this.ContextMenuProjectItem;
             this.Controls.Add(this.ContentPanel);
             this.Name = "ProjectItem";
             this.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.Size = new System.Drawing.Size(300, 85);
             this.ContentPanel.ResumeLayout(false);
+            this.ContextMenuProjectItem.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +154,10 @@
         private System.Windows.Forms.Label NameTxt;
         private System.Windows.Forms.Panel BottomColorPanel;
         private System.Windows.Forms.Panel LeftColorPanel;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuProjectItem;
+        private System.Windows.Forms.ToolStripMenuItem ctxtEdit;
+        private System.Windows.Forms.ToolStripMenuItem ctxtArchive;
+        private System.Windows.Forms.ToolStripMenuItem ctxtDelete;
+        private System.Windows.Forms.ToolStripMenuItem ctxtSave;
     }
 }

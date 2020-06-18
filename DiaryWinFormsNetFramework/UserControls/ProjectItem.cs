@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiaryClassLibStandart.Class;
 using DiaryClassLibStandart.Class.TaskClass;
 using DiaryClassLibStandart.Helpers;
 using DiaryWinFormsNetFramework.HelpersConstants;
@@ -22,6 +23,8 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// Скрытая задача (вершина дерева задач в проекте) Эта задача не будет отображаться в панели.
         /// </summary>
         public TaskItem MainProjectTaskRoot;
+
+
 
         /// <summary>
         /// Хранит ссылку на текущую (выбранную задачу в проекте)
@@ -115,16 +118,23 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             if (SetName(res.Value) == false)
             {
-                HelperDialog.ShowWarningDialog("Невозможно переименовать файл проекта", "Имя проекта содержит недопустимые символы!");
+                HelperDialog.ShowWarningDialog($"Невозможно переименовать файл проекта. Введенное имя содержит недопустимые символы.", "Введенное имя проекта содержит недопустимые символы!");
                 return;
             }
+        }
+
+        public void SaveProjetData()
+        {
+            ProjectDoc doc = new ProjectDoc(this.Project.ProjectFilePath);
+            doc.SaveProject(this.Project);
+            HelperDialog.ShowWarningDialog($"Проект [{this.Project.Name}] сохранен!", "Сохранено");
         }
 
         /// <summary>
         /// Поменять название проекта
         /// </summary>
         /// <param name="newName"></param>
-        private bool SetName(string newName)
+        public bool SetName(string newName)
         {
             //Поменять имя файла проекта
             if (RenameProjectFile(newName) == false)
@@ -144,8 +154,6 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <returns>Если удачно переименовали, то возвращаем true, else false</returns>
         private bool RenameProjectFile(string newFileName)
         {
-            if (File.Exists(this.Project.ProjectFilePath) == false) return true;
-
             //Поменять имя файла проекта
             HelperFileName.ParsePath(this.Project.ProjectFilePath,
                 out var dir,
@@ -153,6 +161,22 @@ namespace DiaryWinFormsNetFramework.UserControls
                 out var ext);
             string newPath = dir + "\\" + newFileName + ext;
 
+            if (File.Exists(this.Project.ProjectFilePath) == false)
+            {
+                try
+                {
+                    File.Create(newPath);
+                }
+                catch
+                {
+                    //Поймали ошибку, не смогли переименовать файл, возвращаем false
+                    return false;
+                }
+                
+                return true;
+            }
+
+            
             try
             {
                 File.Move(this.Project.ProjectFilePath,
@@ -166,6 +190,102 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             return true;
         }
+
+        /// <summary>
+        /// Архивировать проект
+        /// </summary>
+        private void Archive()
+        {
+            var res = HelperDialog.ShowYesNoDialog($"Вы действительно хотите архивировать проект [{this.Project.Name}]?",
+                "Архивировать проект?");
+
+            if (res != DialogResult.Yes) return;
+
+            string archivePath = Settings.GetSetting(Settings.ProjectsDirectory) + "\\ARCHIVE";
+
+            if (Directory.Exists(archivePath) == false)
+            {
+                Directory.CreateDirectory(archivePath);
+            }
+
+            if(File.Exists(this.Project.ProjectFilePath) == false)
+            {
+                HelperDialog.ShowWarningDialog("Не найден файл проекта при архивировании. Сохраните проект.", "Ошибка архивирования!");
+                return;
+            }
+
+            File.Move(this.Project.ProjectFilePath, archivePath + "\\" + this.Project.Name + ".xml");
+            
+            //Архивацию сделали. Теперь нужно удалить проект из основных проектов
+            this.Delete();
+            HelperDialog.ShowWarningDialog($"Проект [{this.Project.Name}] архивирован!","Проект архивирован.");
+        }
+
+        /// <summary>
+        /// Удалить проект.
+        /// </summary>
+        public void Delete()
+        {
+            //Удалить файл проекта.
+            if (File.Exists(this.Project.ProjectFilePath))
+            {
+                File.Delete(this.Project.ProjectFilePath);
+            }
+            //Удалить проект из панели.
+            this.Parent.Controls.Remove(this);
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+
+        /// <summary>
+        /// Команда контекстного меню (Архивировать)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctxtArchive_Click(object sender, EventArgs e)
+        {
+            this.Archive();
+        }
+
+
+        /// <summary>
+        /// Команда Контекстного меню (удалить)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctxtDelete_Click(object sender, EventArgs e)
+        {
+            var res = HelperDialog.ShowYesNoDialog($"Вы действительно хотите удалить проект ({this.Project.Name})?",
+                "Удаление проекта.");
+
+            if (res != DialogResult.Yes) return;
+
+            this.Delete();
+        }
+
+        /// <summary>
+        /// Команда контекстного меню (редактировать)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctxtEdit_Click(object sender, EventArgs e)
+        {
+            this.EditProjectData();
+        }
+
+        /// <summary>
+        /// Команда контекстного меню (Сохранить)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctxtSave_Click(object sender, EventArgs e)
+        {
+            this.SaveProjetData();
+        }
+
+
+        
 
     }
 }
