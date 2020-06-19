@@ -109,6 +109,7 @@ namespace DiaryWinFormsNetFramework
                 EnableControl(controls[controls.IndexOf(form)]);
                 //обновляем данные в форме.
                 form.RefreshData();
+                form.Select();
             }
             else
             {
@@ -117,6 +118,7 @@ namespace DiaryWinFormsNetFramework
                 controls.Add(form);           
                 EnableControl(form);
                 form.Dock = DockStyle.Fill;
+                form.Select();
             }
             
         }

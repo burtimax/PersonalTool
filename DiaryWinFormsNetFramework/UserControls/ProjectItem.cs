@@ -296,6 +296,6 @@ namespace DiaryWinFormsNetFramework.UserControls
             this.SaveProjetData();
         }
 
-
+       
     }
 }

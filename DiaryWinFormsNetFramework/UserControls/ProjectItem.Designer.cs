@@ -34,10 +34,10 @@
             this.BottomColorPanel = new System.Windows.Forms.Panel();
             this.NameTxt = new System.Windows.Forms.Label();
             this.ContextMenuProjectItem = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctxtEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxtDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxtArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxtSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
             this.ContextMenuProjectItem.SuspendLayout();
             this.SuspendLayout();
@@ -99,35 +99,35 @@
             this.ctxtArchive,
             this.ctxtDelete});
             this.ContextMenuProjectItem.Name = "ContextMenuProjectItem";
-            this.ContextMenuProjectItem.Size = new System.Drawing.Size(211, 128);
-            // 
-            // ctxtEdit
-            // 
-            this.ctxtEdit.Name = "ctxtEdit";
-            this.ctxtEdit.Size = new System.Drawing.Size(210, 24);
-            this.ctxtEdit.Text = "Редактировать";
-            this.ctxtEdit.Click += new System.EventHandler(this.ctxtEdit_Click);
-            // 
-            // ctxtDelete
-            // 
-            this.ctxtDelete.Name = "ctxtDelete";
-            this.ctxtDelete.Size = new System.Drawing.Size(210, 24);
-            this.ctxtDelete.Text = "Удалить проект";
-            this.ctxtDelete.Click += new System.EventHandler(this.ctxtDelete_Click);
-            // 
-            // ctxtArchive
-            // 
-            this.ctxtArchive.Name = "ctxtArchive";
-            this.ctxtArchive.Size = new System.Drawing.Size(210, 24);
-            this.ctxtArchive.Text = "Архивировать";
-            this.ctxtArchive.Click += new System.EventHandler(this.ctxtArchive_Click);
+            this.ContextMenuProjectItem.Size = new System.Drawing.Size(187, 100);
             // 
             // ctxtSave
             // 
             this.ctxtSave.Name = "ctxtSave";
-            this.ctxtSave.Size = new System.Drawing.Size(210, 24);
+            this.ctxtSave.Size = new System.Drawing.Size(186, 24);
             this.ctxtSave.Text = "Сохранить";
             this.ctxtSave.Click += new System.EventHandler(this.ctxtSave_Click);
+            // 
+            // ctxtEdit
+            // 
+            this.ctxtEdit.Name = "ctxtEdit";
+            this.ctxtEdit.Size = new System.Drawing.Size(186, 24);
+            this.ctxtEdit.Text = "Редактировать";
+            this.ctxtEdit.Click += new System.EventHandler(this.ctxtEdit_Click);
+            // 
+            // ctxtArchive
+            // 
+            this.ctxtArchive.Name = "ctxtArchive";
+            this.ctxtArchive.Size = new System.Drawing.Size(186, 24);
+            this.ctxtArchive.Text = "Архивировать";
+            this.ctxtArchive.Click += new System.EventHandler(this.ctxtArchive_Click);
+            // 
+            // ctxtDelete
+            // 
+            this.ctxtDelete.Name = "ctxtDelete";
+            this.ctxtDelete.Size = new System.Drawing.Size(186, 24);
+            this.ctxtDelete.Text = "Удалить проект";
+            this.ctxtDelete.Click += new System.EventHandler(this.ctxtDelete_Click);
             // 
             // ProjectItem
             // 

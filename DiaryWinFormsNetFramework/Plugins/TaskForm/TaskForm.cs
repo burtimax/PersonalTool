@@ -285,48 +285,65 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         {
             this.LoadProjectsList();
         }
+        
 
         /// <summary>
-        /// Горячие клавиши в форме
+        /// Горячие клавиши для элементов проекта ProjectItems
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="keyData"></param>
         /// <returns></returns>
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private bool ProcessHotKeysForProjectItems(ref Message msg, Keys keyData)
         {
-            if(keyData == (Keys.Control | Keys.S))
+            if (this.SelectedProjectItem == null) return false;
+            if (this.SelectedProjectItem.Parent == null) return false;
+
+            if (keyData == (Keys.Control | Keys.S))
             {
                 this.SelectedProjectItem?.SaveProjetData();
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.L))
             {
                 this.LoadProjectsList();
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
+            return false;
+        }
+
+
+        /// <summary>
+        /// Горячие клавиши для элементов TaskItem
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        private bool ProcessHotKeysForTaskItems(ref Message msg, Keys keyData)
+        {
             if (this.SelectedProjectItem?.SelectedTaskItem == null) return false;
-            //CTRL + Up arrow
+            if (this.SelectedProjectItem?.Parent == null) return false;
+            
             if (keyData == (Keys.Control | Keys.Up))
             {
                 this.SelectedProjectItem.SelectedTaskItem.MoveTaskItem(MoveDirection.Top);
                 return base.ProcessCmdKey(ref msg, keyData);
             }
-            
+
             if (keyData == (Keys.Control | Keys.Down))
             {
                 this.SelectedProjectItem.SelectedTaskItem.MoveTaskItem(MoveDirection.Down);
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
             if (keyData == (Keys.Down))
             {
-                if(this.SelectedProjectItem?.SelectedTaskItem != null)
+                if (this.SelectedProjectItem?.SelectedTaskItem != null)
                 {
                     SelectNextTaskItem(this.SelectedProjectItem.SelectedTaskItem);
                 }
-                return base.ProcessCmdKey(ref msg, keyData);
+
+                return true;
             }
 
             if (keyData == (Keys.Up))
@@ -335,7 +352,8 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                 {
                     SelectPreviousTaskItem(this.SelectedProjectItem.SelectedTaskItem);
                 }
-                return base.ProcessCmdKey(ref msg, keyData);
+
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.N))
@@ -344,8 +362,8 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                 {
                     this.SelectedProjectItem.SelectedTaskItem.CreateAndAddSubTask();
                 }
-                
-                return base.ProcessCmdKey(ref msg, keyData);
+
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.W))
@@ -357,7 +375,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                     taskForDelete.DeleteTaskItem();
                 }
 
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.D))
@@ -367,7 +385,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                     this.SelectedProjectItem.SelectedTaskItem.ChangeTaskStatus();
                 }
 
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.X))
@@ -377,7 +395,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                     this.SelectedProjectItem.SelectedTaskItem.OpenCloseSubTasksPanel();
                 }
 
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
             if (keyData == (Keys.Control | Keys.R))
@@ -387,10 +405,24 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                     this.SelectedProjectItem.SelectedTaskItem.EditTaskItemData();
                 }
 
-                return base.ProcessCmdKey(ref msg, keyData);
+                return true;
             }
 
-            return base.ProcessCmdKey(ref msg, keyData);
+            return false;
+        }
+
+        /// <summary>
+        /// Горячие клавиши в форме
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+           ProcessHotKeysForProjectItems(ref msg, keyData);
+           ProcessHotKeysForTaskItems(ref msg, keyData);
+           return base.ProcessCmdKey(ref msg, keyData);
+
         }
 
         /// <summary>
@@ -466,7 +498,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         private void LoadProjectsList()
         {
             var projFiles = this.GetAllProjectFileNames();
-            if (projFiles.Count == 0) return;
+            if (projFiles == null || projFiles?.Count == 0) return;
 
             foreach(var file in projFiles)
             {
@@ -541,9 +573,9 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                 ProjectItem projItem = projItemControl as ProjectItem;
                 if(projItem == null) continue;
 
-                if (allFiles.Contains(projItem.Project.Name))
+                if (allFiles.Contains(projItem.Project.ProjectFilePath))
                 {
-                    allFiles.Remove(projItem.Project.Name);
+                    allFiles.Remove(projItem.Project.ProjectFilePath);
                 }
             }
 

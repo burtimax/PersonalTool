@@ -63,6 +63,8 @@ namespace DiaryWinFormsNetFramework.UserControls
                     return val;
                 }
 
+                if (this?.Task?.Name == null) return null;
+
                 if (txtName.Text != this.Task.Name)
                 {
                     this.Task.Name = txtName.Text;
@@ -143,7 +145,6 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// </summary>
         public void CreateAndAddSubTask()
         {
-            this.AddSubtask.Select();
 
             var result = HelperDialog.ShowInputBox("Введите название задачи?");
 
@@ -197,7 +198,6 @@ namespace DiaryWinFormsNetFramework.UserControls
             //Привязываем обработчик события нажатия для дочерних элементов
             HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, subTask.ClickEventHandler);
             HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(subTask, subTask.DoubleClickEventHandler);
-
         }
 
         /// <summary>
