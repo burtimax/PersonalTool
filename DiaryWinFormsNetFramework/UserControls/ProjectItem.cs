@@ -125,11 +125,18 @@ namespace DiaryWinFormsNetFramework.UserControls
             }
         }
 
-        public void SaveProjetData()
+        /// <summary>
+        /// Сохранить проект
+        /// </summary>
+        public void SaveProjetData(bool showDialog = true)
         {
             ProjectDoc doc = new ProjectDoc(this.Project.ProjectFilePath);
             doc.SaveProject(this.Project);
-            HelperDialog.ShowWarningDialog($"Проект [{this.Project.Name}] сохранен!", "Сохранено");
+
+            if (showDialog)
+            {
+                HelperDialog.ShowWarningDialog($"Проект [{this.Project.Name}] сохранен!", "Сохранено");
+            }
         }
 
         /// <summary>

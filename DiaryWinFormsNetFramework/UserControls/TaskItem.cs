@@ -82,6 +82,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         }
 
 
+
         private void Init(ProjectItem project, TaskItem parentTaskItem, int taskLevel = 0, string name = "task", MyTask myTask = null)
         {
             this.Dock = DockStyle.Top;
@@ -140,6 +141,29 @@ namespace DiaryWinFormsNetFramework.UserControls
             CreateAndAddSubTask();
         }
 
+
+        public bool Revealed
+        {
+            set
+            {
+                if(this?.Task != null)
+                {
+                    this.Task.Revealed = value;
+                }
+
+                this.OpenCloseArrow.Checked = value;
+            }
+            get
+            {
+                if (this?.Task != null)
+                {
+                    return this.Task.Revealed;
+                }
+
+                return true;
+            }
+        }
+
         /// <summary>
         /// Создаем и добавляем подзадачу
         /// </summary>
@@ -177,18 +201,22 @@ namespace DiaryWinFormsNetFramework.UserControls
                 this.SubTaskPanel.AutoScroll = true;
             }
 
+
             this.SubTaskPanel.Controls.Add(subTask.SubTaskPanel);
             this.SubTaskPanel.Controls.Add(subTask);
             this.SubTaskPanel.Controls.SetChildIndex(subTask, 0);
             this.SubTaskPanel.Controls.SetChildIndex(subTask.SubTaskPanel, 0);
 
             #region Не трогать, а то будет КАПУТ
+
             this.SubTaskItems.Add(subTask);
 
             if (removeInnerMyTask == true)
             {
                 this.Task.SubTasks.RemoveAt(this.Task.SubTasks.Count - 1);
             }
+            
+
             #endregion
 
 
@@ -246,7 +274,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             CheckBox box = sender as CheckBox;
             if (this.SubTaskItems == null) return;
 
-            if (this.SubTaskItems.Count == 0)
+            if (this.SubTaskItems.Count == 0 && this.Task.SubTasks.Count == 0)
             {
                 box.BackgroundImage = null;
                 return;
@@ -465,11 +493,11 @@ namespace DiaryWinFormsNetFramework.UserControls
                     }
                 }
 
-                //покажем кнопку свернуть / развернуть
-                //HelperForm.ActivateControl(this.OpenCloseArrow);
-                this.OpenCloseArrow.BackgroundImage = Resources.downArrow;
-                this.OpenCloseArrow.Checked = true;
-
+                //если список можно раскрывать, то покажем кнопку
+                if(this.Revealed == true)
+                {
+                    this.OpenCloseArrow.BackgroundImage = Resources.downArrow;
+                }
             }
 
             //If element was removed
@@ -567,5 +595,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         {
             this.OpenCloseArrow.Checked = !this.OpenCloseArrow.Checked;
         }
+
+
     }
 }

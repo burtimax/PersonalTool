@@ -85,7 +85,7 @@ namespace DiaryWinFormsNetFramework
 
         private void OnGetUserAccess_EventHandler()
         {
-            var form = new DiaryForm();
+            //var form = new DiaryForm();
             this.OpenForm(InstanceOf<DiaryForm>());
         }
 
@@ -96,6 +96,14 @@ namespace DiaryWinFormsNetFramework
         /// <param name="form"></param>
         public void OpenForm(BaseFormParent form)
         {
+            if (form.Enabled == true &&
+                form.Visible == true)
+            {
+                form.RefreshData();
+                form.Select();
+                return;
+            }
+
             //Ничего не открывать, пока не получили доступ
             if (Constants.ACCESS == false) return;
 

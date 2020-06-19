@@ -35,8 +35,8 @@
             this.txtName = new System.Windows.Forms.Label();
             this.StatusCheckBox = new System.Windows.Forms.CheckBox();
             this.AddSubtask = new System.Windows.Forms.Button();
-            this.OpenCloseArrow = new System.Windows.Forms.CheckBox();
             this.BottomColorPanel = new System.Windows.Forms.Panel();
+            this.OpenCloseArrow = new System.Windows.Forms.CheckBox();
             this.ContextMenuTaskItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctxtStartTomato = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
@@ -130,6 +130,15 @@
             this.AddSubtask.UseVisualStyleBackColor = false;
             this.AddSubtask.Click += new System.EventHandler(this.AddSubTask_Click);
             // 
+            // BottomColorPanel
+            // 
+            this.BottomColorPanel.BackColor = System.Drawing.Color.LightGray;
+            this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomColorPanel.Location = new System.Drawing.Point(0, 34);
+            this.BottomColorPanel.Name = "BottomColorPanel";
+            this.BottomColorPanel.Size = new System.Drawing.Size(264, 1);
+            this.BottomColorPanel.TabIndex = 3;
+            // 
             // OpenCloseArrow
             // 
             this.OpenCloseArrow.Appearance = System.Windows.Forms.Appearance.Button;
@@ -149,15 +158,6 @@
             this.OpenCloseArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
             this.OpenCloseArrow.CheckedChanged += new System.EventHandler(this.OpenCloseArrow_CheckedChanged);
-            // 
-            // BottomColorPanel
-            // 
-            this.BottomColorPanel.BackColor = System.Drawing.Color.LightGray;
-            this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomColorPanel.Location = new System.Drawing.Point(0, 34);
-            this.BottomColorPanel.Name = "BottomColorPanel";
-            this.BottomColorPanel.Size = new System.Drawing.Size(264, 1);
-            this.BottomColorPanel.TabIndex = 3;
             // 
             // ContextMenuTaskItem
             // 

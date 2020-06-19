@@ -392,7 +392,8 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             {
                 if (this.SelectedProjectItem?.SelectedTaskItem != null)
                 {
-                    this.SelectedProjectItem.SelectedTaskItem.OpenCloseSubTasksPanel();
+                    this.SelectedProjectItem.SelectedTaskItem.Revealed =
+                        !this.SelectedProjectItem.SelectedTaskItem.Revealed;
                 }
 
                 return true;
@@ -524,12 +525,34 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             proj.MainProjectTaskRoot.ProjectItem.AutoScroll = true;
             this.LoadTasks(proj, proj.Project.TaskRoot, proj.MainProjectTaskRoot);
 
+            //Раскроем или закроем нужные панели подзадач
+            //this.OpenCloseSubPanelsForAllTasks(proj.MainProjectTaskRoot);
+
             //После того, как мы загрузили объект выделим первую задачу
             if (proj.MainProjectTaskRoot?.SubTaskItems?.Count > 0)
             {
                 this.ChangeSelectedTaskItem(proj.MainProjectTaskRoot.SubTaskItems[0]);
             }
         }
+
+        /// <summary>
+        /// Свернуть или развернуть все панели подзадач
+        /// </summary>
+        /// <param name="taskItem"></param>
+        private void OpenCloseSubPanelsForAllTasks(TaskItem taskItem)
+        {
+            if (taskItem?.SubTaskItems?.Count <= 0) return;
+
+            foreach (var subTask in taskItem.SubTaskItems)
+            {
+                if(subTask.SubTaskItems.Count <= 0) continue;
+
+                subTask.Revealed = subTask.Task.Revealed;
+
+                this.OpenCloseSubPanelsForAllTasks(subTask);
+            }
+        }
+
 
         /// <summary>
         /// загружаем и рисуем елементы задач в панели
@@ -547,10 +570,12 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                     ParentTask.SubTasks[i],
                     ParentTask.Level+1,
                     ParentTask.SubTasks[i].Name);
-                
+
+                taskItem.Revealed = ParentTask.SubTasks[i].Revealed;
+
                 //Добавить подзадачу, но не нужно изменять MyProject, поэтому второй параметр == true.
                 ParentTaskItem.AddSubTaskItem(taskItem, true);
-                
+               
                 //Рекурсивно создадим подзадачи
                 this.LoadTasks(projItem, ParentTask.SubTasks[i], taskItem);
                 i++;
@@ -592,7 +617,29 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             return files;
         }
 
-       
 
+        /// <summary>
+        /// При закрытии формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void OnCloseForm()
+        {
+            //Проходим по всем загруженным проектам и сохраняем их перед закрытием формы
+            foreach(var proj in this.ProjectsPanel.Controls)
+            {
+                if(proj is ProjectItem == false) continue;
+
+                ProjectItem projItem = proj as ProjectItem;
+
+                if(projItem?.TasksPanel?.Parent == null ||
+                   projItem?.MainProjectTaskRoot?.Task?.SubTasks?.Count == 0) 
+                {
+                    continue;
+                }
+
+                projItem.SaveProjetData(false);
+            }
+        }
     }
 }

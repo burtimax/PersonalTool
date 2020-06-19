@@ -26,6 +26,9 @@ namespace DiaryClassLibStandart.Class.TaskClass
             XmlText textName = doc.CreateTextNode(task.Name);
             Name.AppendChild(textName);
 
+            XmlElement Reveal = doc.CreateElement("Reveal");
+            XmlText textReveal = doc.CreateTextNode(task.Revealed.ToString());
+            Reveal.AppendChild(textReveal);
 
             //Task Status element
             XmlElement Status = doc.CreateElement("Status");
@@ -46,6 +49,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
             res.AppendChild(Name);
             res.AppendChild(Level);
             res.AppendChild(Status);
+            res.AppendChild(Reveal);
 
             //Рекурсивно добавляем подзадачи
             foreach (var subTask in task.SubTasks)
@@ -67,6 +71,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
             res.CreateTime = Convert.ToDateTime(elem.GetElementsByTagName("CreateTime")?.Item(0)?.InnerText);
             res.Id = Convert.ToInt32(elem.GetElementsByTagName("Id")?.Item(0)?.InnerText);
             res.SetStatusByString(elem.GetElementsByTagName("Status")?.Item(0)?.InnerText);
+            res.Revealed = Convert.ToBoolean(elem.GetElementsByTagName("Reveal")?.Item(0)?.InnerText);
 
             var subTasksElem = elem.GetElementsByTagName("SubTasks")?.Item(0);
             if (subTasksElem == null || subTasksElem.HasChildNodes == false) return res;

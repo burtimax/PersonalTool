@@ -63,10 +63,10 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
 
         void RegisterForm()
         {
-            if (!ActiveForms.ContainsKey(this.Key))
+            /*if (!ActiveForms.ContainsKey(this.Key))
             {
                 BaseFormParent.ActiveForms.Add(this.Key, this);
-            }
+            }*/
         }
 
         protected virtual void ReceiveData(object data)
@@ -136,7 +136,7 @@ namespace DiaryWinFormsNetFramework.Plugins.BaseForm
                 }
                 else
                 {
-                    ActiveForms.Add(instanceKey, form);               
+                    ActiveForms.Add(instanceKey, form);
                 }
                 result = ActiveForms[instanceKey];
             }

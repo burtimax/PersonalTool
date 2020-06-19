@@ -33,7 +33,13 @@ namespace DiaryClassLibStandart.Class.TaskClass
         /// <summary>
         /// Раскрытый (то есть список подзадач развернут по умолчанию)
         /// </summary>
-        public bool Revealed = true;
+        private bool _revealed = true;
+        public bool Revealed
+        {
+            get { return this._revealed; }
+            set
+            { this._revealed = value; }
+        }
 
         public ObservableCollection<MyTask> SubTasks;
 
