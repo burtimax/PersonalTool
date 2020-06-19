@@ -22,6 +22,10 @@ namespace DiaryWinFormsNetFramework.UserControls
 {
     public partial class TaskItem : UserControl, IDisposable
     {
+        //Событие удаления задачи
+        public delegate void DeleteTaskDelegate(TaskItem taskItem);
+        public event DeleteTaskDelegate OnDeleteTaskItem;
+
         public EventHandler ClickEventHandler;
         public EventHandler DoubleClickEventHandler;
 
@@ -96,6 +100,7 @@ namespace DiaryWinFormsNetFramework.UserControls
 
             this.SubTaskItems = new ObservableCollection<TaskItem>();
             //Добавляем обработчик события изменения коллекции подзадач
+            this.SubTaskItems.CollectionChanged -= SubTasks_CollectionChanged;
             this.SubTaskItems.CollectionChanged += SubTasks_CollectionChanged;
 
             //спрячем кнопку свернуть/развернуть
@@ -165,6 +170,12 @@ namespace DiaryWinFormsNetFramework.UserControls
                 subTask.StatusCheckBox.Checked = true;
             }
 
+            //Если это главная панель, то установить скроллинг
+            if(Equals(this, this.ProjectItem.MainProjectTaskRoot))
+            {
+                this.SubTaskPanel.AutoScroll = true;
+            }
+
             this.SubTaskPanel.Controls.Add(subTask.SubTaskPanel);
             this.SubTaskPanel.Controls.Add(subTask);
             this.SubTaskPanel.Controls.SetChildIndex(subTask, 0);
@@ -187,7 +198,6 @@ namespace DiaryWinFormsNetFramework.UserControls
             HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, subTask.ClickEventHandler);
             HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(subTask, subTask.DoubleClickEventHandler);
 
-            
         }
 
         /// <summary>
@@ -199,6 +209,8 @@ namespace DiaryWinFormsNetFramework.UserControls
         {
             CheckBox box = sender as CheckBox;
             box.BackColor = Color.Transparent;
+            if (this.Task == null) return;
+
             if (box.Checked == true)
             {
                 //Меняем статус задачи
@@ -232,6 +244,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         private void OpenCloseArrow_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox box = sender as CheckBox;
+            if (this.SubTaskItems == null) return;
 
             if (this.SubTaskItems.Count == 0)
             {
@@ -246,6 +259,7 @@ namespace DiaryWinFormsNetFramework.UserControls
                 box.BackgroundImage = Resources.downArrow;
 
                 HelperForm.ActivateControl(this.SubTaskPanel);
+                this.Task.Revealed = true;
             }
             else
             {
@@ -253,6 +267,7 @@ namespace DiaryWinFormsNetFramework.UserControls
                 box.BackgroundImage = Resources.rightArrow;
 
                 HelperForm.DeactivateControl(this.SubTaskPanel);
+                this.Task.Revealed = false;
             }
         }
 
@@ -276,7 +291,7 @@ namespace DiaryWinFormsNetFramework.UserControls
                 var answer = HelperDialog.ShowYesNoDialog("Удалить подзадачи?", "Подзадачи будут удалены!");
                 if (answer == DialogResult.No) return;
             }
-
+            this.OnDeleteTaskItem?.Invoke(this);
             //Удалить элемент задачи из панели задач
             DeleteCurrentTaskFromPanel();
             //затем удалить задачу из элемента проекта
@@ -503,7 +518,9 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// </summary>
         public void MoveTaskItem(MoveDirection direction)
         {
-            var parentPanel = this.ParentTaskItem.SubTaskPanel;
+            var parentPanel = this.ParentTaskItem?.SubTaskPanel;
+            if (parentPanel == null) return;
+
             int indexInPanel = this.ParentTaskItem.SubTaskPanel.Controls.IndexOf(this);
             int indexInCollection = this.ParentTaskItem.SubTaskItems.IndexOf(this);
 

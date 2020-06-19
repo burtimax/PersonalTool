@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -107,12 +108,14 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// <param name="proj"></param>
         private void AddProjectItemToParentPanel(Control parent, ProjectItem proj)
         {
+            this.TaskPanel.Controls.Add(proj.MainProjectTaskRoot.SubTaskPanel);
+
             proj.Dock = DockStyle.Top;
 
             //привязываем событие нажатия мыши на элемент проекта
             HelperControls.SetOnClickHandlerForAllElementsInControl(proj, ProjectItem_Click);
             HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(proj, ProjectItem_DoubleClick);
-            
+
             //Привязываем элемент проекта к родителю
             parent.Controls.Add(proj);
             parent.Controls.SetChildIndex(proj, 0);
@@ -124,6 +127,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             //Добавим обработчик события изменения текущей(выбранной) задачи
             proj.OnChangeSelectedTaskItem -= ChangeSelectedTaskItem;
             proj.OnChangeSelectedTaskItem += ChangeSelectedTaskItem;
+
         }
 
         /// <summary>
@@ -239,38 +243,38 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         }
 
 
-        /// <summary>
-        /// Создаем графический элемент задачи
-        /// </summary>
-        private TaskItem CreateNewTaskItem()
-        {
-            if (this.SelectedProjectItem == null)
-            {
-                HelperDialog.ShowWarningDialog("Задачу можно создать только для проекта.\nCоздайте или выберете проект!", "Не выбран проект для задачи");
-                return null;
-            }
+        ///// <summary>
+        ///// Создаем графический элемент задачи
+        ///// </summary>
+        //private TaskItem CreateNewTaskItem()
+        //{
+        //    if (this.SelectedProjectItem == null)
+        //    {
+        //        HelperDialog.ShowWarningDialog("Задачу можно создать только для проекта.\nCоздайте или выберете проект!", "Не выбран проект для задачи");
+        //        return null;
+        //    }
 
-            var result = HelperDialog.ShowInputBox("Введите название задачи");
-            //Если inputbox был отменен или пользователь ввел пустую строку, то выходим
-            if (result.Status != DialogResult.OK ||
-                result.Status == DialogResult.OK && string.IsNullOrWhiteSpace(result.Value)) return null;
+        //    var result = HelperDialog.ShowInputBox("Введите название задачи");
+        //    //Если inputbox был отменен или пользователь ввел пустую строку, то выходим
+        //    if (result.Status != DialogResult.OK ||
+        //        result.Status == DialogResult.OK && string.IsNullOrWhiteSpace(result.Value)) return null;
 
-            //Создаем графический элемент задачи
-            TaskItem task = new TaskItem(this.SelectedProjectItem, this.SelectedProjectItem.MainProjectTaskRoot, level:0);
-            task.Dock = DockStyle.Top;
-            task.TaskName = result.Value;
+        //    //Создаем графический элемент задачи
+        //    TaskItem task = new TaskItem(this.SelectedProjectItem, this.SelectedProjectItem.MainProjectTaskRoot, level:0);
+        //    task.Dock = DockStyle.Top;
+        //    task.TaskName = result.Value;
 
-            task.SubTaskPanel.Dock = DockStyle.Top;
-            task.SubTaskPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            task.SubTaskPanel.AutoSize = true;
+        //    task.SubTaskPanel.Dock = DockStyle.Top;
+        //    task.SubTaskPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        //    task.SubTaskPanel.AutoSize = true;
 
-            this.SelectedProjectItem.TasksPanel.Controls.Add(task.SubTaskPanel);
-            this.SelectedProjectItem.TasksPanel.Controls.Add(task);
-            this.SelectedProjectItem.TasksPanel.Controls.SetChildIndex(task, 0);
-            this.SelectedProjectItem.TasksPanel.Controls.SetChildIndex(task.SubTaskPanel, 0);
+        //    this.SelectedProjectItem.TasksPanel.Controls.Add(task.SubTaskPanel);
+        //    this.SelectedProjectItem.TasksPanel.Controls.Add(task);
+        //    this.SelectedProjectItem.TasksPanel.Controls.SetChildIndex(task, 0);
+        //    this.SelectedProjectItem.TasksPanel.Controls.SetChildIndex(task.SubTaskPanel, 0);
 
-            return task;
-        }
+        //    return task;
+        //}
 
         /// <summary>
         /// TaskForm Load
@@ -329,7 +333,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             {
                 if (this.SelectedProjectItem?.SelectedTaskItem != null)
                 {
-                    SelectPreviosTaskItem(this.SelectedProjectItem.SelectedTaskItem);
+                    SelectPreviousTaskItem(this.SelectedProjectItem.SelectedTaskItem);
                 }
                 return base.ProcessCmdKey(ref msg, keyData);
             }
@@ -394,36 +398,45 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
         /// </summary>
         private void SelectNextTaskItem(TaskItem curTaskItem, bool goToChildren = true)
         {
+            //Если переданный объект нулевой или он отсутствует в панели, то выйти из метода
+            if(curTaskItem?.Parent == null) return;
+
             if (Equals(curTaskItem, this.SelectedProjectItem.MainProjectTaskRoot.SubTaskItems.LastOrDefault()) == true &&
                 (curTaskItem.SubTaskItems.Count == 0 || goToChildren == false))
             {
                 return;
             }
 
-            if (Equals(curTaskItem.ParentTaskItem.SubTaskItems.LastOrDefault(), curTaskItem) == true &&
-                (curTaskItem.SubTaskItems.Count == 0 || goToChildren == false))
+            if (Equals(curTaskItem?.ParentTaskItem?.SubTaskItems?.LastOrDefault(), curTaskItem) == true &&
+                (curTaskItem?.SubTaskItems?.Count == 0 || goToChildren == false))
             {
                 SelectNextTaskItem(curTaskItem.ParentTaskItem, false);
                 return;
             }
 
-            if (curTaskItem.SubTaskItems.Count > 0 && goToChildren)
+            if (curTaskItem.SubTaskItems.Count > 0 && 
+                goToChildren &&
+                curTaskItem.Task.Revealed == true)
             {
                 ChangeSelectedTaskItem(curTaskItem.SubTaskItems[0]);
                 return;
             }
 
             int nextIndex = curTaskItem.ParentTaskItem.SubTaskItems.IndexOf(curTaskItem) + 1;
-            ChangeSelectedTaskItem(curTaskItem.ParentTaskItem.SubTaskItems[nextIndex]);
+            if (nextIndex < curTaskItem.ParentTaskItem.SubTaskItems.Count)
+            {
+                ChangeSelectedTaskItem(curTaskItem.ParentTaskItem.SubTaskItems[nextIndex]);
+            }
         }
-
-
 
         /// <summary>
         /// Выделить предыдущую по списку задачу (Рекурсивные переходы)
         /// </summary>
-        private void SelectPreviosTaskItem(TaskItem curTaskItem, bool goToChildren = true)
+        private void SelectPreviousTaskItem(TaskItem curTaskItem, bool goToChildren = true)
         {
+            // Если переданный объект нулевой или он отсутствует в панели, то выйти из метода
+            if (curTaskItem?.Parent == null) return;
+
             if (Equals(curTaskItem, this.SelectedProjectItem.MainProjectTaskRoot.SubTaskItems.FirstOrDefault()) == true)
             {
                 return;
@@ -435,11 +448,10 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
                 return;
             }
 
-
-
             int previosIndex = curTaskItem.ParentTaskItem.SubTaskItems.IndexOf(curTaskItem) - 1;
             var prevTaskItem = curTaskItem.ParentTaskItem.SubTaskItems[previosIndex];
-            if (prevTaskItem.SubTaskItems.Count > 0)
+            if (prevTaskItem.SubTaskItems.Count > 0 && 
+                prevTaskItem.Task.Revealed == true)
             {
                 ChangeSelectedTaskItem(prevTaskItem.SubTaskItems.LastOrDefault());
                 return;
@@ -477,7 +489,14 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             //по структуре объекта MyProject
             //Обязательно перед загрузкой задач нужно установить MainProjectTaskRoot.Task
             proj.MainProjectTaskRoot.Task = localProj.TaskRoot;
+            proj.MainProjectTaskRoot.ProjectItem.AutoScroll = true;
             this.LoadTasks(proj, proj.Project.TaskRoot, proj.MainProjectTaskRoot);
+
+            //После того, как мы загрузили объект выделим первую задачу
+            if (proj.MainProjectTaskRoot?.SubTaskItems?.Count > 0)
+            {
+                this.ChangeSelectedTaskItem(proj.MainProjectTaskRoot.SubTaskItems[0]);
+            }
         }
 
         /// <summary>
@@ -541,6 +560,7 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             return files;
         }
 
+       
 
     }
 }

@@ -24,7 +24,16 @@ namespace DiaryClassLibStandart.Class.TaskClass
 
         public DateTime CreateTime { get; set; }
         public string Name { get; set; }
-        public bool IsActive { get; set; }
+
+        public bool HasChildren
+        {
+            get { return this.SubTasks.Count > 0; }
+        }
+
+        /// <summary>
+        /// Раскрытый (то есть список подзадач развернут по умолчанию)
+        /// </summary>
+        public bool Revealed = true;
 
         public ObservableCollection<MyTask> SubTasks;
 

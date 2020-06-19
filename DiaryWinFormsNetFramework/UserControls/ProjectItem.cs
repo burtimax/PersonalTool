@@ -31,6 +31,8 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// </summary>
         public TaskItem SelectedTaskItem;
 
+        
+
         //Делегат и событие изменения текущей задачи
         public delegate void ChangeSelectedTaskItem(TaskItem selectedTaskItem);
         public event ChangeSelectedTaskItem OnChangeSelectedTaskItem;
@@ -214,8 +216,16 @@ namespace DiaryWinFormsNetFramework.UserControls
                 return;
             }
 
-            File.Move(this.Project.ProjectFilePath, archivePath + "\\" + this.Project.Name + ".xml");
-            
+            try
+            {
+                File.Move(this.Project.ProjectFilePath, archivePath + "\\" + this.Project.Name + ".xml");
+            }
+            catch
+            {
+                HelperDialog.ShowWarningDialog("Сначала сохраните проект", "Ошибка архивирования!");
+                return;
+            }
+
             //Архивацию сделали. Теперь нужно удалить проект из основных проектов
             this.Delete();
             HelperDialog.ShowWarningDialog($"Проект [{this.Project.Name}] архивирован!","Проект архивирован.");
@@ -232,6 +242,8 @@ namespace DiaryWinFormsNetFramework.UserControls
                 File.Delete(this.Project.ProjectFilePath);
             }
             //Удалить проект из панели.
+            MainProjectTaskRoot?.SubTaskPanel?.Parent?.Controls.Remove(this.MainProjectTaskRoot.SubTaskPanel);
+
             this.Parent.Controls.Remove(this);
             this.Dispose(true);
             GC.SuppressFinalize(this);
@@ -278,14 +290,12 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// Команда контекстного меню (Сохранить)
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <paaram name="e"></param>
         private void ctxtSave_Click(object sender, EventArgs e)
         {
             this.SaveProjetData();
         }
 
-
-        
 
     }
 }

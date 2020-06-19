@@ -35,10 +35,10 @@
             this.ProjectsPanel = new System.Windows.Forms.Panel();
             this.ProjectsCommands = new System.Windows.Forms.Panel();
             this.ProjectListLabel = new System.Windows.Forms.Label();
+            this.AddProjectBtn = new System.Windows.Forms.Button();
             this.TaskPanel = new System.Windows.Forms.Panel();
             this.TaskCommands = new System.Windows.Forms.Panel();
             this.ProjectNameLabel = new System.Windows.Forms.Label();
-            this.AddProjectBtn = new System.Windows.Forms.Button();
             this.AddTaskBtn = new System.Windows.Forms.Button();
             this.BodyPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
@@ -65,6 +65,7 @@
             this.ContentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContentPanel.AutoScroll = true;
             this.ContentPanel.Controls.Add(this.splitContainer1);
             this.ContentPanel.Location = new System.Drawing.Point(28, 23);
             this.ContentPanel.Name = "ContentPanel";
@@ -84,6 +85,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.TaskPanel);
             this.splitContainer1.Panel2.Controls.Add(this.TaskCommands);
             this.splitContainer1.Size = new System.Drawing.Size(1064, 643);
@@ -92,6 +94,7 @@
             // 
             // ProjectsPanel
             // 
+            this.ProjectsPanel.AutoScroll = true;
             this.ProjectsPanel.Controls.Add(this.ProjectsCommands);
             this.ProjectsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProjectsPanel.Location = new System.Drawing.Point(0, 0);
@@ -122,6 +125,21 @@
             this.ProjectListLabel.TabIndex = 3;
             this.ProjectListLabel.Text = "Список проектов";
             this.ProjectListLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // AddProjectBtn
+            // 
+            this.AddProjectBtn.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.AddButtonWithSpaces;
+            this.AddProjectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddProjectBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AddProjectBtn.FlatAppearance.BorderSize = 0;
+            this.AddProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddProjectBtn.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddProjectBtn.Location = new System.Drawing.Point(0, 0);
+            this.AddProjectBtn.Name = "AddProjectBtn";
+            this.AddProjectBtn.Size = new System.Drawing.Size(37, 37);
+            this.AddProjectBtn.TabIndex = 2;
+            this.AddProjectBtn.UseVisualStyleBackColor = true;
+            this.AddProjectBtn.Click += new System.EventHandler(this.AddProjectBtn_Click);
             // 
             // TaskPanel
             // 
@@ -156,21 +174,6 @@
             this.ProjectNameLabel.TabIndex = 4;
             this.ProjectNameLabel.Text = "Project name";
             this.ProjectNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // AddProjectBtn
-            // 
-            this.AddProjectBtn.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.AddButtonWithSpaces;
-            this.AddProjectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AddProjectBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AddProjectBtn.FlatAppearance.BorderSize = 0;
-            this.AddProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddProjectBtn.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProjectBtn.Location = new System.Drawing.Point(0, 0);
-            this.AddProjectBtn.Name = "AddProjectBtn";
-            this.AddProjectBtn.Size = new System.Drawing.Size(37, 37);
-            this.AddProjectBtn.TabIndex = 2;
-            this.AddProjectBtn.UseVisualStyleBackColor = true;
-            this.AddProjectBtn.Click += new System.EventHandler(this.AddProjectBtn_Click);
             // 
             // AddTaskBtn
             // 

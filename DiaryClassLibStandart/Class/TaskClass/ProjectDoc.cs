@@ -28,7 +28,13 @@ namespace DiaryClassLibStandart.Class.TaskClass
 
         public void SaveProject(MyProject proj)
         {
-            var XmlProject = MyTaskXmlPresenter.GetXmlFromMyProject(this.Doc.Doc, proj);
+            var XmlProject = MyTaskXmlPresenter.GetXmlFromMyProject(this.Doc.Doc, proj);   
+
+            if(this.Doc == null || this.Doc.Body == null)
+            {
+                this?.Doc?.InitDocAndBodyIfNeed();
+            }
+            
             this.Doc.Body.RemoveAll();
             this.Doc.Body.AppendChild(XmlProject);
             this.Doc.Save();

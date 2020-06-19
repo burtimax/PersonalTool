@@ -183,7 +183,7 @@ namespace DiaryClassLibStandart.Class
             this.SaveDocumentDataWithSafe(doc, path);
         }
 
-        private void InitDocAndBodyIfNeed(string docPath = null)
+        public void InitDocAndBodyIfNeed(string docPath = null)
         {
             if (this.Doc == null)
             {
