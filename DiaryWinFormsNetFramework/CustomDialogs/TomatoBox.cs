@@ -59,6 +59,7 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
             this.Pomodoro.OnStateChange += OnPomodoroStateChanged;
             this.Timer.Enabled = true;
             this.Timer.Interval = 1000;
+            this.TopLabel.Text = "PAUSE";
 
         }
 
@@ -92,8 +93,8 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
             //box.AcceptButton = acceptBtn;
             //box.CancelButton = declineBtn;
             box.ShowInTaskbar = false;
-            //box.ShowDialog();
-            box.Show();
+            box.ShowDialog();
+            //box.Show();
 
             TomatoBox.ActiveBox = box;
 
@@ -164,6 +165,7 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
             {
                 checkBox.BackgroundImage = Resources.PlayWhiteIcon;
                 this.Pomodoro.Stop();
+                this.TopLabel.Text = "PAUSE";
             }
         }
 
@@ -176,6 +178,8 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
         private void RestartButton_Click(object sender, EventArgs e)
         {
             this.Pomodoro.Restart();
+            this.StartStopCheckBox.Checked = false;
+            this.TopLabel.Text = "PAUSE";
         }
 
         /// <summary>
@@ -221,13 +225,23 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
         {
             switch (curState)
             {
-                case PomodoroState.Relaxing:
                 case PomodoroState.RelaxStopping:
+                    this.StartStopCheckBox.Checked = false;
+                    SetFormColor(Color.FromArgb(31, 66, 135));
+                    this.TopLabel.Text = "PAUSE";
+                    break;
+                case PomodoroState.Relaxing:
                     SetFormColor(Color.FromArgb(31,66,135));
+                    this.TopLabel.Text = "RELAX";
+                    break;
+                case PomodoroState.WorkStopping:
+                    this.StartStopCheckBox.Checked = false;
+                    SetFormColor(Color.FromArgb(217, 83, 79));
+                    this.TopLabel.Text = "PAUSE";
                     break;
                 case PomodoroState.Working:
-                case PomodoroState.WorkStopping:
                     SetFormColor(Color.FromArgb(217, 83, 79));
+                    this.TopLabel.Text = "FOCUS";
                     break;
             }
         }

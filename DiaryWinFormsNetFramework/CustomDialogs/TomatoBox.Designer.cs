@@ -33,15 +33,16 @@
             this.ContentPanel = new System.Windows.Forms.Panel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.InnerButtonsPanel = new System.Windows.Forms.Panel();
-            this.ForwardButton = new System.Windows.Forms.Button();
-            this.RestartButton = new System.Windows.Forms.Button();
-            this.StartStopCheckBox = new System.Windows.Forms.CheckBox();
             this.TimeLabel = new System.Windows.Forms.Label();
             this.GoalLabel = new System.Windows.Forms.Label();
             this.topPanel = new System.Windows.Forms.Panel();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.ForwardButton = new System.Windows.Forms.Button();
+            this.RestartButton = new System.Windows.Forms.Button();
+            this.StartStopCheckBox = new System.Windows.Forms.CheckBox();
             this.CloseButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.TopLabel = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
@@ -56,7 +57,7 @@
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(770, 247);
+            this.MainPanel.Size = new System.Drawing.Size(770, 212);
             this.MainPanel.TabIndex = 0;
             // 
             // ContentPanel
@@ -68,14 +69,14 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(770, 247);
+            this.ContentPanel.Size = new System.Drawing.Size(770, 212);
             this.ContentPanel.TabIndex = 0;
             // 
             // ButtonsPanel
             // 
             this.ButtonsPanel.Controls.Add(this.InnerButtonsPanel);
             this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonsPanel.Location = new System.Drawing.Point(0, 197);
+            this.ButtonsPanel.Location = new System.Drawing.Point(0, 153);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(770, 48);
             this.ButtonsPanel.TabIndex = 1;
@@ -91,6 +92,48 @@
             this.InnerButtonsPanel.Name = "InnerButtonsPanel";
             this.InnerButtonsPanel.Size = new System.Drawing.Size(174, 40);
             this.InnerButtonsPanel.TabIndex = 5;
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TimeLabel.Font = new System.Drawing.Font("Nirmala UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeLabel.ForeColor = System.Drawing.Color.White;
+            this.TimeLabel.Location = new System.Drawing.Point(0, 90);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(770, 63);
+            this.TimeLabel.TabIndex = 0;
+            this.TimeLabel.Text = "24:56";
+            this.TimeLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // GoalLabel
+            // 
+            this.GoalLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GoalLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoalLabel.ForeColor = System.Drawing.Color.White;
+            this.GoalLabel.Location = new System.Drawing.Point(0, 33);
+            this.GoalLabel.Name = "GoalLabel";
+            this.GoalLabel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.GoalLabel.Size = new System.Drawing.Size(770, 57);
+            this.GoalLabel.TabIndex = 2;
+            this.GoalLabel.Text = "задача задача задача задача задача задача задача задача задача задача ";
+            this.GoalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // topPanel
+            // 
+            this.topPanel.Controls.Add(this.TopLabel);
+            this.topPanel.Controls.Add(this.CloseButton);
+            this.topPanel.Controls.Add(this.EditButton);
+            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topPanel.Location = new System.Drawing.Point(0, 0);
+            this.topPanel.Name = "topPanel";
+            this.topPanel.Size = new System.Drawing.Size(770, 33);
+            this.topPanel.TabIndex = 1;
+            // 
+            // Timer
+            // 
+            this.Timer.Enabled = true;
+            this.Timer.Interval = 1000;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // ForwardButton
             // 
@@ -136,44 +179,9 @@
             this.StartStopCheckBox.UseVisualStyleBackColor = true;
             this.StartStopCheckBox.CheckedChanged += new System.EventHandler(this.StartStopCheckBox_CheckedChanged);
             // 
-            // TimeLabel
-            // 
-            this.TimeLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TimeLabel.Font = new System.Drawing.Font("Nirmala UI", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeLabel.ForeColor = System.Drawing.Color.White;
-            this.TimeLabel.Location = new System.Drawing.Point(0, 112);
-            this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(770, 85);
-            this.TimeLabel.TabIndex = 0;
-            this.TimeLabel.Text = "24:56";
-            this.TimeLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // GoalLabel
-            // 
-            this.GoalLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GoalLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoalLabel.ForeColor = System.Drawing.Color.White;
-            this.GoalLabel.Location = new System.Drawing.Point(0, 33);
-            this.GoalLabel.Name = "GoalLabel";
-            this.GoalLabel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.GoalLabel.Size = new System.Drawing.Size(770, 79);
-            this.GoalLabel.TabIndex = 2;
-            this.GoalLabel.Text = "задача задача задача задача задача задача задача задача ";
-            this.GoalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // topPanel
-            // 
-            this.topPanel.Controls.Add(this.CloseButton);
-            this.topPanel.Controls.Add(this.EditButton);
-            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topPanel.Location = new System.Drawing.Point(0, 0);
-            this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(770, 33);
-            this.topPanel.TabIndex = 1;
-            // 
             // CloseButton
             // 
-            this.CloseButton.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.closeWhiteIcon;
+            this.CloseButton.BackgroundImage = global::DiaryWinFormsNetFramework.Properties.Resources.closeWhiteIcon1;
             this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.CloseButton.FlatAppearance.BorderSize = 0;
@@ -199,18 +207,24 @@
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
-            // Timer
+            // TopLabel
             // 
-            this.Timer.Enabled = true;
-            this.Timer.Interval = 1000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            this.TopLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TopLabel.ForeColor = System.Drawing.Color.White;
+            this.TopLabel.Location = new System.Drawing.Point(33, 0);
+            this.TopLabel.Name = "TopLabel";
+            this.TopLabel.Size = new System.Drawing.Size(704, 33);
+            this.TopLabel.TabIndex = 3;
+            this.TopLabel.Text = "FOCUS";
+            this.TopLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // TomatoBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.ClientSize = new System.Drawing.Size(770, 247);
+            this.ClientSize = new System.Drawing.Size(770, 212);
             this.Controls.Add(this.MainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -241,5 +255,6 @@
         private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.CheckBox StartStopCheckBox;
         private System.Windows.Forms.Timer Timer;
+        private System.Windows.Forms.Label TopLabel;
     }
 }

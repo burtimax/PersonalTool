@@ -174,7 +174,10 @@ namespace DiaryWinFormsNetFramework.UserControls
             {
                 try
                 {
-                    File.Create(newPath);
+                    using (var stream = File.Create(newPath))
+                    {
+
+                    }
                 }
                 catch
                 {

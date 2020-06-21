@@ -1,4 +1,6 @@
-﻿namespace DiaryWinFormsNetFramework.UserControls
+﻿using System.Windows.Forms;
+
+namespace DiaryWinFormsNetFramework.UserControls
 {
     partial class TaskItem
     {
@@ -57,7 +59,7 @@
             this.ContentPanel.Location = new System.Drawing.Point(33, 3);
             this.ContentPanel.MinimumSize = new System.Drawing.Size(100, 35);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(264, 35);
+            this.ContentPanel.Size = new System.Drawing.Size(1162, 35);
             this.ContentPanel.TabIndex = 2;
             // 
             // DeleteTask
@@ -72,7 +74,7 @@
             this.DeleteTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.DeleteTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteTask.ForeColor = System.Drawing.Color.Transparent;
-            this.DeleteTask.Location = new System.Drawing.Point(229, 0);
+            this.DeleteTask.Location = new System.Drawing.Point(1127, 0);
             this.DeleteTask.Name = "DeleteTask";
             this.DeleteTask.Size = new System.Drawing.Size(35, 34);
             this.DeleteTask.TabIndex = 6;
@@ -89,7 +91,7 @@
             this.txtName.Location = new System.Drawing.Point(70, 0);
             this.txtName.Name = "txtName";
             this.txtName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
-            this.txtName.Size = new System.Drawing.Size(153, 32);
+            this.txtName.Size = new System.Drawing.Size(1051, 32);
             this.txtName.TabIndex = 3;
             this.txtName.Text = "name";
             this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,7 +138,7 @@
             this.BottomColorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomColorPanel.Location = new System.Drawing.Point(0, 34);
             this.BottomColorPanel.Name = "BottomColorPanel";
-            this.BottomColorPanel.Size = new System.Drawing.Size(264, 1);
+            this.BottomColorPanel.Size = new System.Drawing.Size(1162, 1);
             this.BottomColorPanel.TabIndex = 3;
             // 
             // OpenCloseArrow
@@ -153,7 +155,7 @@
             this.OpenCloseArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCloseArrow.Location = new System.Drawing.Point(3, 3);
             this.OpenCloseArrow.Name = "OpenCloseArrow";
-            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 65);
+            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 35);
             this.OpenCloseArrow.TabIndex = 5;
             this.OpenCloseArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
@@ -167,17 +169,17 @@
             this.ctxtStartTomato});
             this.ContextMenuTaskItem.Name = "ContextMenuTaskItem";
             this.ContextMenuTaskItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ContextMenuTaskItem.Size = new System.Drawing.Size(211, 56);
+            this.ContextMenuTaskItem.Size = new System.Drawing.Size(237, 28);
             // 
             // ctxtStartTomato
             // 
             this.ctxtStartTomato.BackColor = System.Drawing.SystemColors.Control;
             this.ctxtStartTomato.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ctxtStartTomato.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctxtStartTomato.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.ctxtStartTomato.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ctxtStartTomato.Name = "ctxtStartTomato";
-            this.ctxtStartTomato.Size = new System.Drawing.Size(210, 24);
-            this.ctxtStartTomato.Text = "Помидорка";
+            this.ctxtStartTomato.Size = new System.Drawing.Size(236, 24);
+            this.ctxtStartTomato.Text = "Запустить pomodoro";
             this.ctxtStartTomato.Click += new System.EventHandler(this.ctxtStartTomato_Click);
             // 
             // TaskItem
@@ -193,7 +195,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 0);
             this.Name = "TaskItem";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(300, 71);
+            this.Size = new System.Drawing.Size(1198, 41);
             this.ContentPanel.ResumeLayout(false);
             this.ContextMenuTaskItem.ResumeLayout(false);
             this.ResumeLayout(false);

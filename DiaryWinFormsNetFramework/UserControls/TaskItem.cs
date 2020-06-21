@@ -99,6 +99,7 @@ namespace DiaryWinFormsNetFramework.UserControls
             this.ProjectItem = project;
             this.ParentTaskItem = parentTaskItem;
 
+            //Инициализируем панель для подзадач
             InitPanel();
 
             this.SubTaskItems = new ObservableCollection<TaskItem>();
@@ -188,7 +189,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <param name="subTask"></param>
         /// <param name="removeInnerMyTask">Нужно ли удалять объект MyTask, который был автоматически добавлен
         /// при добавлении taskItem. То есть если объект MyProject уже сформирован, то ничего к нему не добавлять</param>
-        public void AddSubTaskItem(TaskItem subTask, bool removeInnerMyTask = false)
+        public void AddSubTaskItem(TaskItem subTask, bool removeInnerMyTask = false, bool selectAfterAdd = true)
         {
             if(subTask?.Task?.Status == TaskStatus.Done)
             {
@@ -215,14 +216,16 @@ namespace DiaryWinFormsNetFramework.UserControls
             {
                 this.Task.SubTasks.RemoveAt(this.Task.SubTasks.Count - 1);
             }
-            
 
             #endregion
 
 
             //вызовем у проекта событие OnChangeSelectedTaskItem (Что выбрали другую задачу). Вызываем событие через внешний метод. 
             //Как-то это не хорошо, но пока что так. Не могу вызвать событие напрямую.
-            this.ProjectItem.SelectedTaskItemWasChanged(subTask);
+            if (selectAfterAdd)
+            {
+                this.ProjectItem.SelectedTaskItemWasChanged(subTask);
+            }
             //Привязываем обработчик события нажатия для дочерних элементов
             HelperControls.SetOnClickHandlerForAllElementsInControl(subTask, subTask.ClickEventHandler);
             HelperControls.SetOnDoubleClickHandlerForAllElementsInControl(subTask, subTask.DoubleClickEventHandler);
@@ -465,7 +468,8 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <param name="e"></param>
         private void ctxtStartTomato_Click(object sender, EventArgs e)
         {
-            TomatoBox.ShowTomato(this.Task.Name);
+            Task t = new Task(()=>TomatoBox.ShowTomato(this.Task.Name));
+            t.Start();
         }
 
         /// <summary>

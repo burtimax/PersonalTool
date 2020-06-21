@@ -133,11 +133,11 @@ namespace DiaryClassLibStandart.Class.TaskClass
                 switch (this.State)
                 {
                     case PomodoroState.Relaxing:
-                        this.State = PomodoroState.Working;
+                        this.State = PomodoroState.WorkStopping;
                         this.CountdownTime = _timeForWork;
                         break;
                     case PomodoroState.Working:
-                        this.State = PomodoroState.Relaxing;
+                        this.State = PomodoroState.RelaxStopping;
                         this.CountdownTime = _timeForRelax;
                         break;
                 }
