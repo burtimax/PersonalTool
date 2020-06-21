@@ -465,7 +465,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// <param name="e"></param>
         private void ctxtStartTomato_Click(object sender, EventArgs e)
         {
-            TomatoBox.ShowTomato();
+            TomatoBox.ShowTomato(this.Task.Name);
         }
 
         /// <summary>

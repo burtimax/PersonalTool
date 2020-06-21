@@ -334,6 +334,24 @@
   <ItemGroup>
     <None Include="Resources\iconDeleteBig.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editWhiteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeWhiteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForwardWhiteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayWhiteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RestartWhiteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StopWhiteIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

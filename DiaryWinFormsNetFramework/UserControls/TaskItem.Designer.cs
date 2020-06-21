@@ -153,7 +153,7 @@
             this.OpenCloseArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCloseArrow.Location = new System.Drawing.Point(3, 3);
             this.OpenCloseArrow.Name = "OpenCloseArrow";
-            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 35);
+            this.OpenCloseArrow.Size = new System.Drawing.Size(30, 65);
             this.OpenCloseArrow.TabIndex = 5;
             this.OpenCloseArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenCloseArrow.UseVisualStyleBackColor = false;
@@ -166,16 +166,17 @@
             this.ContextMenuTaskItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctxtStartTomato});
             this.ContextMenuTaskItem.Name = "ContextMenuTaskItem";
-            this.ContextMenuTaskItem.Size = new System.Drawing.Size(169, 28);
+            this.ContextMenuTaskItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ContextMenuTaskItem.Size = new System.Drawing.Size(211, 56);
             // 
             // ctxtStartTomato
             // 
-            this.ctxtStartTomato.BackColor = System.Drawing.Color.DarkRed;
+            this.ctxtStartTomato.BackColor = System.Drawing.SystemColors.Control;
             this.ctxtStartTomato.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ctxtStartTomato.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctxtStartTomato.ForeColor = System.Drawing.Color.White;
+            this.ctxtStartTomato.ForeColor = System.Drawing.SystemColors.GrayText;
             this.ctxtStartTomato.Name = "ctxtStartTomato";
-            this.ctxtStartTomato.Size = new System.Drawing.Size(168, 24);
+            this.ctxtStartTomato.Size = new System.Drawing.Size(210, 24);
             this.ctxtStartTomato.Text = "Помидорка";
             this.ctxtStartTomato.Click += new System.EventHandler(this.ctxtStartTomato_Click);
             // 
@@ -192,7 +193,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 0);
             this.Name = "TaskItem";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(300, 41);
+            this.Size = new System.Drawing.Size(300, 71);
             this.ContentPanel.ResumeLayout(false);
             this.ContextMenuTaskItem.ResumeLayout(false);
             this.ResumeLayout(false);

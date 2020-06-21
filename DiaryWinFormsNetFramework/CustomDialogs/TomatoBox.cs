@@ -4,20 +4,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiaryClassLibStandart.Class.TaskClass;
+using DiaryClassLibStandart.Helpers;
+using DiaryWinFormsNetFramework.HelpersConstants;
+using DiaryWinFormsNetFramework.Properties;
 
 namespace DiaryWinFormsNetFramework.CustomDialogs
 {
     public partial class TomatoBox : Form
     {
-        
+        public static TomatoBox ActiveBox;
 
-        public TomatoBox()
+        private int hideWidth;
+        private int hideHeight;
+        private int showWidth;
+        private int showHeight;
+        private int centerLeft;
+
+
+        public Pomodoro Pomodoro;
+        
+        public TomatoBox(string goalString)
         {
             InitializeComponent();
-            Init();
+            Init(goalString);
         }
 
 
@@ -26,72 +40,202 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
 
         }
 
-        private void Init()
+        private void Init(string goalString)
         {
             this.StartPosition = FormStartPosition.Manual;
             this.TopMost = true;
-            SetInitBoundsAndPosition();
-            this.BackColor = Color.Gray;
-            this.AllowTransparency = true;
-            this.TransparencyKey = Color.Gray;
-            
+
+            this.hideWidth = this.Width;
+            this.showWidth = this.Width;
+            this.showHeight = this.Height;
+            this.hideHeight = 4;
+            this.centerLeft = Convert.ToInt32(Math.Round(Screen.PrimaryScreen.Bounds.Width / 2.0 - this.Width / 2.0));
+            this.MainPanel.MouseDown += MainPanelOnMouseDown;
+            this.MouseDown += MainPanelOnMouseDown;
+            this.GoalLabel.Text = goalString;
+            SetBroadenSize();
+            this.Pomodoro = new Pomodoro(goalString);
+            this.Pomodoro.OnStateChange -= OnPomodoroStateChanged;
+            this.Pomodoro.OnStateChange += OnPomodoroStateChanged;
+            this.Timer.Enabled = true;
+            this.Timer.Interval = 1000;
+
         }
 
-        public static void ShowTomato()
+        private void MainPanelOnMouseDown(object sender, MouseEventArgs e)
         {
-            TomatoBox box = new TomatoBox();
+            this.SetBroadenSize();
+        }
 
 
-            using (Button acceptBtn = new Button())
+        public static void ShowTomato(string goalString)
+        {
+            if(TomatoBox.ActiveBox != null)
             {
-                acceptBtn.Click += delegate(object sender, EventArgs args)
-                {
+                HelperDialog.ShowWarningDialog($"Уже активна другая задача [{TomatoBox.ActiveBox?.Pomodoro?.Goal}]", "Запущена другая задача!");
+                return;
+            }
 
-                    box.Close();
-                    box.Dispose();
-                };
+            TomatoBox box = new TomatoBox(goalString);
 
-                Button declineBtn = new Button();
-                declineBtn.Click += delegate(object sender, EventArgs args) { box.Close(); };
 
-                box.AcceptButton = acceptBtn;
-                box.CancelButton = declineBtn;
-                box.ShowInTaskbar = false;
-                box.ShowDialog();
+            //Button acceptBtn = new Button();
+            
+            //acceptBtn.Click += delegate(object sender, EventArgs args)
+            //{
+            //    box.CloseForm();
+            //};
+
+            //Button declineBtn = new Button();
+            //declineBtn.Click += delegate(object sender, EventArgs args) { box.CloseForm(); };
+
+            //box.AcceptButton = acceptBtn;
+            //box.CancelButton = declineBtn;
+            box.ShowInTaskbar = false;
+            //box.ShowDialog();
+            box.Show();
+
+            TomatoBox.ActiveBox = box;
+
+        }
+
+        private void SetHidenSize()
+        {
+            if (this.Width == this.hideWidth && 
+                this.Height == this.hideHeight &&
+                this.Left == this.centerLeft) return;
+            HelperForm.DeactivateControl(this.ContentPanel);
+            this.Width = this.hideWidth;
+            this.Height = this.hideHeight;
+            this.Left = this.centerLeft;
+            this.Top = -2;
+        }
+
+        private void SetBroadenSize()
+        {
+            if (this.Width == this.showWidth && 
+                this.Height == this.showHeight &&
+                this.Left == this.centerLeft) return;
+            HelperForm.ActivateControl(this.ContentPanel);
+            this.Width = this.showWidth;
+            this.Height = this.showHeight;
+
+            this.Left = this.centerLeft;
+            this.Top = -2;
+        }
+
+        private void CloseForm()
+        {
+            TomatoBox.ActiveBox = null;
+            this.Close();
+            this.Dispose();
+        }
+
+
+        /// <summary>
+        /// Edit task Name (Goal Name)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            var res = HelperDialog.ShowInputBox("Введите название задачи!", this.GoalLabel.Text);
+            if (res.Status != DialogResult.OK || string.IsNullOrWhiteSpace(res.Value)) return;
+
+            this.GoalLabel.Text = res.Value;
+        }
+
+
+        /// <summary>
+        /// Start/Stop Button Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StartStopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.Checked)
+            {
+                checkBox.BackgroundImage = Resources.StopWhiteIcon;
+                this.Pomodoro.Start();
+            }
+            else
+            {
+                checkBox.BackgroundImage = Resources.PlayWhiteIcon;
+                this.Pomodoro.Stop();
             }
         }
 
-        private void SetInitBoundsAndPosition()
+
+        /// <summary>
+        /// Restart Button Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RestartButton_Click(object sender, EventArgs e)
         {
-            if (this.Width == 20 && this.Height == 80) return;
-
-            this.Width = 400;
-            this.Height = 7;
-
-            this.Left = Convert.ToInt32(Math.Round(Screen.PrimaryScreen.Bounds.Width/2.0 - this.Width/2.0));
-            this.Top = -5;
+            this.Pomodoro.Restart();
         }
 
-        private void SetBroadenBoundsAndPosition()
+        /// <summary>
+        /// Forward Button Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ForwardButton_Click(object sender, EventArgs e)
         {
-            if (this.Width == 300 && this.Height == 80) return;
-
-            this.Width = 400;
-            this.Height = 100;
-
-            this.Left = Convert.ToInt32(Math.Round(Screen.PrimaryScreen.Bounds.Width / 2.0 - this.Width / 2.0));
-            this.Top = -5;
+            this.Pomodoro.ForwardToNextState();
+            this.StartStopCheckBox.Checked = false;
         }
 
-     
-        private void TomatoBox_MouseLeave(object sender, EventArgs e)
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            SetInitBoundsAndPosition();
+            if(keyData == Keys.Space)
+            {
+                this.SetHidenSize();
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void TomatoBox_MouseDown(object sender, MouseEventArgs e)
+
+        /// <summary>
+        /// Событие таймера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            SetBroadenBoundsAndPosition();
+            this.TimeLabel.Text = this.Pomodoro.CountDownTimeString;
+            this.Pomodoro.CountDown(this.Timer.Interval);
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.CloseForm();
+        }
+
+
+        private void OnPomodoroStateChanged(object sender, PomodoroState prevState, PomodoroState curState)
+        {
+            switch (curState)
+            {
+                case PomodoroState.Relaxing:
+                case PomodoroState.RelaxStopping:
+                    SetFormColor(Color.FromArgb(31,66,135));
+                    break;
+                case PomodoroState.Working:
+                case PomodoroState.WorkStopping:
+                    SetFormColor(Color.FromArgb(217, 83, 79));
+                    break;
+            }
+        }
+
+        private void SetFormColor(Color color)
+        {
+            this.BackColor = color;
+            this.MainPanel.BackColor = color;
         }
     }
 }

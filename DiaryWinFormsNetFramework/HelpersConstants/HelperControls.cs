@@ -84,5 +84,37 @@ namespace DiaryWinFormsNetFramework.HelpersConstants
                 itemControl.DoubleClick += handler;
             }
         }
+
+
+        //Todo Можно сделать еще отдельным параметром (на какое событие подписываемся: Click, Load, ect...)
+        /// <summary>
+        /// Устанавливает обработчик OnMouseEnter для control и всех его дочерних элементов.
+        /// </summary>
+        /// <param name="control"></param>
+        public static void SetOnMouseEnterHandlerForAllElementsInControl(Control control, EventHandler handler)
+        {
+            var allControls = HelperControls.GetAllChildrenControls(control);
+            foreach (var itemControl in allControls)
+            {
+                itemControl.MouseEnter -= handler;
+                itemControl.MouseEnter += handler;
+            }
+        }
+
+
+        //Todo Можно сделать еще отдельным параметром (на какое событие подписываемся: Click, Load, ect...)
+        /// <summary>
+        /// Устанавливает обработчик OnMouseLeave для control и всех его дочерних элементов.
+        /// </summary>
+        /// <param name="control"></param>
+        public static void SetOnMouseLeaveHandlerForAllElementsInControl(Control control, EventHandler handler)
+        {
+            var allControls = HelperControls.GetAllChildrenControls(control);
+            foreach (var itemControl in allControls)
+            {
+                itemControl.MouseLeave -= handler;
+                itemControl.MouseLeave += handler;
+            }
+        }
     }
 }

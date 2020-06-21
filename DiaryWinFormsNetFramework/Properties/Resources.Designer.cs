@@ -103,6 +103,16 @@ namespace DiaryWinFormsNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap closeWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("closeWhiteIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap deleteIcon {
             get {
                 object obj = ResourceManager.GetObject("deleteIcon", resourceCulture);
@@ -116,6 +126,26 @@ namespace DiaryWinFormsNetFramework.Properties {
         internal static System.Drawing.Bitmap downArrow {
             get {
                 object obj = ResourceManager.GetObject("downArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap editWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("editWhiteIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ForwardWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("ForwardWhiteIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +193,29 @@ namespace DiaryWinFormsNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PlayWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("PlayWhiteIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RedSmallBtnWithSpace {
             get {
                 object obj = ResourceManager.GetObject("RedSmallBtnWithSpace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RestartWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("RestartWhiteIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +236,16 @@ namespace DiaryWinFormsNetFramework.Properties {
         internal static System.Drawing.Bitmap save_Icon {
             get {
                 object obj = ResourceManager.GetObject("save Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StopWhiteIcon {
+            get {
+                object obj = ResourceManager.GetObject("StopWhiteIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -121,11 +121,20 @@
   <data name="iconDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="closeWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closeWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="downArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="unchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconDeleteBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconDeleteBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RedSmallBtnWithSpace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RedSmallBtnWithSpace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,7 +166,16 @@
   <data name="rightArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rightArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconDeleteBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconDeleteBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ForwardWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ForwardWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RestartWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RestartWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StopWhiteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StopWhiteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
