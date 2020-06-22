@@ -11,18 +11,20 @@ namespace DiaryClassLibStandart.Class.TaskClass
         /// Time For Work in Milliseconds
         /// </summary>
         public int TimeForWork { get { return _timeForWork; } }
-        public int _timeForWork = 5 * 1000;
+        public int _timeForWork = 25 * 60 * 1000;
 
         /// <summary>
         /// Time for relax in milliseconds
         /// </summary>
         public int TimeForRelax { get { return _timeForRelax; } }
-        public int _timeForRelax = 3 * 1000; //milliseconds
+        public int _timeForRelax = 5 * 60 * 1000; //milliseconds
 
 
         public delegate void PomodoroStateChange(object sender, PomodoroState prevState, PomodoroState curState);
         public event PomodoroStateChange OnStateChange;
 
+        public delegate void PomodoroTimeFinish(object sender);
+        public event PomodoroTimeFinish OnTimeFinish;
         
         private PomodoroState _pomodoroState;
         /// <summary>
@@ -52,8 +54,8 @@ namespace DiaryClassLibStandart.Class.TaskClass
         {
             this._pomodoroState = PomodoroState.ShutDown;
             this.CountdownTime = _timeForWork;
-            this.OnStateChange -= OnOnStateChange;
-            this.OnStateChange += OnOnStateChange;
+            this.OnStateChange -= OnPomodoroStateChange;
+            this.OnStateChange += OnPomodoroStateChange;
             this.Goal = "ЗАДАЧА";
         }
 
@@ -130,6 +132,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
             //Если счетчик <=0, то поменять статус и обновить счетчик.
             if (this.CountdownTime < 0)
             {
+                OnTimeFinish?.Invoke(this);
                 switch (this.State)
                 {
                     case PomodoroState.Relaxing:
@@ -151,7 +154,7 @@ namespace DiaryClassLibStandart.Class.TaskClass
         /// <param name="sender"></param>
         /// <param name="prevstate"></param>
         /// <param name="curstate"></param>
-        private void OnOnStateChange(object sender, PomodoroState prevstate, PomodoroState curstate)
+        private void OnPomodoroStateChange(object sender, PomodoroState prevstate, PomodoroState curstate)
         {
             //Устанавливаем время счетчику при изменениях состояний
 

@@ -355,6 +355,12 @@
   <ItemGroup>
     <None Include="Resources\closeWhiteIcon1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClockAlarm.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClockAlarm.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

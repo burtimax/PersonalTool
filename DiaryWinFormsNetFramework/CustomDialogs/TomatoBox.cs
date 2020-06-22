@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,9 +55,13 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
             this.MouseDown += MainPanelOnMouseDown;
             this.GoalLabel.Text = goalString;
             SetBroadenSize();
+
             this.Pomodoro = new Pomodoro(goalString);
             this.Pomodoro.OnStateChange -= OnPomodoroStateChanged;
             this.Pomodoro.OnStateChange += OnPomodoroStateChanged;
+            this.Pomodoro.OnTimeFinish -= OnPomodoroTimeFinish;
+            this.Pomodoro.OnTimeFinish += OnPomodoroTimeFinish;
+
             this.Timer.Enabled = true;
             this.Timer.Interval = 1000;
             this.TopLabel.Text = "PAUSE";
@@ -250,6 +255,17 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
         {
             this.BackColor = color;
             this.MainPanel.BackColor = color;
+        }
+
+        private void OnPomodoroTimeFinish(object sender)
+        {
+            PlayClockAlarm();
+        }
+
+        private void PlayClockAlarm()
+        {
+            System.Media.SoundPlayer soundPlayer = new SoundPlayer(Resources.ClockAlarm);
+            soundPlayer.Play();
         }
     }
 }
