@@ -459,7 +459,10 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             if (nextIndex < curTaskItem.ParentTaskItem.SubTaskItems.Count)
             {
                 ChangeSelectedTaskItem(curTaskItem.ParentTaskItem.SubTaskItems[nextIndex]);
+                return;
             }
+
+            SelectNextTaskItem(curTaskItem.ParentTaskItem, false);
         }
 
         /// <summary>
@@ -486,11 +489,28 @@ namespace DiaryWinFormsNetFramework.Plugins.TaskForm
             if (prevTaskItem.SubTaskItems.Count > 0 && 
                 prevTaskItem.Task.Revealed == true)
             {
-                ChangeSelectedTaskItem(prevTaskItem.SubTaskItems.LastOrDefault());
+                //ChangeSelectedTaskItem(prevTaskItem.SubTaskItems.LastOrDefault());
+                ChangeSelectedTaskItem(GetLastSubtaskFromTaskItem(prevTaskItem));
                 return;
             }
 
             ChangeSelectedTaskItem(prevTaskItem);
+        }
+
+        /// <summary>
+        /// Вернуть последний элемент во вложенных подзадачах.
+        /// </summary>
+        /// <param name="taskItem"></param>
+        private TaskItem GetLastSubtaskFromTaskItem(TaskItem taskItem)
+        { 
+            if(taskItem.SubTaskItems != null && 
+               taskItem.SubTaskItems.Count > 0 &&
+               taskItem.Revealed)
+            {
+                return GetLastSubtaskFromTaskItem(taskItem.SubTaskItems.Last());
+            }
+
+            return taskItem;
         }
 
         /// <summary>

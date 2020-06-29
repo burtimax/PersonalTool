@@ -255,7 +255,7 @@ namespace DiaryClassLibStandart.Class
                 return true;
             }
             //Ошибка при сохранении файла
-            catch (Exception e)
+            catch
             {
                 HelperFileName.ParsePath(fileName, out var dir, out var fname, out var ext);
                 fname = GetDefaultErrorFileName(fname);

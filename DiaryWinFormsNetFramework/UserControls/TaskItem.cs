@@ -443,7 +443,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         public void EditTaskItemData()
         {
             //Вызываем окошко для редактирования названия задачи
-            var res = HelperDialog.ShowInputBox($"Изменить задачу: ({this.TaskName})");
+            var res = HelperDialog.ShowInputBox($"Изменить задачу: ({this.TaskName})",this.TaskName);
             if (res.Status != DialogResult.OK || string.IsNullOrEmpty(res.Value)) return;
 
             this.TaskName = res.Value;

@@ -44,6 +44,10 @@ namespace DiaryWinFormsNetFramework.View
             //Initialize tabs
             this.InitTabs();
 
+            //Привяжем обработчики к событиям
+            this.VisibleChanged -= DiaryForm_VisibleChanged;
+            this.VisibleChanged += DiaryForm_VisibleChanged;
+
             //Активируем курсор в текстовом поле.
             StoryTextContainer.Select();
         }
@@ -212,6 +216,8 @@ namespace DiaryWinFormsNetFramework.View
 
         private void DiaryForm_Load(object sender, EventArgs e)
         {
+            //Когда есть изменения, то не нужно перезагружать данные из файла, так как может утеряться написаный текст, но не сохраненный.
+            //Поэтому, если текущий текст сохранен, то не нужно перезагружать.
             LoadExistingData();
             LoadListDocuments();            
         }
@@ -330,6 +336,15 @@ namespace DiaryWinFormsNetFramework.View
 
         public override void OnCloseForm()
         {
+            this.AskSaveDiary();
+            base.OnCloseForm();
+        }
+
+        /// <summary>
+        /// Спросить о сохранении записи
+        /// </summary>
+        private void AskSaveDiary()
+        {
             if (this.Diary.IsSaved == false)
             {
                 var result = HelperDialog.ShowYesNoDialog("Сохранить запись дневника?", "Запись дневника изменена");
@@ -338,10 +353,20 @@ namespace DiaryWinFormsNetFramework.View
                     SaveDiaryData();
                 }
             }
-            base.OnCloseForm();
         }
 
-
+        /// <summary>
+        /// Обработчик события изменения видимости окна
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DiaryForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if(this.Visible == false)
+            {
+                this.AskSaveDiary();
+            }
+        }
 
     }
 }

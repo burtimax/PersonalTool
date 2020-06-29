@@ -114,7 +114,7 @@ namespace DiaryWinFormsNetFramework.UserControls
         /// </summary>
         public void EditProjectData()
         {
-            var res = HelperDialog.ShowInputBox($"Изменить имя проекта ({this.Project.Name})");
+            var res = HelperDialog.ShowInputBox($"Изменить имя проекта ({this.Project.Name})", this.Project.Name);
 
             if (res.Status != DialogResult.OK || string.IsNullOrWhiteSpace(res.Value)) return;
 

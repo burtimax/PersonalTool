@@ -283,5 +283,8 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             IdeaSection.SelectedIndex = 0;
             IdeaMark.SelectedIndex = 0;
         }
+
+
+       
     }
 }
