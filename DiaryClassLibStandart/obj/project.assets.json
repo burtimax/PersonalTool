@@ -208,9 +208,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
-      "projectName": "DiaryClassLibStandart",
-      "projectPath": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\DiaryClassLibStandart.csproj",
+      "projectUniqueName": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\LibForPersonalTool.csproj",
+      "projectName": "LibForPersonalTool",
+      "projectPath": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\LibForPersonalTool.csproj",
       "packagesPath": "C:\\Users\\timof\\.nuget\\packages\\",
       "outputPath": "D:\\Programming\\Realise Projects\\LifeBookAlpha\\DiaryClassLibStandart\\obj\\",
       "projectStyle": "PackageReference",

@@ -86,16 +86,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IForm.cs" />
-    <Compile Include="CustomDialogs\InputBox.cs">
+    <Compile Include="AdditionalDialogsAndForms\InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomDialogs\InputBox.Designer.cs">
+    <Compile Include="AdditionalDialogsAndForms\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomDialogs\TomatoBox.cs">
+    <Compile Include="AdditionalDialogsAndForms\TomatoBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomDialogs\TomatoBox.Designer.cs">
+    <Compile Include="AdditionalDialogsAndForms\TomatoBox.Designer.cs">
       <DependentUpon>TomatoBox.cs</DependentUpon>
     </Compile>
     <Compile Include="HelpersConstants\AppVariables.cs" />
@@ -106,43 +106,37 @@
     <Compile Include="HelpersConstants\HelperDialog.cs" />
     <Compile Include="HelpersConstants\HelperForm.cs" />
     <Compile Include="HelpersConstants\InstanceGenerator.cs" />
-    <Compile Include="OverrideControls\CustomPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Plugins\BaseForm\BaseFormParent.cs">
+    <Compile Include="AppForms\BaseForm\BaseFormParent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\BaseForm\BaseFormParent.Designer.cs">
+    <Compile Include="AppForms\BaseForm\BaseFormParent.Designer.cs">
       <DependentUpon>BaseFormParent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\DiaryForm\DiaryMethods.cs">
+    <Compile Include="AppForms\DiaryForm\DiaryMethods.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\IdeasForm\IdeasMethods.cs">
+    <Compile Include="AppForms\TaskForm\TaskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\TaskForm\TaskForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Plugins\TaskForm\TaskForm.Designer.cs">
+    <Compile Include="AppForms\TaskForm\TaskForm.Designer.cs">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\TemplateForm\TemplateForm.cs">
+    <Compile Include="AppForms\TemplateForm\TemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\TemplateForm\TemplateForm.Designer.cs">
+    <Compile Include="AppForms\TemplateForm\TemplateForm.Designer.cs">
       <DependentUpon>TemplateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\SettingsForm\SettingsForm.cs">
+    <Compile Include="AppForms\SettingsForm\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\SettingsForm\SettingsForm.Designer.cs">
+    <Compile Include="AppForms\SettingsForm\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\IdeasForm\IdeasForm.cs">
+    <Compile Include="AppForms\IdeasForm\IdeasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\IdeasForm\IdeasForm.Designer.cs">
+    <Compile Include="AppForms\IdeasForm\IdeasForm.Designer.cs">
       <DependentUpon>IdeasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -186,38 +180,38 @@
     <Compile Include="UserControls\TextContainer.Designer.cs">
       <DependentUpon>TextContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\DiaryForm\DiaryForm.cs">
+    <Compile Include="AppForms\DiaryForm\DiaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\DiaryForm\DiaryForm.Designer.cs">
+    <Compile Include="AppForms\DiaryForm\DiaryForm.Designer.cs">
       <DependentUpon>DiaryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\MainForm\MainForm.cs">
+    <Compile Include="AppForms\MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugins\MainForm\MainForm.Designer.cs">
+    <Compile Include="AppForms\MainForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\BaseForm\BaseFormModel.cs" />
-    <Compile Include="Plugins\MainForm\MainFormModel.cs" />
+    <Compile Include="AppForms\BaseForm\BaseFormModel.cs" />
+    <Compile Include="AppForms\MainForm\MainFormModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomDialogs\InputBox.resx">
+    <EmbeddedResource Include="AdditionalDialogsAndForms\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomDialogs\TomatoBox.resx">
+    <EmbeddedResource Include="AdditionalDialogsAndForms\TomatoBox.resx">
       <DependentUpon>TomatoBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\TaskForm\TaskForm.resx">
+    <EmbeddedResource Include="AppForms\TaskForm\TaskForm.resx">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\TemplateForm\TemplateForm.resx">
+    <EmbeddedResource Include="AppForms\TemplateForm\TemplateForm.resx">
       <DependentUpon>TemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\SettingsForm\SettingsForm.resx">
+    <EmbeddedResource Include="AppForms\SettingsForm\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\IdeasForm\IdeasForm.resx">
+    <EmbeddedResource Include="AppForms\IdeasForm\IdeasForm.resx">
       <DependentUpon>IdeasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IdeaListItem.resx">
@@ -238,10 +232,10 @@
     <EmbeddedResource Include="UserControls\TextContainer.resx">
       <DependentUpon>TextContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\DiaryForm\DiaryForm.resx">
+    <EmbeddedResource Include="AppForms\DiaryForm\DiaryForm.resx">
       <DependentUpon>DiaryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\MainForm\MainForm.resx">
+    <EmbeddedResource Include="AppForms\MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -266,15 +260,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DiaryClassLibStandart\DiaryClassLibStandart.csproj">
+    <ProjectReference Include="..\DiaryClassLibStandart\LibForPersonalTool.csproj">
       <Project>{f0044c38-f5c7-4111-9917-2a3542a356c9}</Project>
-      <Name>DiaryClassLibStandart</Name>
+      <Name>LibForPersonalTool</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

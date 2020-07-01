@@ -42,26 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DiaryClassLibStandart.dll" size="31744">
-      <assemblyIdentity name="DiaryClassLibStandart" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+S4hh9CkZuzx2In9IegKbMSl/CNtF0lvrOy8Dej+9I4=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DiaryWinFormsNetFramework.exe" size="795616">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DiaryWinFormsNetFramework.exe" size="795104">
       <assemblyIdentity name="DiaryWinFormsNetFramework" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tyhrBAAGKrcYv0GNc6+i7ICp/VqwBZeNb5G5dUJxPvo=</dsig:DigestValue>
+        <dsig:DigestValue>6GLzlXuLAMQsbn8EKfkVRFIGxULTwJeyvneUZusGABc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LibForPersonalTool.dll" size="31744">
+      <assemblyIdentity name="LibForPersonalTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xZcOToIQRW/T3cNCvHCdw+WpLScNa+5dFS+UdSsLb60=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

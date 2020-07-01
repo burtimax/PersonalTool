@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiaryClassLibStandart.Class;
 using DiaryClassLibStandart.Class.IdeasClasses;
 using DiaryClassLibStandart.Helpers;
 using DiaryWinFormsNetFramework.HelpersConstants;
@@ -19,6 +20,11 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
     {
         private IdeaListItem SelectedListItem;
         private IdeaDoc Document;
+
+        private string IdeasDirectory
+        {
+            get { return Settings.GetSetting(Settings.IdeasDirectory); }
+        }
 
         public IdeasForm()
         {
@@ -284,7 +290,14 @@ namespace DiaryWinFormsNetFramework.Plugins.IdeaForm
             IdeaMark.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Получить имя для файла с идеями
+        /// </summary>
+        /// <returns></returns>
+        private string GetIdeasFilename()
+        {
+            return "Ideas_" + DateTime.Now.Year.ToString();
+        }
 
-       
     }
 }

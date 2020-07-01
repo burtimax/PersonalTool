@@ -98,10 +98,9 @@ namespace DiaryWinFormsNetFramework.CustomDialogs
             //box.AcceptButton = acceptBtn;
             //box.CancelButton = declineBtn;
             box.ShowInTaskbar = false;
+            TomatoBox.ActiveBox = box;
             box.ShowDialog();
             //box.Show();
-
-            TomatoBox.ActiveBox = box;
 
         }
 

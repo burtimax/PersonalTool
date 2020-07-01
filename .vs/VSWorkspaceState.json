@@ -5,12 +5,8 @@
     "\\DiaryClassLibStandart\\Class",
     "\\DiaryClassLibStandart\\Class\\DiaryClasses",
     "\\DiaryClassLibStandart\\Class\\TaskClasses",
-    "\\DiaryWinFormsNetFramework",
-    "\\DiaryWinFormsNetFramework\\Plugins",
-    "\\DiaryWinFormsNetFramework\\Plugins\\BaseForm",
-    "\\DiaryWinFormsNetFramework\\Plugins\\DiaryForm",
-    "\\DiaryWinFormsNetFramework\\Plugins\\MainForm"
+    "\\DiaryWinFormsNetFramework"
   ],
-  "SelectedNode": "\\LifeBook.sln",
+  "SelectedNode": "\\PersonalTool.sln",
   "PreviewInSolutionExplorer": false
 }

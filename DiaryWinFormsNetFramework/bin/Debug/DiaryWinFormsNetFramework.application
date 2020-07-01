@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DiaryWinFormsNetFramework.exe.manifest" size="4857">
+    <dependentAssembly dependencyType="install" codebase="DiaryWinFormsNetFramework.exe.manifest" size="4851">
       <assemblyIdentity name="DiaryWinFormsNetFramework.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/rUhDzYoKGKY86QFw4OHqTdckSshGhLRGlGW41kVYzI=</dsig:DigestValue>
+        <dsig:DigestValue>g3JtTRDTCHx39HOtFBNuqFy0tNnRq7GWu7qK7vZn4jo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
