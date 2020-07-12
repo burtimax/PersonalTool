@@ -117,7 +117,7 @@
             // 
             this.ProjectListLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ProjectListLabel.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectListLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.ProjectListLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.ProjectListLabel.Location = new System.Drawing.Point(37, 0);
             this.ProjectListLabel.Name = "ProjectListLabel";
             this.ProjectListLabel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -166,7 +166,7 @@
             // 
             this.ProjectNameLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ProjectNameLabel.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectNameLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.ProjectNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.ProjectNameLabel.Location = new System.Drawing.Point(37, 0);
             this.ProjectNameLabel.Name = "ProjectNameLabel";
             this.ProjectNameLabel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);

@@ -169,7 +169,7 @@
             this.btnSaveIdea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSaveIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveIdea.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnSaveIdea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.btnSaveIdea.Location = new System.Drawing.Point(421, 364);
             this.btnSaveIdea.Name = "btnSaveIdea";
             this.btnSaveIdea.Size = new System.Drawing.Size(134, 51);
@@ -280,7 +280,7 @@
             this.btnDeleteIdea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnDeleteIdea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteIdea.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteIdea.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnDeleteIdea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.btnDeleteIdea.Location = new System.Drawing.Point(30, 361);
             this.btnDeleteIdea.Name = "btnDeleteIdea";
             this.btnDeleteIdea.Size = new System.Drawing.Size(134, 51);
@@ -299,7 +299,7 @@
             this.btnChangeIdeaData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnChangeIdeaData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeIdeaData.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeIdeaData.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnChangeIdeaData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.btnChangeIdeaData.Location = new System.Drawing.Point(421, 364);
             this.btnChangeIdeaData.Name = "btnChangeIdeaData";
             this.btnChangeIdeaData.Size = new System.Drawing.Size(134, 51);

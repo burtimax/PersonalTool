@@ -5,7 +5,10 @@
     "\\DiaryClassLibStandart\\Class",
     "\\DiaryClassLibStandart\\Class\\DiaryClasses",
     "\\DiaryClassLibStandart\\Class\\TaskClasses",
-    "\\DiaryWinFormsNetFramework"
+    "\\DiaryWinFormsNetFramework",
+    "\\DiaryWinFormsNetFramework\\Forms",
+    "\\DiaryWinFormsNetFramework\\Forms\\MainForm",
+    "\\DiaryWinFormsNetFramework\\HelpersConstants"
   ],
   "SelectedNode": "\\PersonalTool.sln",
   "PreviewInSolutionExplorer": false

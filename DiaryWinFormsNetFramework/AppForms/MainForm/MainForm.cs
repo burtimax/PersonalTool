@@ -209,16 +209,27 @@ namespace DiaryWinFormsNetFramework
         /// </summary>
         void SetFormSize()
         {
-            //var width = (int)SystemParameters.VirtualScreenWidth;
-            //var height = (int)SystemParameters.VirtualScreenHeight;
+
+            int width = (int)SystemParameters.VirtualScreenWidth;
+            int height = (int)SystemParameters.VirtualScreenHeight;
             this.WindowState = FormWindowState.Normal;
-            double K = 0.9f;
-            var width = this.Width * K;
-            var height = this.Height * K;
+            double K = 1f;
+            width = Convert.ToInt32(width * K);
+            height = Convert.ToInt32(height * K);
             double k = Math.Min(width / WidthFormRatio, height / HeightFormRatio);
             this.Width = (int)(k * WidthFormRatio);
             this.Height = (int)(k * HeightFormRatio);
             this.CenterToScreen();
+            //var width = (int)SystemParameters.VirtualScreenWidth;
+            //var height = (int)SystemParameters.VirtualScreenHeight;
+            //this.WindowState = FormWindowState.Normal;
+            //double K = 0.9f;
+            //var width = this.Width * K;
+            //var height = this.Height * K;
+            //double k = Math.Min(width / WidthFormRatio, height / HeightFormRatio);
+            //this.Width = (int)(k * WidthFormRatio);
+            //this.Height = (int)(k * HeightFormRatio);
+            //this.CenterToScreen();
         }
 
 
@@ -302,6 +313,20 @@ namespace DiaryWinFormsNetFramework
             HelperForm.ActivateControl(SetNewPasswordPanel);
         }
 
-       
+        private void btnWrapCircle_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnOpenCircle_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.SetFormSize();
+                return;
+            }
+
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }
